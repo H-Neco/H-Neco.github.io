@@ -1,0 +1,147 @@
+<!doctype html><html dir="ltr" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript ) &#183; n's tech blog</title><meta name="title" content="Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript ) &#183; n's tech blog"><meta name="description" content="PC買い替えついでにLambdaのローカル実行環境を再構築しました。備忘として残していきます。"><link rel="canonical" href="/posts/lambda-local-execution/"><link type="text/css" rel="stylesheet" href="/css/main.min.e2435bff3a90fa0016b5695f40ff2aea931364daf08807580d4abebbec12aff7.css" integrity="sha256-4kNb/zqQ+gAWtWlfQP8q6pMTZNrwiAdYDUq+u+wSr/c="><link rel="icon" sizes="192x192" href="/logo-192.png"><link rel="apple-touch-icon" href="/logo-192.png"><link rel="mask-icon" href="/logo.svg" color="blue"><link rel="manifest" href="/site.webmanifest"><meta property="og:title" content="Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )"><meta property="og:description" content="PC買い替えついでにLambdaのローカル実行環境を再構築しました。備忘として残していきます。"><meta property="og:type" content="article"><meta property="og:url" content="/posts/lambda-local-execution/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-04-24T00:00:00+00:00"><meta property="article:modified_time" content="2023-04-24T00:00:00+00:00"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )"><meta name="twitter:description" content="PC買い替えついでにLambdaのローカル実行環境を再構築しました。備忘として残していきます。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )","headline":"Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )","description":"PC買い替えついでにLambdaのローカル実行環境を再構築しました。備忘として残していきます。","author":{"@type":"Person","name":"Hi"},"creator":{"@type":"Person","name":"Hi"},"copyrightHolder":"Hi","copyrightYear":"2023","dateCreated":"2023-04-24T00:00:00\u002b00:00","datePublished":"2023-04-24T00:00:00\u002b00:00","dateModified":"2023-04-24T00:00:00\u002b00:00","url":"\/posts\/lambda-local-execution\/","wordCount":"531","keywords":["volta","Lambda","LocalStack","TypeScript","SAM"]}</script><meta name="generator" content="Hugo 0.111.3"><meta name="author" content="n's"><script defer src="/js/main.min.3bfc9774c933123803ba09c8b89eeda9822dd63321db002f0bfd9cdc3129b0fa.js" integrity="sha256-O/yXdMkzEjgDugnIuJ7tqYIt1jMh2wAvC/2c3DEpsPo="></script>
+<script>"theme"in localStorage||(localStorage.theme="auto"),(localStorage.theme==="dark"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark")</script></head><body class="w-full min-h-full" x-data="{ up: false }"><div x-data="{ open: false }" @keydown.window.escape="open = false" class="sticky inset-x-0 top-0 z-10"><div class="fixed z-10 flex w-48 h-screen lg:hidden" :class="open ? '' : 'hidden'" x-ref="dialog" aria-modal="true"><div class="fixed inset-0 bg-black bg-opacity-25" :class="open ? '' : 'hidden'" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Off-canvas menu overlay, show/hide based on off-canvas menu state." @click="open = false" aria-hidden="true"></div><div class="fixed inset-0 flex flex-col w-full h-full pb-12 overflow-y-auto shadow-xl bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200 max-w-xxs" :class="open ? '' : 'hidden'" x-transition:enter="transition ease-in-out duration-300" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-description="Off-canvas menu, show/hide based on off-canvas menu state."><div class="flex px-4 pt-5 pb-2"><button type="button" title="Close menu" class="inline-flex items-center justify-center p-2 -m-2 rounded-md text-neutral-400" @click="open = false">
+<span class="sr-only">Close menu</span><svg class="w-6 h-6" x-description="Heroicon name: outline/x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/></svg></button></div><ul class="py-4 divide-y divide-neutral-200"><li class="flow-root px-4 py-2"><a href="/" title="n's tech blog" class="block p-2 -m-2 font-medium">Home</a></li><li class="flow-root px-4 py-2
+bg-neutral-200 dark:bg-neutral-900"><a href="/posts/" title="Posts" class="block p-2 -m-2 font-medium">Blog</a></li><li class="flow-root px-4 py-2"><a href="/tags/" title="Tags" class="block p-2 -m-2 font-medium">Tags</a></li><li class="flow-root px-4 py-2"><a href="https://github.com/H-Neco" title class="block p-2 -m-2 font-medium">GitHub</a></li></ul></div></div><header class="shadow dark:shadow-dark bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200"><nav class="container flex leading-12 items-center px-6 mx-auto max-w-7xl lg:px-8 xl:px-12 bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200" aria-label="Top"><a class="relative hidden p-2 align-middle lg:block" rel="me" href="/" title="n's tech blog"><img src="/logo-192.png" class="h-8 w-auto" alt="n's tech blog"></a>
+<button class="lg:hidden" type="button" @click="open = true" aria-label="Open menu"><svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="flex-grow h-12 mx-2"><div class="relative w-full h-full"><div class="absolute max-w-full" :class="up ? 'hidden' : ''" x-transition.duration.500ms><span class="font-semibold overflow-hidden text-ellipsis whitespace-nowrap">n's tech blog</span></div><template x-if="true"><div class="absolute top-0 left-0 right-0 max-w-full" :class="up ? '' : 'hidden'" x-transition.duration.500ms><span class="overflow-hidden text-ellipsis whitespace-nowrap">Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )</span></div></template></div></div><ul class="shrink hidden ml-7 lg:flex flex-row justify-end list-none"><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="/" title="n's tech blog">Home</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500
+border-primary-500"><a href="/posts/" title="Posts">Blog</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="/tags/" title="Tags">Tags</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="https://github.com/H-Neco" title>GitHub</a></li></ul><button id="switchTheme" class="w-8 h-8 flex justify-center items-center focus:outline-none">
+<span class="sr-only">Switch theme</span><svg class="w-5 h-5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1A1 1 0 119 4V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707A1 1 0 1113.536 5.05l.707-.707a1 1 0 011.414.0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707A1 1 0 004.343 5.757l.707.707zm1.414 8.486-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+<span class="light"></span><span class="dark"></span></button>
+<script>document.getElementById("switchTheme").addEventListener("click",function(){localStorage.theme==="dark"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(document.documentElement.classList.remove("dark"),localStorage.theme="light"):(localStorage.theme==="light"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: light)").matches)&&(document.documentElement.classList.add("dark"),localStorage.theme="dark")})</script></nav></header></div><main class="container flex flex-row px-6 mx-auto my-6 lg:px-8 xl:px-12 max-w-7xl"><article class="flex-grow mx-auto text-lg lg:text-xl min-w-0 max-w-prose"><header class="text-base"><ol class="pb-4 text-sm text-neutral-500 dark:text-neutral-400"><li class="inline hidden"><a class="hover:underline" href="/">n's tech blog</a><span class="px-1 text-primary-500">/</span></li><li class="inline"><a class="hover:underline" href="/posts/">Posts</a><span class="px-1 text-primary-500">/</span></li><li class="inline hidden"><a class="hover:underline" href="/posts/lambda-local-execution/">Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )</a><span class="px-1 text-primary-500">/</span></li></ol><h1 class="my-3 text-3xl font-semibold text-neutral-800 dark:text-neutral-200" x-intersect:enter="up = false" x-intersect:leave="up = true">Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )</h1><div class="mb-6 text-base text-neutral-500 dark:text-neutral-400"><div class="flex flex-row items-center"><time datetime="2023-04-24 00:00:00 +0000 UTC">24 April 2023</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">3 mins</span><span class="px-2 text-primary-500">&#183;</span>
+<span class="mb-[2px]"><a href="https://github.com/canstand/compost/tree/main/exampleSite/content/posts/lambda-local-execution.md" class="text-lg hover:text-primary-500" rel="noopener noreferrer" target="_blank" title="Edit content"><span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentcolor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6A2 2 0 004 7v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></span></a></span></div></div></header><section class="max-w-none text-base prose dark:prose-invert"><h2 id="やること">やること <a class="heading-anchor" href="#%e3%82%84%e3%82%8b%e3%81%93%e3%81%a8" aria-hidden="true">#</a></h2><ul><li>PC買い替えついでにLambdaのローカル実行環境を再構築しました。備忘として残していきます。</li></ul><h2 id="技術要素">技術要素 <a class="heading-anchor" href="#%e6%8a%80%e8%a1%93%e8%a6%81%e7%b4%a0" aria-hidden="true">#</a></h2><ul><li>Volta</li><li>Lambda</li><li>LocalStack</li><li>TypeScript</li><li>SAM</li></ul><h2 id="事前準備">事前準備 <a class="heading-anchor" href="#%e4%ba%8b%e5%89%8d%e6%ba%96%e5%82%99" aria-hidden="true">#</a></h2><h3 id="voltaのインストール">Voltaのインストール <a class="heading-anchor" href="#volta%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab" aria-hidden="true">#</a></h3><p>VoltaはNode.jsのバージョン管理に特化したツールで、Node.jsのバージョンを切り替える際に、プロジェクトごとに異なるバージョンを使い分けることができるという利点があります。他のバージョン管理ツールと比較しても、Node.jsのバージョンの切り替えが容易で、Node.jsのインストール方法やバージョン管理方法を意識せずに、簡単にNode.jsのバージョンを管理することができるというメリットがあります。また、VoltaはOSやシェルに依存しないため、様々な環境で利用することができます。</p><pre tabindex="0"><code>$ curl https://get.volta.sh | bash
+$ echo &#39;export VOLTA_HOME=&#34;$HOME/.volta&#34;&#39; &gt;&gt; .zshrc
+$ echo &#39;export PATH=&#34;$VOLTA_HOME/bin:$PATH&#34;&#39; &gt;&gt; .zshrc
+</code></pre><h3 id="nodeとyarnのインストール">nodeとyarnのインストール <a class="heading-anchor" href="#node%e3%81%a8yarn%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab" aria-hidden="true">#</a></h3><p><code>volta list node</code>で利用可能なバージョンを確認できます。バージョン指定してインストールする場合は、<code>volta install node@18.15.0</code>のように指定します。</p><pre tabindex="0"><code>$ volta install node
+  success: installed and set node@18.15.0 (with npm@9.5.0) as default
+$ volta install yarn
+  success: installed and set yarn@4.0.0-rc.42 as default
+</code></pre><h3 id="samインストール">SAMインストール <a class="heading-anchor" href="#sam%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab" aria-hidden="true">#</a></h3><ul><li><p>macOSなのでコマンドを記載しますが、WindowsOSの方は<a href="https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/install-sam-cli.html" data-rel="prefetch">公式サイト</a>からmisファイルをダウンロードしていくのが良さそうです。</p></li><li><p>macOS</p></li></ul><pre tabindex="0"><code>$ brew tap aws/tap
+$ brew install aws-sam-cli
+
+$ sam --version
+SAM CLI, version 1.78.0
+</code></pre><h3 id="プロジェクトの作成">プロジェクトの作成 <a class="heading-anchor" href="#%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ae%e4%bd%9c%e6%88%90" aria-hidden="true">#</a></h3><pre tabindex="0"><code>$ sam init -r nodejs18.x
+
+	SAM CLI now collects telemetry to better understand customer needs.
+
+	You can OPT OUT and disable telemetry collection by setting the
+	environment variable SAM_CLI_TELEMETRY=0 in your shell.
+	Thanks for your help!
+
+	Learn More: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-telemetry.html
+
+Which template source would you like to use?
+	1 - AWS Quick Start Templates
+	2 - Custom Template Location
+Choice: 1
+
+Choose an AWS Quick Start application template
+	1 - Hello World Example
+	2 - Hello World Example With Powertools
+	3 - Multi-step workflow
+	4 - Standalone function
+	5 - Scheduled task
+	6 - Data processing
+	7 - Serverless API
+Template: 1
+
+Based on your selections, the only Package type available is Zip.
+We will proceed to selecting the Package type as Zip.
+
+Based on your selections, the only dependency manager available is npm.
+We will proceed copying the template using npm.
+
+Select your starter template
+	1 - Hello World Example
+	2 - Hello World Example TypeScript
+Template: 2
+
+Would you like to enable X-Ray tracing on the function(s) in your application?  [y/N]: n
+
+Would you like to enable monitoring using CloudWatch Application Insights?
+For more info, please view https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html [y/N]: n
+
+Project name [sam-app]: sam-local-study
+
+Cloning from https://github.com/aws/aws-sam-cli-app-templates (process may take a moment)
+
+    -----------------------
+    Generating application:
+    -----------------------
+    Name: sam-local-study
+    Runtime: nodejs18.x
+    Architectures: x86_64
+    Dependency Manager: npm
+    Application Template: hello-world-typescript
+    Output Directory: .
+    Configuration file: sam-local-study/samconfig.toml
+
+    Next steps can be found in the README file at sam-local-study/README.md
+
+
+Commands you can use next
+=========================
+[*] Create pipeline: cd sam-local-study &amp;&amp; sam pipeline init --bootstrap
+[*] Validate SAM template: cd sam-local-study &amp;&amp; sam validate
+[*] Test Function in the Cloud: cd sam-local-study &amp;&amp; sam sync --stack-name {stack-name} --watch
+</code></pre><p>対話に応じていくと下記のファイルが生成されます。</p><pre tabindex="0"><code>$ tree .
+.
+└── sam-local-study
+    ├── README.md
+    ├── events
+    │   └── event.json
+    ├── hello-world
+    │   ├── app.ts
+    │   ├── jest.config.ts
+    │   ├── package.json
+    │   ├── tests
+    │   │   └── unit
+    │   │       └── test-handler.test.ts
+    │   └── tsconfig.json
+    ├── samconfig.toml
+    └── template.yaml
+
+6 directories, 9 files
+</code></pre><h2 id="samの実行">SAMの実行 <a class="heading-anchor" href="#sam%e3%81%ae%e5%ae%9f%e8%a1%8c" aria-hidden="true">#</a></h2><p>メッセージを返すLambdaのサンプルを作成し、samで実行してみる</p><pre tabindex="0"><code>$ tree .
+.
+└── sam-local-study
+    ├── src
+    │   ├── handlers
+    │      └── hello-from-lambda.js
+    └── template.yaml
+</code></pre><ul><li>src/handlers/hello-from-lambda.js</li></ul><pre tabindex="0"><code>exports.helloFromLambdaHandler = async () =&gt; {
+    const message = &#39;Hello from Lambda!&#39;;
+    console.info(`${message}`);
+    return message;
+}
+</code></pre><ul><li>template.yaml</li></ul><pre tabindex="0"><code>Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 100
+      Description: A Lambda function that returns a static string.
+      Policies:
+        - AWSLambdaBasicExecutionRole
+</code></pre><pre tabindex="0"><code>$ sam local invoke HelloWorldFunction
+</code></pre><pre tabindex="0"><code>Invoking src/handlers/hello-from-lambda.helloFromLambdaHandler (nodejs18.x)
+Local image is up-to-date
+Using local image: public.ecr.aws/lambda/nodejs:18-rapid-x86_64.
+
+Mounting /lambda-sam-localstack/sam-local-study as /var/task:ro,delegated, inside runtime container
+START RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a Version: $LATEST
+2023-04-05T08:41:27.339Z	6d2615de-b38f-4300-bf87-704e1fa6296a	INFO	Hello from Lambda!
+END RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a
+REPORT RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a	Init Duration: 0.75 ms	Duration: 953.12 ms	Billed Duration: 954 ms	Memory Size: 128 MB	Max Memory Used: 128 MB
+&#34;Hello from Lambda!&#34;%
+</code></pre></section><footer class="pt-8"><div class="flex text-base text-neutral-500 dark:text-neutral-400"><img class="w-16 h-16 my-auto mr-4 rounded-full" src="/img/author.jpg" alt="Avatar"><div class="place-self-center"><div class="text-xs uppercase" aria-hidden="true">Author</div><div class="my-1 font-bold text-neutral-800 dark:text-neutral-300">n&rsquo;s</div></div></div><div class="article-pagination"><hr><div><span><a class="flex text-right" href="/posts/ec2-ebs-delete-on-termination/"><span class="mr-3 article-pagination-direction">&larr;</span>
+<span class="flex flex-col"><span class="article-pagination-title">EC2にアタッチされたEBSを永続化する</span>
+<span class="article-pagination-date"><time datetime="2023-04-21 00:00:00 +0000 UTC">21 April 2023</time></span></span></a></span>
+<span></span></div></div></footer></article><aside class="flex-auto min-w-0 space-y-6 pl-10 mt-3 pr-4 xl:pl-16 hidden lg:block text-sm xl:text-base"><div><label class="font-bold text-lg">Tags</label><div class="space-x-2 mt-2"><a href="/tags/volta/" class="hover:underline">#volta</a>
+<a href="/tags/lambda/" class="hover:underline">#Lambda</a>
+<a href="/tags/localstack/" class="hover:underline">#LocalStack</a>
+<a href="/tags/typescript/" class="hover:underline">#TypeScript</a>
+<a href="/tags/sam/" class="hover:underline">#SAM</a></div></div><div class="sticky self-start top-20 min-h-screen overflow-y-auto truncate"><label class="font-bold text-lg mb-4">Table of contents</label><nav id="TableOfContents"><ul><li><a href="#やること">やること</a></li><li><a href="#技術要素">技術要素</a></li><li><a href="#事前準備">事前準備</a><ul><li><a href="#voltaのインストール">Voltaのインストール</a></li><li><a href="#nodeとyarnのインストール">nodeとyarnのインストール</a></li><li><a href="#samインストール">SAMインストール</a></li><li><a href="#プロジェクトの作成">プロジェクトの作成</a></li></ul></li><li><a href="#samの実行">SAMの実行</a></li></ul></nav></div></aside><script>window.addEventListener("DOMContentLoaded",()=>{const t=new IntersectionObserver(e=>{e.forEach(e=>{const n=e.target.getAttribute("id"),t=document.querySelector(`nav li a[href="#${n}"]`);t!==null&&(e.intersectionRatio>0?t.parentElement.classList.add("active"):t.parentElement.classList.remove("active"))})}),e=[];for(let t=1;t<=6;t++)e.push(`article h${t}[id]`);document.querySelectorAll(e.join()).forEach(e=>{t.observe(e)})})</script></main><footer class="text-neutral-500 dark:text-neutral-500 bg-neutral-200 dark:bg-neutral-900"><div class="container flex flex-row px-6 lg:px-8 xl:px-12 py-4 mx-auto text-sm max-w-7xl"><div class="flex-1"><p>&copy;
+2023
+n's</p><p class="text-sm">Powered by <a class="hover:underline hover:text-primary-500" href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:text-primary-500" href="https://canstand.github.io/compost" target="_blank" rel="noopener noreferrer">Compost</a></p></div><div class="flex-1"></div></div></footer></body></html>
