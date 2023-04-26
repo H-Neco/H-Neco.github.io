@@ -1,0 +1,212 @@
+<!doctype html><html dir="ltr" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OIDCでのデプロイ備忘録です (git -> aws) &#183; n's tech blog</title><meta name="title" content="OIDCでのデプロイ備忘録です (git -> aws) &#183; n's tech blog"><meta name="description" content="個人のawsでGitHub/Bitbucketからデプロイするときアクセスキー、シークレットキーを利用していましたが、運用が面倒なのでOIDCに切替ました。"><link rel="canonical" href="/posts/oidc/"><link type="text/css" rel="stylesheet" href="/css/main.min.e2435bff3a90fa0016b5695f40ff2aea931364daf08807580d4abebbec12aff7.css" integrity="sha256-4kNb/zqQ+gAWtWlfQP8q6pMTZNrwiAdYDUq+u+wSr/c="><link rel="icon" sizes="192x192" href="/logo-192.png"><link rel="apple-touch-icon" href="/logo-192.png"><link rel="mask-icon" href="/logo.svg" color="blue"><link rel="manifest" href="/site.webmanifest"><meta property="og:title" content="OIDCでのデプロイ備忘録です (git -> aws)"><meta property="og:description" content="個人のawsでGitHub/Bitbucketからデプロイするときアクセスキー、シークレットキーを利用していましたが、運用が面倒なのでOIDCに切替ました。"><meta property="og:type" content="article"><meta property="og:url" content="/posts/oidc/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-04-26T00:00:00+00:00"><meta property="article:modified_time" content="2023-04-26T00:00:00+00:00"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="OIDCでのデプロイ備忘録です (git -> aws)"><meta name="twitter:description" content="個人のawsでGitHub/Bitbucketからデプロイするときアクセスキー、シークレットキーを利用していましたが、運用が面倒なのでOIDCに切替ました。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","articleSection":"Posts","name":"OIDCでのデプロイ備忘録です (git -\u003e aws)","headline":"OIDCでのデプロイ備忘録です (git -\u003e aws)","description":"個人のawsでGitHub\/Bitbucketからデプロイするときアクセスキー、シークレットキーを利用していましたが、運用が面倒なのでOIDCに切替ました。","author":{"@type":"Person","name":"Hi"},"creator":{"@type":"Person","name":"Hi"},"copyrightHolder":"Hi","copyrightYear":"2023","dateCreated":"2023-04-26T00:00:00\u002b00:00","datePublished":"2023-04-26T00:00:00\u002b00:00","dateModified":"2023-04-26T00:00:00\u002b00:00","url":"\/posts\/oidc\/","wordCount":"455","keywords":["aws","terraform","OIDC","CI/CD","github-action","bitbucket-pipelines"]}</script><meta name="generator" content="Hugo 0.111.3"><meta name="author" content="n's"><script defer src="/js/main.min.3bfc9774c933123803ba09c8b89eeda9822dd63321db002f0bfd9cdc3129b0fa.js" integrity="sha256-O/yXdMkzEjgDugnIuJ7tqYIt1jMh2wAvC/2c3DEpsPo="></script>
+<script>"theme"in localStorage||(localStorage.theme="auto"),(localStorage.theme==="dark"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark")</script></head><body class="w-full min-h-full" x-data="{ up: false }"><div x-data="{ open: false }" @keydown.window.escape="open = false" class="sticky inset-x-0 top-0 z-10"><div class="fixed z-10 flex w-48 h-screen lg:hidden" :class="open ? '' : 'hidden'" x-ref="dialog" aria-modal="true"><div class="fixed inset-0 bg-black bg-opacity-25" :class="open ? '' : 'hidden'" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Off-canvas menu overlay, show/hide based on off-canvas menu state." @click="open = false" aria-hidden="true"></div><div class="fixed inset-0 flex flex-col w-full h-full pb-12 overflow-y-auto shadow-xl bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200 max-w-xxs" :class="open ? '' : 'hidden'" x-transition:enter="transition ease-in-out duration-300" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-description="Off-canvas menu, show/hide based on off-canvas menu state."><div class="flex px-4 pt-5 pb-2"><button type="button" title="Close menu" class="inline-flex items-center justify-center p-2 -m-2 rounded-md text-neutral-400" @click="open = false">
+<span class="sr-only">Close menu</span><svg class="w-6 h-6" x-description="Heroicon name: outline/x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/></svg></button></div><ul class="py-4 divide-y divide-neutral-200"><li class="flow-root px-4 py-2"><a href="/" title="n's tech blog" class="block p-2 -m-2 font-medium">Home</a></li><li class="flow-root px-4 py-2
+bg-neutral-200 dark:bg-neutral-900"><a href="/posts/" title="Posts" class="block p-2 -m-2 font-medium">Blog</a></li><li class="flow-root px-4 py-2"><a href="/tags/" title="Tags" class="block p-2 -m-2 font-medium">Tags</a></li><li class="flow-root px-4 py-2"><a href="https://github.com/H-Neco" title class="block p-2 -m-2 font-medium">GitHub</a></li></ul></div></div><header class="shadow dark:shadow-dark bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200"><nav class="container flex leading-12 items-center px-6 mx-auto max-w-7xl lg:px-8 xl:px-12 bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200" aria-label="Top"><a class="relative hidden p-2 align-middle lg:block" rel="me" href="/" title="n's tech blog"><img src="/logo-192.png" class="h-8 w-auto" alt="n's tech blog"></a>
+<button class="lg:hidden" type="button" @click="open = true" aria-label="Open menu"><svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="flex-grow h-12 mx-2"><div class="relative w-full h-full"><div class="absolute max-w-full" :class="up ? 'hidden' : ''" x-transition.duration.500ms><span class="font-semibold overflow-hidden text-ellipsis whitespace-nowrap">n's tech blog</span></div><template x-if="true"><div class="absolute top-0 left-0 right-0 max-w-full" :class="up ? '' : 'hidden'" x-transition.duration.500ms><span class="overflow-hidden text-ellipsis whitespace-nowrap">OIDCでのデプロイ備忘録です (git -> aws)</span></div></template></div></div><ul class="shrink hidden ml-7 lg:flex flex-row justify-end list-none"><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="/" title="n's tech blog">Home</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500
+border-primary-500"><a href="/posts/" title="Posts">Blog</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="/tags/" title="Tags">Tags</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="https://github.com/H-Neco" title>GitHub</a></li></ul><button id="switchTheme" class="w-8 h-8 flex justify-center items-center focus:outline-none">
+<span class="sr-only">Switch theme</span><svg class="w-5 h-5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1A1 1 0 119 4V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707A1 1 0 1113.536 5.05l.707-.707a1 1 0 011.414.0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707A1 1 0 004.343 5.757l.707.707zm1.414 8.486-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
+<span class="light"></span><span class="dark"></span></button>
+<script>document.getElementById("switchTheme").addEventListener("click",function(){localStorage.theme==="dark"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(document.documentElement.classList.remove("dark"),localStorage.theme="light"):(localStorage.theme==="light"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: light)").matches)&&(document.documentElement.classList.add("dark"),localStorage.theme="dark")})</script></nav></header></div><main class="container flex flex-row px-6 mx-auto my-6 lg:px-8 xl:px-12 max-w-7xl"><article class="flex-grow mx-auto text-lg lg:text-xl min-w-0 max-w-prose"><header class="text-base"><ol class="pb-4 text-sm text-neutral-500 dark:text-neutral-400"><li class="inline hidden"><a class="hover:underline" href="/">n's tech blog</a><span class="px-1 text-primary-500">/</span></li><li class="inline"><a class="hover:underline" href="/posts/">Posts</a><span class="px-1 text-primary-500">/</span></li><li class="inline hidden"><a class="hover:underline" href="/posts/oidc/">OIDCでのデプロイ備忘録です (git -> aws)</a><span class="px-1 text-primary-500">/</span></li></ol><h1 class="my-3 text-3xl font-semibold text-neutral-800 dark:text-neutral-200" x-intersect:enter="up = false" x-intersect:leave="up = true">OIDCでのデプロイ備忘録です (git -> aws)</h1><div class="mb-6 text-base text-neutral-500 dark:text-neutral-400"><div class="flex flex-row items-center"><time datetime="2023-04-26 00:00:00 +0000 UTC">26 April 2023</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">3 mins</span><span class="px-2 text-primary-500">&#183;</span>
+<span class="mb-[2px]"><a href="https://github.com/canstand/compost/tree/main/exampleSite/content/posts/oidc.md" class="text-lg hover:text-primary-500" rel="noopener noreferrer" target="_blank" title="Edit content"><span class="relative inline-block align-text-bottom icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentcolor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6A2 2 0 004 7v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg></span></a></span></div></div></header><section class="max-w-none text-base prose dark:prose-invert"><h2 id="やること">やること <a class="heading-anchor" href="#%e3%82%84%e3%82%8b%e3%81%93%e3%81%a8" aria-hidden="true">#</a></h2><ul><li>OIDCをterraformで構築する<ul><li>github</li><li>bitbucket</li></ul></li><li>OIDCを利用してデプロイする<ul><li>簡単なgithub actionとbitbucket pipelinesを作成する</li></ul></li></ul><h2 id="技術要素">技術要素 <a class="heading-anchor" href="#%e6%8a%80%e8%a1%93%e8%a6%81%e7%b4%a0" aria-hidden="true">#</a></h2><ul><li>oidc</li><li>aws</li><li>bitbucket</li><li>github</li><li>terraform</li></ul><h2 id="oidcとは">OIDCとは <a class="heading-anchor" href="#oidc%e3%81%a8%e3%81%af" aria-hidden="true">#</a></h2><p>OIDC (OpenID Connect) とは、OAuth 2.0 プロトコルを拡張した認証プロトコルの一つで、Webアプリケーションやモバイルアプリケーションなどにおけるユーザー認証を行うための仕組みです。</p><h3 id="導入メリット">導入メリット <a class="heading-anchor" href="#%e5%b0%8e%e5%85%a5%e3%83%a1%e3%83%aa%e3%83%83%e3%83%88" aria-hidden="true">#</a></h3><p>GitからのデプロイにOIDCを使用することで、Gitを介したデプロイにおけるセキュリティ強化や、トークンの有効期限管理が容易になるなどのメリットがあります。MFA有効化されてないアクセスキーをデプロイに利用するのにはセキュリティーリスクがあります。とはいえ、MFAを有効にしたキーをデプロイに利用するのは、デバイスをどうするか等考慮することが増えて中々面倒です。OIDCであれば、ユーザーが自身のIDプロバイダーの認証情報を使用するため、認証情報の管理が簡素化され、セキュリティも向上します。</p><h4 id="導入背景">導入背景 <a class="heading-anchor" href="#%e5%b0%8e%e5%85%a5%e8%83%8c%e6%99%af" aria-hidden="true">#</a></h4><p>今まではawsにデプロイしたいとき運用が煩雑でした。これだったらCLIじゃなくてマネジメントコンソールからデプロイでも良いかなぁと思えるほど。。</p><ul><li>今までのフローはまずキーを取得するところが手間<ul><li>MFAのトークンをアプリから確認してコマンドを叩く</li><li><code>$ aws sts get-session-token --serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx --token-code xxxxxx</code></li><li>取得したキーをエクスポートかGitに登録</li><li>セッションに有効期限があるので定期的に実行&mldr;</li></ul></li></ul><h2 id="terraformでoidcを構築">terraformでOIDCを構築 <a class="heading-anchor" href="#terraform%e3%81%a7oidc%e3%82%92%e6%a7%8b%e7%af%89" aria-hidden="true">#</a></h2><ul><li>terraformで構築します<ul><li>github actionを利用する場合と、bitbucket-pipelinesを利用する場合２パターン記載します。</li></ul></li></ul><h3 id="githubの場合">githubの場合 <a class="heading-anchor" href="#github%e3%81%ae%e5%a0%b4%e5%90%88" aria-hidden="true">#</a></h3><pre tabindex="0"><code>variable &#34;aws_account_id&#34; {}
+variable &#34;github_repo_name&#34; {}
+
+variable &#34;oidc_token_url&#34; {
+  default = &#34;https://token.actions.githubusercontent.com&#34;
+}
+
+data &#34;tls_certificate&#34; &#34;github_oidc_token&#34; {
+  url = var.oidc_token_url
+}
+
+resource &#34;aws_iam_openid_connect_provider&#34; &#34;github_oidc_provider&#34; {
+  url = var.oidc_token_url
+  client_id_list = [
+    &#34;sts.amazonaws.com&#34;
+  ]
+  thumbprint_list = [data.tls_certificate.github_oidc_token.certificates.0.sha1_fingerprint]
+}
+
+data &#34;aws_iam_policy_document&#34; &#34;github_oidc_policy&#34; {
+  statement {
+    actions = [&#34;sts:AssumeRoleWithWebIdentity&#34;]
+    effect  = &#34;Allow&#34;
+    principals {
+      type        = &#34;Federated&#34;
+      identifiers = [&#34;arn:aws:iam::${var.aws_account_id}:oidc-provider/oidc-provider/token.actions.githubusercontent.com&#34;]
+    }
+    condition {
+      test     = &#34;StringEquals&#34;
+      variable = &#34;token.actions.githubusercontent.com:sub&#34;
+      values   = [&#34;repo:${var.github_repo_name}:ref:refs/heads/main&#34;]
+    }
+  }
+}
+
+resource &#34;aws_iam_role&#34; &#34;github_oidc_role&#34; {
+  name               = &#34;GithubOIDC-TEST&#34;
+  description        = &#34;GithubOIDC-TEST&#34;
+  assume_role_policy = data.aws_iam_policy_document.github_oidc_policy.json
+}
+
+resource &#34;aws_iam_role_policy_attachment&#34; &#34;github_oidc_administrator_access_attachment&#34; {
+  role       = aws_iam_role.github_oidc_role.name
+  policy_arn = &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;
+}
+</code></pre><h3 id="bitbucketの場合">bitbucketの場合 <a class="heading-anchor" href="#bitbucket%e3%81%ae%e5%a0%b4%e5%90%88" aria-hidden="true">#</a></h3><pre tabindex="0"><code>
+variable &#34;bitbucket_oidc_url&#34; {}
+variable &#34;bitbucket_oidc_audience&#34; {}
+variable &#34;account_id&#34; {}
+variable &#34;git_space&#34; {}
+
+data &#34;tls_certificate&#34; &#34;bitbucket&#34; {
+  url = var.bitbucket_oidc_url
+}
+
+resource &#34;aws_iam_openid_connect_provider&#34; &#34;bitbucket&#34; {
+  url = var.bitbucket_oidc_url
+  client_id_list = [
+    var.bitbucket_oidc_audience,
+  ]
+  thumbprint_list = [data.tls_certificate.bitbucket.certificates.0.sha1_fingerprint]
+}
+
+data &#34;aws_iam_policy_document&#34; &#34;bitbucket_oidc_policy&#34; {
+  statement {
+    actions = [&#34;sts:AssumeRoleWithWebIdentity&#34;]
+    effect  = &#34;Allow&#34;
+    principals {
+      type        = &#34;Federated&#34;
+      identifiers = [&#34;arn:aws:iam::${var.account_id}:oidc-provider/api.bitbucket.org/2.0/workspaces/${var.git_space}/pipelines-config/identity/oidc&#34;]
+    }
+    condition {
+      test     = &#34;StringEquals&#34;
+      variable = &#34;api.bitbucket.org/2.0/workspaces/${var.git_space}/pipelines-config/identity/oidc:aud&#34;
+      values   = [var.bitbucket_oidc_audience]
+    }
+  }
+}
+
+resource &#34;aws_iam_role&#34; &#34;bitbucket_oidc_role&#34; {
+  name               = &#34;BitbucketOIDC-TEST&#34;
+  description        = &#34;BitbucketOIDC-TEST&#34;
+  assume_role_policy = data.aws_iam_policy_document.bitbucket_oidc_policy.json
+}
+
+resource &#34;aws_iam_role_policy_attachment&#34; &#34;administrator_access_attachment&#34; {
+  role       = aws_iam_role.bitbucket_oidc_role.name
+  policy_arn = &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;
+}
+</code></pre><h2 id="構築したoidcを使ってみる">構築したOIDCを使ってみる <a class="heading-anchor" href="#%e6%a7%8b%e7%af%89%e3%81%97%e3%81%9foidc%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b" aria-hidden="true">#</a></h2><h3 id="github-action">Github Action <a class="heading-anchor" href="#github-action" aria-hidden="true">#</a></h3><ul><li>サンプルコードの内容はhugoでビルドした静的コンテンツをOIDCを利用してs3にデプロイします</li></ul><pre tabindex="0"><code>name: s3-deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  s3put:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: &#39;0.111.3&#39;
+
+      - name: Build
+        run: hugo --minify
+
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: &#39;ap-northeast-1&#39; # リージョンを指定
+          role-to-assume: &#39;arn:aws:iam::xxxxxxxxxxx:role/oidc-role&#39; # 作成した IAM ロールの ARN
+      - name: Deploy
+        run: aws s3 sync --delete public s3://my-s3-bucket/
+</code></pre><h3 id="bitbucket-pipelines">Bitbucket Pipelines <a class="heading-anchor" href="#bitbucket-pipelines" aria-hidden="true">#</a></h3><ul><li>サンプルコードのmasterブランチのpublicフォルダを<code>my-s3-bucket</code>にsyncします</li></ul><pre tabindex="0"><code>image: amazon/aws-cli
+
+pipelines:
+  default:
+    - step: &amp;s3-deploy
+        name: Deploy to S3 with OIDC
+        oidc: true
+        script:
+          - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
+          - export AWS_ROLE_ARN=&#39;作成したロール&#39;
+          - echo $BITBUCKET_STEP_OIDC_TOKEN &gt; $(pwd)/web-identity-token
+          - aws s3 sync --delete public s3://my-s3-bucket/
+  branches:
+    master:
+      - step: *s3-deploy
+</code></pre><h2 id="番外編">番外編 <a class="heading-anchor" href="#%e7%95%aa%e5%a4%96%e7%b7%a8" aria-hidden="true">#</a></h2><h3 id="cloudformationでoidcを構築する例">cloudformationでOIDCを構築する例 <a class="heading-anchor" href="#cloudformation%e3%81%a7oidc%e3%82%92%e6%a7%8b%e7%af%89%e3%81%99%e3%82%8b%e4%be%8b" aria-hidden="true">#</a></h3><pre tabindex="0"><code>Parameters:
+  AwsAccountId:
+    Type: String
+    Description: &#34;AWS Account ID&#34;
+  GithubRepoName:
+    Type: String
+    Description: &#34;Name of the Github repository&#34;
+  OidcTokenUrl:
+    Type: String
+    Default: &#34;https://token.actions.githubusercontent.com&#34;
+
+Resources:
+  GithubOidcTokenCertificate:
+    Type: AWS::CloudFormation::CustomResource
+    Version: &#34;1.0&#34;
+    Properties:
+      ServiceToken: !Sub &#34;arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:token-actions-github&#34;
+      Url: !Ref OidcTokenUrl
+
+  GithubOidcProvider:
+    Type: &#34;AWS::IAM::OpenIDConnectProvider&#34;
+    Properties:
+      Url: !Ref OidcTokenUrl
+      ClientIDList:
+        - &#34;sts.amazonaws.com&#34;
+      ThumbprintList:
+        - !GetAtt GithubOidcTokenCertificate.Sha1Fingerprint
+
+  GithubOidcPolicyDocument:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: &#34;GithubOIDCPolicy&#34;
+      PolicyDocument:
+        Version: &#34;2012-10-17&#34;
+        Statement:
+          - Effect: &#34;Allow&#34;
+            Action: &#34;sts:AssumeRoleWithWebIdentity&#34;
+            Resource: &#34;*&#34;
+            Condition:
+              StringEquals:
+                &#34;token.actions.githubusercontent.com:sub&#34;:
+                  - !Sub &#34;repo:${GithubRepoName}:ref:refs/heads/main&#34;
+            Principal:
+              Federated: !Sub &#34;arn:aws:iam::${AwsAccountId}:oidc-provider/oidc-provider/token.actions.githubusercontent.com&#34;
+
+  GithubOidcRole:
+    Type: &#34;AWS::IAM::Role&#34;
+    Properties:
+      RoleName: &#34;GithubOIDC-TEST&#34;
+      AssumeRolePolicyDocument: !Ref GithubOidcPolicyDocument
+
+  GithubOidcAdministratorAccessAttachment:
+    Type: &#34;AWS::IAM::PolicyAttachment&#34;
+    Properties:
+      PolicyArn: &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;
+      Roles:
+        - !Ref GithubOidcRole
+</code></pre></section><footer class="pt-8"><div class="flex text-base text-neutral-500 dark:text-neutral-400"><img class="w-16 h-16 my-auto mr-4 rounded-full" src="/img/author.jpg" alt="Avatar"><div class="place-self-center"><div class="text-xs uppercase" aria-hidden="true">Author</div><div class="my-1 font-bold text-neutral-800 dark:text-neutral-300">n&rsquo;s</div></div></div><div class="article-pagination"><hr><div><span><a class="flex text-right" href="/posts/terragrunt-1/"><span class="mr-3 article-pagination-direction">&larr;</span>
+<span class="flex flex-col"><span class="article-pagination-title">terraformのラッパーterragruntの導入検証を実施してみました</span>
+<span class="article-pagination-date"><time datetime="2023-04-26 00:00:00 +0000 UTC">26 April 2023</time></span></span></a></span>
+<span></span></div></div></footer></article><aside class="flex-auto min-w-0 space-y-6 pl-10 mt-3 pr-4 xl:pl-16 hidden lg:block text-sm xl:text-base"><div><label class="font-bold text-lg">Tags</label><div class="space-x-2 mt-2"><a href="/tags/aws/" class="hover:underline">#aws</a>
+<a href="/tags/terraform/" class="hover:underline">#terraform</a>
+<a href="/tags/oidc/" class="hover:underline">#OIDC</a>
+<a href="/tags/ci/cd/" class="hover:underline">#CI/CD</a>
+<a href="/tags/github-action/" class="hover:underline">#github-action</a>
+<a href="/tags/bitbucket-pipelines/" class="hover:underline">#bitbucket-pipelines</a></div></div><div class="sticky self-start top-20 min-h-screen overflow-y-auto truncate"><label class="font-bold text-lg mb-4">Table of contents</label><nav id="TableOfContents"><ul><li><a href="#やること">やること</a></li><li><a href="#技術要素">技術要素</a></li><li><a href="#oidcとは">OIDCとは</a><ul><li><a href="#導入メリット">導入メリット</a></li></ul></li><li><a href="#terraformでoidcを構築">terraformでOIDCを構築</a><ul><li><a href="#githubの場合">githubの場合</a></li><li><a href="#bitbucketの場合">bitbucketの場合</a></li></ul></li><li><a href="#構築したoidcを使ってみる">構築したOIDCを使ってみる</a><ul><li><a href="#github-action">Github Action</a></li><li><a href="#bitbucket-pipelines">Bitbucket Pipelines</a></li></ul></li><li><a href="#番外編">番外編</a><ul><li><a href="#cloudformationでoidcを構築する例">cloudformationでOIDCを構築する例</a></li></ul></li></ul></nav></div></aside><script>window.addEventListener("DOMContentLoaded",()=>{const t=new IntersectionObserver(e=>{e.forEach(e=>{const n=e.target.getAttribute("id"),t=document.querySelector(`nav li a[href="#${n}"]`);t!==null&&(e.intersectionRatio>0?t.parentElement.classList.add("active"):t.parentElement.classList.remove("active"))})}),e=[];for(let t=1;t<=6;t++)e.push(`article h${t}[id]`);document.querySelectorAll(e.join()).forEach(e=>{t.observe(e)})})</script></main><footer class="text-neutral-500 dark:text-neutral-500 bg-neutral-200 dark:bg-neutral-900"><div class="container flex flex-row px-6 lg:px-8 xl:px-12 py-4 mx-auto text-sm max-w-7xl"><div class="flex-1"><p>&copy;
+2023
+n's</p><p class="text-sm">Powered by <a class="hover:underline hover:text-primary-500" href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:text-primary-500" href="https://canstand.github.io/compost" target="_blank" rel="noopener noreferrer">Compost</a></p></div><div class="flex-1"></div></div></footer></body></html>
