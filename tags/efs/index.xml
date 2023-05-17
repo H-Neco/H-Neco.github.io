@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>efs on profile</title>
-    <link>https://example.com/tags/efs/</link>
+    <link>https://h-neco.github.io/tags/efs/</link>
     <description>Recent content in efs on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/efs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/efs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EFS Burst Mode Credit Exhaustion Countermeasures Memo.</title>
-      <link>https://example.com/blog/aws-efs/</link>
+      <link>https://h-neco.github.io/blog/aws-efs/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-efs/</guid>
+      <guid>https://h-neco.github.io/blog/aws-efs/</guid>
       <description>Intro EFS Burst Mode Credit Exhaustion Countermeasures Memo. I will provide the countermeasures I took as a memo since I was using EFS in burst mode and my credits were running low. Technical Elements EFS aws Two Modes of EFS EFS has two modes: Burst Mode (General Purpose) and Provisioned Mode.
 Burst Mode automatically adjusts the traffic based on the amount of storage used and can handle temporary increases in traffic.</description>
     </item>

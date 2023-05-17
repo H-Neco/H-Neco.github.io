@@ -2,404 +2,404 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on profile</title>
-    <link>https://example.com/tags/</link>
+    <link>https://h-neco.github.io/tags/</link>
     <description>Recent content in Tags on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>aws</title>
-      <link>https://example.com/tags/aws/</link>
+      <link>https://h-neco.github.io/tags/aws/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/aws/</guid>
+      <guid>https://h-neco.github.io/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>aws-cli</title>
-      <link>https://example.com/tags/aws-cli/</link>
+      <link>https://h-neco.github.io/tags/aws-cli/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/aws-cli/</guid>
+      <guid>https://h-neco.github.io/tags/aws-cli/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ec2</title>
-      <link>https://example.com/tags/ec2/</link>
+      <link>https://h-neco.github.io/tags/ec2/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ec2/</guid>
+      <guid>https://h-neco.github.io/tags/ec2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>efs</title>
-      <link>https://example.com/tags/efs/</link>
+      <link>https://h-neco.github.io/tags/efs/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/efs/</guid>
+      <guid>https://h-neco.github.io/tags/efs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bitbucket-pipelines</title>
-      <link>https://example.com/tags/bitbucket-pipelines/</link>
+      <link>https://h-neco.github.io/tags/bitbucket-pipelines/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/bitbucket-pipelines/</guid>
+      <guid>https://h-neco.github.io/tags/bitbucket-pipelines/</guid>
       <description></description>
     </item>
     
     <item>
       <title>github-action</title>
-      <link>https://example.com/tags/github-action/</link>
+      <link>https://h-neco.github.io/tags/github-action/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/github-action/</guid>
+      <guid>https://h-neco.github.io/tags/github-action/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OIDC</title>
-      <link>https://example.com/tags/oidc/</link>
+      <link>https://h-neco.github.io/tags/oidc/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/oidc/</guid>
+      <guid>https://h-neco.github.io/tags/oidc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>terraform</title>
-      <link>https://example.com/tags/terraform/</link>
+      <link>https://h-neco.github.io/tags/terraform/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/terraform/</guid>
+      <guid>https://h-neco.github.io/tags/terraform/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Lambda</title>
-      <link>https://example.com/tags/lambda/</link>
+      <link>https://h-neco.github.io/tags/lambda/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/lambda/</guid>
+      <guid>https://h-neco.github.io/tags/lambda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LocalStack</title>
-      <link>https://example.com/tags/localstack/</link>
+      <link>https://h-neco.github.io/tags/localstack/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/localstack/</guid>
+      <guid>https://h-neco.github.io/tags/localstack/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SAM</title>
-      <link>https://example.com/tags/sam/</link>
+      <link>https://h-neco.github.io/tags/sam/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/sam/</guid>
+      <guid>https://h-neco.github.io/tags/sam/</guid>
       <description></description>
     </item>
     
     <item>
       <title>TypeScript</title>
-      <link>https://example.com/tags/typescript/</link>
+      <link>https://h-neco.github.io/tags/typescript/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/typescript/</guid>
+      <guid>https://h-neco.github.io/tags/typescript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>volta</title>
-      <link>https://example.com/tags/volta/</link>
+      <link>https://h-neco.github.io/tags/volta/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/volta/</guid>
+      <guid>https://h-neco.github.io/tags/volta/</guid>
       <description></description>
     </item>
     
     <item>
       <title>terragrunt</title>
-      <link>https://example.com/tags/terragrunt/</link>
+      <link>https://h-neco.github.io/tags/terragrunt/</link>
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/terragrunt/</guid>
+      <guid>https://h-neco.github.io/tags/terragrunt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ansible</title>
-      <link>https://example.com/tags/ansible/</link>
+      <link>https://h-neco.github.io/tags/ansible/</link>
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ansible/</guid>
+      <guid>https://h-neco.github.io/tags/ansible/</guid>
       <description></description>
     </item>
     
     <item>
       <title>nat</title>
-      <link>https://example.com/tags/nat/</link>
+      <link>https://h-neco.github.io/tags/nat/</link>
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/nat/</guid>
+      <guid>https://h-neco.github.io/tags/nat/</guid>
       <description></description>
     </item>
     
     <item>
       <title>packer</title>
-      <link>https://example.com/tags/packer/</link>
+      <link>https://h-neco.github.io/tags/packer/</link>
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/packer/</guid>
+      <guid>https://h-neco.github.io/tags/packer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://example.com/tags/docker/</link>
+      <link>https://h-neco.github.io/tags/docker/</link>
       <pubDate>Tue, 07 Jan 2020 17:09:26 +0000</pubDate>
       
-      <guid>https://example.com/tags/docker/</guid>
+      <guid>https://h-neco.github.io/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JavaScript</title>
-      <link>https://example.com/tags/javascript/</link>
+      <link>https://h-neco.github.io/tags/javascript/</link>
       <pubDate>Tue, 07 Jan 2020 17:09:26 +0000</pubDate>
       
-      <guid>https://example.com/tags/javascript/</guid>
+      <guid>https://h-neco.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JSON</title>
-      <link>https://example.com/tags/json/</link>
+      <link>https://h-neco.github.io/tags/json/</link>
       <pubDate>Tue, 07 Jan 2020 17:09:26 +0000</pubDate>
       
-      <guid>https://example.com/tags/json/</guid>
+      <guid>https://h-neco.github.io/tags/json/</guid>
       <description></description>
     </item>
     
     <item>
       <title>node.js</title>
-      <link>https://example.com/tags/node.js/</link>
+      <link>https://h-neco.github.io/tags/node.js/</link>
       <pubDate>Tue, 07 Jan 2020 17:09:26 +0000</pubDate>
       
-      <guid>https://example.com/tags/node.js/</guid>
+      <guid>https://h-neco.github.io/tags/node.js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>REST APIs</title>
-      <link>https://example.com/tags/rest-apis/</link>
+      <link>https://h-neco.github.io/tags/rest-apis/</link>
       <pubDate>Tue, 07 Jan 2020 17:09:26 +0000</pubDate>
       
-      <guid>https://example.com/tags/rest-apis/</guid>
+      <guid>https://h-neco.github.io/tags/rest-apis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Atlassian Ecosystem</title>
-      <link>https://example.com/tags/atlassian-ecosystem/</link>
+      <link>https://h-neco.github.io/tags/atlassian-ecosystem/</link>
       <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
       
-      <guid>https://example.com/tags/atlassian-ecosystem/</guid>
+      <guid>https://h-neco.github.io/tags/atlassian-ecosystem/</guid>
       <description></description>
     </item>
     
     <item>
       <title>BOSH</title>
-      <link>https://example.com/tags/bosh/</link>
+      <link>https://h-neco.github.io/tags/bosh/</link>
       <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
       
-      <guid>https://example.com/tags/bosh/</guid>
+      <guid>https://h-neco.github.io/tags/bosh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DevOps</title>
-      <link>https://example.com/tags/devops/</link>
+      <link>https://h-neco.github.io/tags/devops/</link>
       <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
       
-      <guid>https://example.com/tags/devops/</guid>
+      <guid>https://h-neco.github.io/tags/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>https://example.com/tags/java/</link>
+      <link>https://h-neco.github.io/tags/java/</link>
       <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
       
-      <guid>https://example.com/tags/java/</guid>
+      <guid>https://h-neco.github.io/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>monit</title>
-      <link>https://example.com/tags/monit/</link>
+      <link>https://h-neco.github.io/tags/monit/</link>
       <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
       
-      <guid>https://example.com/tags/monit/</guid>
+      <guid>https://h-neco.github.io/tags/monit/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>https://example.com/tags/python/</link>
+      <link>https://h-neco.github.io/tags/python/</link>
       <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
       
-      <guid>https://example.com/tags/python/</guid>
+      <guid>https://h-neco.github.io/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>agile</title>
-      <link>https://example.com/tags/agile/</link>
+      <link>https://h-neco.github.io/tags/agile/</link>
       <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/agile/</guid>
+      <guid>https://h-neco.github.io/tags/agile/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Continuous Delivery</title>
-      <link>https://example.com/tags/continuous-delivery/</link>
+      <link>https://h-neco.github.io/tags/continuous-delivery/</link>
       <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/continuous-delivery/</guid>
+      <guid>https://h-neco.github.io/tags/continuous-delivery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Continuous Integration</title>
-      <link>https://example.com/tags/continuous-integration/</link>
+      <link>https://h-neco.github.io/tags/continuous-integration/</link>
       <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/continuous-integration/</guid>
+      <guid>https://h-neco.github.io/tags/continuous-integration/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Culture</title>
-      <link>https://example.com/tags/culture/</link>
+      <link>https://h-neco.github.io/tags/culture/</link>
       <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/culture/</guid>
+      <guid>https://h-neco.github.io/tags/culture/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Atlassian Developer Ecosystem</title>
-      <link>https://example.com/tags/atlassian-developer-ecosystem/</link>
+      <link>https://h-neco.github.io/tags/atlassian-developer-ecosystem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/atlassian-developer-ecosystem/</guid>
+      <guid>https://h-neco.github.io/tags/atlassian-developer-ecosystem/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bamboo</title>
-      <link>https://example.com/tags/bamboo/</link>
+      <link>https://h-neco.github.io/tags/bamboo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/bamboo/</guid>
+      <guid>https://h-neco.github.io/tags/bamboo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bash/shell</title>
-      <link>https://example.com/tags/bash/shell/</link>
+      <link>https://h-neco.github.io/tags/bash/shell/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/bash/shell/</guid>
+      <guid>https://h-neco.github.io/tags/bash/shell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bitbucket</title>
-      <link>https://example.com/tags/bitbucket/</link>
+      <link>https://h-neco.github.io/tags/bitbucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/bitbucket/</guid>
+      <guid>https://h-neco.github.io/tags/bitbucket/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CI/CD</title>
-      <link>https://example.com/tags/ci/cd/</link>
+      <link>https://h-neco.github.io/tags/ci/cd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ci/cd/</guid>
+      <guid>https://h-neco.github.io/tags/ci/cd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CI/CD pipelines</title>
-      <link>https://example.com/tags/ci/cd-pipelines/</link>
+      <link>https://h-neco.github.io/tags/ci/cd-pipelines/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ci/cd-pipelines/</guid>
+      <guid>https://h-neco.github.io/tags/ci/cd-pipelines/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Confluence</title>
-      <link>https://example.com/tags/confluence/</link>
+      <link>https://h-neco.github.io/tags/confluence/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/confluence/</guid>
+      <guid>https://h-neco.github.io/tags/confluence/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JIRA</title>
-      <link>https://example.com/tags/jira/</link>
+      <link>https://h-neco.github.io/tags/jira/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/jira/</guid>
+      <guid>https://h-neco.github.io/tags/jira/</guid>
       <description></description>
     </item>
     
     <item>
       <title>jQuery</title>
-      <link>https://example.com/tags/jquery/</link>
+      <link>https://h-neco.github.io/tags/jquery/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/jquery/</guid>
+      <guid>https://h-neco.github.io/tags/jquery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maven</title>
-      <link>https://example.com/tags/maven/</link>
+      <link>https://h-neco.github.io/tags/maven/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/maven/</guid>
+      <guid>https://h-neco.github.io/tags/maven/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring</title>
-      <link>https://example.com/tags/spring/</link>
+      <link>https://h-neco.github.io/tags/spring/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/spring/</guid>
+      <guid>https://h-neco.github.io/tags/spring/</guid>
       <description></description>
     </item>
     
     <item>
       <title>xml/xslt</title>
-      <link>https://example.com/tags/xml/xslt/</link>
+      <link>https://h-neco.github.io/tags/xml/xslt/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/xml/xslt/</guid>
+      <guid>https://h-neco.github.io/tags/xml/xslt/</guid>
       <description></description>
     </item>
     

@@ -8,7 +8,7 @@
 
   
   
-    <meta property="og:image" content="https://example.com/img/profile.png" />
+    <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
     <meta property="og:title" content="profile | Blog" />   
   
   <meta property="og:description" content="" />
@@ -27,12 +27,12 @@
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
   
-  <link rel="preload" href="https://example.com/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://example.com/css/resume.css"></noscript>
-  <link rel="preload" href="https://example.com/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://example.com/css/tweaks.css"></noscript>
-  <link rel="preload" href="https://example.com/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://example.com/css/resume-override.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume-override.css"></noscript>
   <meta name="generator" content="Hugo 0.111.3">
   
    
@@ -86,12 +86,12 @@
 
 
 <li class="breadcrumb-item">
-  <a href="https://example.com/">Home</a>
+  <a href="https://h-neco.github.io/">Home</a>
 </li>
 
 
 <li class="breadcrumb-item active">
-  <a href="https://example.com/blog/">Blog</a>
+  <a href="https://h-neco.github.io/blog/">Blog</a>
 </li>
 
   </ol>
@@ -110,7 +110,7 @@
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
-    <h3 class="mb-0"><a href="https://example.com/blog/aws-efs/">EFS Burst Mode Credit Exhaustion Countermeasures Memo.</a></h3>
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-efs/">EFS Burst Mode Credit Exhaustion Countermeasures Memo.</a></h3>
     <div>Intro EFS Burst Mode Credit Exhaustion Countermeasures Memo. I will provide the countermeasures I took as a memo since I was using EFS in burst mode and my credits were running low. Technical Elements EFS aws Two Modes of EFS EFS has two modes: Burst Mode (General Purpose) and Provisioned Mode.
 Burst Mode automatically adjusts the traffic based on the amount of storage used and can handle temporary increases in traffic.</div>
     <div><ul class="tags">
@@ -129,7 +129,7 @@ Burst Mode automatically adjusts the traffic based on the amount of storage used
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
-    <h3 class="mb-0"><a href="https://example.com/blog/aws-ec2-ebs-delete-on-termination/">Persisting an Attached EBS Volume to EC2 Using AWS CLI.</a></h3>
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/">Persisting an Attached EBS Volume to EC2 Using AWS CLI.</a></h3>
     <div>Intro By default, when an EC2 instance is terminated, the attached EBS volumes are also deleted. However, let&rsquo;s explore how to persist them using AWS CLI. Technical Elements EC2/EBS Commands Retrieve the volume information of the target instance filtered by tags. If DeleteOnTermination is true, it means the volume is not persisted. $ aws ec2 describe-instances --filters &#34;Name=tag:Name,Values=xxxxx-prod-web01&#34; | jq -r .Reservations[0].Instances[0].BlockDeviceMappings [ { &#34;DeviceName&#34;: &#34;/dev/sda1&#34;, &#34;Ebs&#34;: { &#34;AttachTime&#34;: &#34;2023-04-18T04:59:14+00:00&#34;, &#34;DeleteOnTermination&#34;: true, &#34;Status&#34;: &#34;attached&#34;, &#34;VolumeId&#34;: &#34;vol-xxxxxxxxxxxx&#34; } } ] Prepare a configuration file.</div>
     <div><ul class="tags">
     
@@ -147,7 +147,7 @@ Burst Mode automatically adjusts the traffic based on the amount of storage used
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
-    <h3 class="mb-0"><a href="https://example.com/blog/cicd-oidc/">Deployment Memo for OIDC (Git to AWS)</a></h3>
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/cicd-oidc/">Deployment Memo for OIDC (Git to AWS)</a></h3>
     <div>Intro Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.
 Tasks Set up OIDC with Terraform GitHub Bitbucket Deploy using OIDC Create simple GitHub Actions and Bitbucket Pipelines Technical Elements OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</div>
     <div><ul class="tags">
@@ -166,7 +166,7 @@ Tasks Set up OIDC with Terraform GitHub Bitbucket Deploy using OIDC Create simpl
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
-    <h3 class="mb-0"><a href="https://example.com/blog/aws-lambda-local-execution/">Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</a></h3>
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-lambda-local-execution/">Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</a></h3>
     <div>Intro As part of replacing my PC, I rebuilt the local execution environment for Lambda. I&rsquo;ll leave some notes as a memo. Rebuilt the local execution environment for Lambda while replacing my PC. I&rsquo;ll leave some notes as a memo.
 Technical Elements Volta Lambda LocalStack TypeScript SAM Prerequisites Installing Volta Installing Volta Volta is a tool specialized in managing Node.js versions. It allows you to switch between different Node.js versions for each project, making it easy to manage different versions without the need to install or manage Node.</div>
     <div><ul class="tags">
@@ -185,7 +185,7 @@ Technical Elements Volta Lambda LocalStack TypeScript SAM Prerequisites Installi
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
-    <h3 class="mb-0"><a href="https://example.com/blog/cicd-terragrunt-1/">I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</a></h3>
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/cicd-terragrunt-1/">I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</a></h3>
     <div>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&rsquo;t be explicitly used.</div>
     <div><ul class="tags">
     
@@ -203,7 +203,7 @@ Technical Elements Volta Lambda LocalStack TypeScript SAM Prerequisites Installi
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
-    <h3 class="mb-0"><a href="https://example.com/blog/aws-ec2-nat-instance/">Creating a NAT instance on Amazon Linux 2 using Packer and Ansible.</a></h3>
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-ec2-nat-instance/">Creating a NAT instance on Amazon Linux 2 using Packer and Ansible.</a></h3>
     <div>Intro I have set up a NAT instance using amazonLinux2. I utilized Packer and Ansible for the configuration process.
 Set up a NAT instance using amazonLinux2. Explain why amazonLinux2 is chosen: Lambda does not support incoming connections initiated externally, so it does not support FTP in active mode. ECS does not allow for the static allocation of private IP addresses. While it is possible to achieve static allocation by combining it with NAT Private Gateway, since it is a gateway type, it cannot accept incoming connections from external sources.</div>
     <div><ul class="tags">
@@ -222,7 +222,7 @@ Set up a NAT instance using amazonLinux2. Explain why amazonLinux2 is chosen: La
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
-    <h3 class="mb-0"><a href="https://example.com/blog/list/">List</a></h3>
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/list/">List</a></h3>
     <div>aws EFS Burst Mode Credit Exhaustion Countermeasures Memo. 2023-05-03 Persisting an Attached EBS Volume to EC2 Using AWS CLI. 2023-05-01 Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript). 2023-04-24 Creating a NAT instance on Amazon Linux 2 using Packer and Ansible. 2023-04-11 ci/cd I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. 2023-04-27 Deployment Memo for OIDC (Git to AWS). 2023-04-26 </div>
     <div><ul class="tags">
     

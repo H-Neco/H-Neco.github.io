@@ -2,36 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>aws on profile</title>
-    <link>https://example.com/tags/aws/</link>
+    <link>https://h-neco.github.io/tags/aws/</link>
     <description>Recent content in aws on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EFS Burst Mode Credit Exhaustion Countermeasures Memo.</title>
-      <link>https://example.com/blog/aws-efs/</link>
+      <link>https://h-neco.github.io/blog/aws-efs/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-efs/</guid>
+      <guid>https://h-neco.github.io/blog/aws-efs/</guid>
       <description>Intro EFS Burst Mode Credit Exhaustion Countermeasures Memo. I will provide the countermeasures I took as a memo since I was using EFS in burst mode and my credits were running low. Technical Elements EFS aws Two Modes of EFS EFS has two modes: Burst Mode (General Purpose) and Provisioned Mode.
 Burst Mode automatically adjusts the traffic based on the amount of storage used and can handle temporary increases in traffic.</description>
     </item>
     
     <item>
       <title>Persisting an Attached EBS Volume to EC2 Using AWS CLI.</title>
-      <link>https://example.com/blog/aws-ec2-ebs-delete-on-termination/</link>
+      <link>https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-ec2-ebs-delete-on-termination/</guid>
+      <guid>https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/</guid>
       <description>Intro By default, when an EC2 instance is terminated, the attached EBS volumes are also deleted. However, let&amp;rsquo;s explore how to persist them using AWS CLI. Technical Elements EC2/EBS Commands Retrieve the volume information of the target instance filtered by tags. If DeleteOnTermination is true, it means the volume is not persisted. $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .Reservations[0].Instances[0].BlockDeviceMappings [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;AttachTime&amp;#34;: &amp;#34;2023-04-18T04:59:14+00:00&amp;#34;, &amp;#34;DeleteOnTermination&amp;#34;: true, &amp;#34;Status&amp;#34;: &amp;#34;attached&amp;#34;, &amp;#34;VolumeId&amp;#34;: &amp;#34;vol-xxxxxxxxxxxx&amp;#34; } } ] Prepare a configuration file.</description>
     </item>
     
     <item>
       <title>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
-      <link>https://example.com/blog/cicd-terragrunt-1/</link>
+      <link>https://h-neco.github.io/blog/cicd-terragrunt-1/</link>
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/cicd-terragrunt-1/</guid>
+      <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
       <description>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&amp;rsquo;t be explicitly used.</description>
     </item>
     

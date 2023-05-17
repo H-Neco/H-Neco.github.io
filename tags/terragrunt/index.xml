@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>terragrunt on profile</title>
-    <link>https://example.com/tags/terragrunt/</link>
+    <link>https://h-neco.github.io/tags/terragrunt/</link>
     <description>Recent content in terragrunt on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/terragrunt/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/terragrunt/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
-      <link>https://example.com/blog/cicd-terragrunt-1/</link>
+      <link>https://h-neco.github.io/blog/cicd-terragrunt-1/</link>
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/cicd-terragrunt-1/</guid>
+      <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
       <description>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&amp;rsquo;t be explicitly used.</description>
     </item>
     

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>github-action on profile</title>
-    <link>https://example.com/tags/github-action/</link>
+    <link>https://h-neco.github.io/tags/github-action/</link>
     <description>Recent content in github-action on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/github-action/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/github-action/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deployment Memo for OIDC (Git to AWS)</title>
-      <link>https://example.com/blog/cicd-oidc/</link>
+      <link>https://h-neco.github.io/blog/cicd-oidc/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/cicd-oidc/</guid>
+      <guid>https://h-neco.github.io/blog/cicd-oidc/</guid>
       <description>Intro Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.
 Tasks Set up OIDC with Terraform GitHub Bitbucket Deploy using OIDC Create simple GitHub Actions and Bitbucket Pipelines Technical Elements OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</description>
     </item>

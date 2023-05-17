@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>nat on profile</title>
-    <link>https://example.com/tags/nat/</link>
+    <link>https://h-neco.github.io/tags/nat/</link>
     <description>Recent content in nat on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/nat/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/nat/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating a NAT instance on Amazon Linux 2 using Packer and Ansible.</title>
-      <link>https://example.com/blog/aws-ec2-nat-instance/</link>
+      <link>https://h-neco.github.io/blog/aws-ec2-nat-instance/</link>
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-ec2-nat-instance/</guid>
+      <guid>https://h-neco.github.io/blog/aws-ec2-nat-instance/</guid>
       <description>Intro I have set up a NAT instance using amazonLinux2. I utilized Packer and Ansible for the configuration process.
 Set up a NAT instance using amazonLinux2. Explain why amazonLinux2 is chosen: Lambda does not support incoming connections initiated externally, so it does not support FTP in active mode. ECS does not allow for the static allocation of private IP addresses. While it is possible to achieve static allocation by combining it with NAT Private Gateway, since it is a gateway type, it cannot accept incoming connections from external sources.</description>
     </item>

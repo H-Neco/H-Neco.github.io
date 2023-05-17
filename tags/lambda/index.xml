@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lambda on profile</title>
-    <link>https://example.com/tags/lambda/</link>
+    <link>https://h-neco.github.io/tags/lambda/</link>
     <description>Recent content in Lambda on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</title>
-      <link>https://example.com/blog/aws-lambda-local-execution/</link>
+      <link>https://h-neco.github.io/blog/aws-lambda-local-execution/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-lambda-local-execution/</guid>
+      <guid>https://h-neco.github.io/blog/aws-lambda-local-execution/</guid>
       <description>Intro As part of replacing my PC, I rebuilt the local execution environment for Lambda. I&amp;rsquo;ll leave some notes as a memo. Rebuilt the local execution environment for Lambda while replacing my PC. I&amp;rsquo;ll leave some notes as a memo.
 Technical Elements Volta Lambda LocalStack TypeScript SAM Prerequisites Installing Volta Installing Volta Volta is a tool specialized in managing Node.js versions. It allows you to switch between different Node.js versions for each project, making it easy to manage different versions without the need to install or manage Node.</description>
     </item>

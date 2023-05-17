@@ -2,148 +2,148 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on profile</title>
-    <link>https://example.com/</link>
+    <link>https://h-neco.github.io/</link>
     <description>Recent content in Home on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Feb 2018 18:56:13 -0500</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Feb 2018 18:56:13 -0500</lastBuildDate><atom:link href="https://h-neco.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Atlassian Deployment Triggers</title>
-      <link>https://example.com/projects/contributions/deploy-triggers/</link>
+      <link>https://h-neco.github.io/projects/contributions/deploy-triggers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/projects/contributions/deploy-triggers/</guid>
+      <guid>https://h-neco.github.io/projects/contributions/deploy-triggers/</guid>
       <description>Addressed pretty significant page load performance issue founde in larger deployments. Eliminates uses of intensive backend query, replacing it with an asynchronous API call against a lucene index. This change reduces page load from from 2+ minutes to nearly instant, with an incredibly responsive UI.</description>
     </item>
     
     <item>
       <title>Organically DevOps: Building Quality and Security into the Software Supply Chain at Liberty Mutual</title>
-      <link>https://example.com/publications/alldaydevops/</link>
+      <link>https://h-neco.github.io/publications/alldaydevops/</link>
       <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/publications/alldaydevops/</guid>
+      <guid>https://h-neco.github.io/publications/alldaydevops/</guid>
       <description>This talk looked at Liberty Mutual’s transformation to Continuous Integration, Continuous Delivery, and DevOps. For a large, heavily regulated industry, this task can not only be daunting, but viewed by many as impossible. Often, organizations try to reduce the friction through micro-fixes, but Eddie’s team asked how to change the culture to reduce the friction and concluded with the following final points:
 Don’t mandate DevOps. Give employees the chance to master their discipline with examples to set and follow.</description>
     </item>
     
     <item>
       <title>Added Docker Build Status Badge to shields.io</title>
-      <link>https://example.com/projects/contributions/shields-docker/</link>
+      <link>https://h-neco.github.io/projects/contributions/shields-docker/</link>
       <pubDate>Tue, 07 Jan 2020 17:09:26 +0000</pubDate>
       
-      <guid>https://example.com/projects/contributions/shields-docker/</guid>
+      <guid>https://h-neco.github.io/projects/contributions/shields-docker/</guid>
       <description>Shields.io is a massive library of badges that can be inserted into project README&amp;rsquo;s or websites displaying various statuses (code coverage, health, version, etc). Support for docker was missing the current build health, and was a pretty trivial addition.</description>
     </item>
     
     <item>
       <title>Schema.org Structured Data documentation fixes</title>
-      <link>https://example.com/projects/contributions/schema-org/</link>
+      <link>https://h-neco.github.io/projects/contributions/schema-org/</link>
       <pubDate>Tue, 07 Jan 2020 17:08:21 +0000</pubDate>
       
-      <guid>https://example.com/projects/contributions/schema-org/</guid>
+      <guid>https://h-neco.github.io/projects/contributions/schema-org/</guid>
       <description>While adding Structured Data to a client&amp;rsquo;s website I found some example JSON that was invalid. Simple contribution to cleanup the user documentation providing syntactically valid JSON documents.</description>
     </item>
     
     <item>
       <title>EFS Burst Mode Credit Exhaustion Countermeasures Memo.</title>
-      <link>https://example.com/blog/aws-efs/</link>
+      <link>https://h-neco.github.io/blog/aws-efs/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-efs/</guid>
+      <guid>https://h-neco.github.io/blog/aws-efs/</guid>
       <description>Intro EFS Burst Mode Credit Exhaustion Countermeasures Memo. I will provide the countermeasures I took as a memo since I was using EFS in burst mode and my credits were running low. Technical Elements EFS aws Two Modes of EFS EFS has two modes: Burst Mode (General Purpose) and Provisioned Mode.
 Burst Mode automatically adjusts the traffic based on the amount of storage used and can handle temporary increases in traffic.</description>
     </item>
     
     <item>
       <title>Persisting an Attached EBS Volume to EC2 Using AWS CLI.</title>
-      <link>https://example.com/blog/aws-ec2-ebs-delete-on-termination/</link>
+      <link>https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-ec2-ebs-delete-on-termination/</guid>
+      <guid>https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/</guid>
       <description>Intro By default, when an EC2 instance is terminated, the attached EBS volumes are also deleted. However, let&amp;rsquo;s explore how to persist them using AWS CLI. Technical Elements EC2/EBS Commands Retrieve the volume information of the target instance filtered by tags. If DeleteOnTermination is true, it means the volume is not persisted. $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .Reservations[0].Instances[0].BlockDeviceMappings [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;AttachTime&amp;#34;: &amp;#34;2023-04-18T04:59:14+00:00&amp;#34;, &amp;#34;DeleteOnTermination&amp;#34;: true, &amp;#34;Status&amp;#34;: &amp;#34;attached&amp;#34;, &amp;#34;VolumeId&amp;#34;: &amp;#34;vol-xxxxxxxxxxxx&amp;#34; } } ] Prepare a configuration file.</description>
     </item>
     
     <item>
       <title>Deployment Memo for OIDC (Git to AWS)</title>
-      <link>https://example.com/blog/cicd-oidc/</link>
+      <link>https://h-neco.github.io/blog/cicd-oidc/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/cicd-oidc/</guid>
+      <guid>https://h-neco.github.io/blog/cicd-oidc/</guid>
       <description>Intro Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.
 Tasks Set up OIDC with Terraform GitHub Bitbucket Deploy using OIDC Create simple GitHub Actions and Bitbucket Pipelines Technical Elements OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</description>
     </item>
     
     <item>
       <title>Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</title>
-      <link>https://example.com/blog/aws-lambda-local-execution/</link>
+      <link>https://h-neco.github.io/blog/aws-lambda-local-execution/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-lambda-local-execution/</guid>
+      <guid>https://h-neco.github.io/blog/aws-lambda-local-execution/</guid>
       <description>Intro As part of replacing my PC, I rebuilt the local execution environment for Lambda. I&amp;rsquo;ll leave some notes as a memo. Rebuilt the local execution environment for Lambda while replacing my PC. I&amp;rsquo;ll leave some notes as a memo.
 Technical Elements Volta Lambda LocalStack TypeScript SAM Prerequisites Installing Volta Installing Volta Volta is a tool specialized in managing Node.js versions. It allows you to switch between different Node.js versions for each project, making it easy to manage different versions without the need to install or manage Node.</description>
     </item>
     
     <item>
       <title>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
-      <link>https://example.com/blog/cicd-terragrunt-1/</link>
+      <link>https://h-neco.github.io/blog/cicd-terragrunt-1/</link>
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/cicd-terragrunt-1/</guid>
+      <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
       <description>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&amp;rsquo;t be explicitly used.</description>
     </item>
     
     <item>
       <title>Creating a NAT instance on Amazon Linux 2 using Packer and Ansible.</title>
-      <link>https://example.com/blog/aws-ec2-nat-instance/</link>
+      <link>https://h-neco.github.io/blog/aws-ec2-nat-instance/</link>
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/aws-ec2-nat-instance/</guid>
+      <guid>https://h-neco.github.io/blog/aws-ec2-nat-instance/</guid>
       <description>Intro I have set up a NAT instance using amazonLinux2. I utilized Packer and Ansible for the configuration process.
 Set up a NAT instance using amazonLinux2. Explain why amazonLinux2 is chosen: Lambda does not support incoming connections initiated externally, so it does not support FTP in active mode. ECS does not allow for the static allocation of private IP addresses. While it is possible to achieve static allocation by combining it with NAT Private Gateway, since it is a gateway type, it cannot accept incoming connections from external sources.</description>
     </item>
     
     <item>
       <title>BOSH release for Bamboo &amp; Remote Agents</title>
-      <link>https://example.com/projects/creations/bosh-agents/</link>
+      <link>https://h-neco.github.io/projects/creations/bosh-agents/</link>
       <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
       
-      <guid>https://example.com/projects/creations/bosh-agents/</guid>
+      <guid>https://h-neco.github.io/projects/creations/bosh-agents/</guid>
       <description>BOSH (Bosh Outer SHell) &amp;ldquo;&amp;hellip; is an open source tool for release engineering, deployment, lifecycle management, and monitoring of distributed systems.&amp;rdquo; And it&amp;rsquo;s amazingly powerful. This examples uses BOSH to provision an Alassian vendor app running on JDK along with the support Postgres database and agents to support it. The releases manages the health of services and will automatically provision, start/stop processes across the various services.</description>
     </item>
     
     <item>
       <title>Atlassian Marketplace Plugins</title>
-      <link>https://example.com/projects/creations/marketplace/</link>
+      <link>https://h-neco.github.io/projects/creations/marketplace/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/projects/creations/marketplace/</guid>
+      <guid>https://h-neco.github.io/projects/creations/marketplace/</guid>
       <description>Multiple plugins used by thousands of teams that provide enhanced functionality of Atlassian’s core products (primarily JIRA and Bamboo) to enrich CI/CD capabilities, DevOps automation, or productivity. Functionality spans user interface, web services and persistence.</description>
     </item>
     
     <item>
       <title>Docker image for Bitbucket CI/CD Pipelines  &#34;shipit&#34;</title>
-      <link>https://example.com/projects/creations/docker-marketplace/</link>
+      <link>https://h-neco.github.io/projects/creations/docker-marketplace/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/projects/creations/docker-marketplace/</guid>
+      <guid>https://h-neco.github.io/projects/creations/docker-marketplace/</guid>
       <description>Provides required dependencies and additional utilities to simplify and codify the process of building, testing and delivering Atlassian plugins all the way to the live marketplace. Executes integration/AUT level tests against all stated compatible versions for the productUploads generated artifact to Atlassian marketplaceProvides corresponding metadata indicating version, release notes, and compatibility</description>
     </item>
     
     <item>
       <title>List</title>
-      <link>https://example.com/blog/list/</link>
+      <link>https://h-neco.github.io/blog/list/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/list/</guid>
+      <guid>https://h-neco.github.io/blog/list/</guid>
       <description>aws EFS Burst Mode Credit Exhaustion Countermeasures Memo. 2023-05-03 Persisting an Attached EBS Volume to EC2 Using AWS CLI. 2023-05-01 Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript). 2023-04-24 Creating a NAT instance on Amazon Linux 2 using Packer and Ansible. 2023-04-11 ci/cd I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. 2023-04-27 Deployment Memo for OIDC (Git to AWS). 2023-04-26 </description>
     </item>
     
     <item>
       <title>Search Results</title>
-      <link>https://example.com/search/</link>
+      <link>https://h-neco.github.io/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/search/</guid>
+      <guid>https://h-neco.github.io/search/</guid>
       <description>This file exists solely to respond to /search URL with the related search layout template.
 No content shown here is rendered, all content is based in the template layouts/page/search.html
 Setting a very low sitemap priority will tell search engines this is not important content.
