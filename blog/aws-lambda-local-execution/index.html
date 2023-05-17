@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</title>
+  <meta name="description" content="">
+
+  
+  
+    <meta property="og:image" content="https://example.com/img/profile.png" />
+    <meta property="og:title" content="profile | Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)" />   
+  
+  <meta property="og:description" content="" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://example.com/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/resume.css"></noscript>
+  <link rel="preload" href="https://example.com/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://example.com/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://example.com/">Home</a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://example.com/blog/">Blog</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://example.com/blog/aws-lambda-local-execution/">Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+  	<div class="mb-3 d-flex flex-row justify-content-between">
+    	<h2 class="mb-0"><span class="text-primary">Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</span></h2>
+    	<span class="">April 24, 2023</span>
+    </div>
+    <div>
+    	<h2 id="intro">Intro</h2>
+<p>As part of replacing my PC, I rebuilt the local execution environment for Lambda. I&rsquo;ll leave some notes as a memo.
+Rebuilt the local execution environment for Lambda while replacing my PC. I&rsquo;ll leave some notes as a memo.</p>
+<h2 id="technical-elements">Technical Elements</h2>
+<ul>
+<li>Volta</li>
+<li>Lambda</li>
+<li>LocalStack</li>
+<li>TypeScript</li>
+<li>SAM</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="installing-volta">Installing Volta</h3>
+<p>Installing Volta
+Volta is a tool specialized in managing Node.js versions. It allows you to switch between different Node.js versions for each project, making it easy to manage different versions without the need to install or manage Node.js versions manually. Volta provides the advantage of easy switching compared to other version management tools, and it can be used in various environments since it is not dependent on the operating system or shell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curl https://get.volta.sh | bash
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;export VOLTA_HOME=&#34;$HOME/.volta&#34;&#39;</span> &gt;&gt; .zshrc
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;export PATH=&#34;$VOLTA_HOME/bin:$PATH&#34;&#39;</span> &gt;&gt; .zshrc
+</span></span></code></pre></div><h3 id="installing-nodejs-and-yarn">Installing Node.js and Yarn</h3>
+<p>You can use volta list node to check the available versions. If you want to install a specific version, use the format volta install <a href="mailto:node@18.15.0">node@18.15.0</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ volta install node
+</span></span><span style="display:flex;"><span>  success: installed and set node@18.15.0 (with npm@9.5.0) as default
+</span></span><span style="display:flex;"><span>$ volta install yarn
+</span></span><span style="display:flex;"><span>  success: installed and set yarn@4.0.0-rc.42 as default
+</span></span></code></pre></div><h3 id="installing-sam">Installing SAM</h3>
+<p>The following instructions are for macOS. For Windows users, it is recommended to download the MSI file from the <a href="https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/">official website</a>.</p>
+<ul>
+<li>macOS</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ brew tap aws/tap
+</span></span><span style="display:flex;"><span>$ brew install aws-sam-cli
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ sam --version
+</span></span><span style="display:flex;"><span>SAM CLI, version 1.78.0
+</span></span></code></pre></div><h3 id="creating-a-project">Creating a Project</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ sam init -r nodejs18.x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	SAM CLI now collects telemetry to better understand customer needs.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	You can OPT OUT and disable telemetry collection by setting the
+</span></span><span style="display:flex;"><span>	environment variable SAM_CLI_TELEMETRY=0 in your shell.
+</span></span><span style="display:flex;"><span>	Thanks for your help!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	Learn More: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-telemetry.html
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Which template source would you like to use?
+</span></span><span style="display:flex;"><span>	1 - AWS Quick Start Templates
+</span></span><span style="display:flex;"><span>	2 - Custom Template Location
+</span></span><span style="display:flex;"><span>Choice: 1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Choose an AWS Quick Start application template
+</span></span><span style="display:flex;"><span>	1 - Hello World Example
+</span></span><span style="display:flex;"><span>	2 - Hello World Example With Powertools
+</span></span><span style="display:flex;"><span>	3 - Multi-step workflow
+</span></span><span style="display:flex;"><span>	4 - Standalone function
+</span></span><span style="display:flex;"><span>	5 - Scheduled task
+</span></span><span style="display:flex;"><span>	6 - Data processing
+</span></span><span style="display:flex;"><span>	7 - Serverless API
+</span></span><span style="display:flex;"><span>Template: 1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Based on your selections, the only Package type available is Zip.
+</span></span><span style="display:flex;"><span>We will proceed to selecting the Package type as Zip.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Based on your selections, the only dependency manager available is npm.
+</span></span><span style="display:flex;"><span>We will proceed copying the template using npm.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Select your starter template
+</span></span><span style="display:flex;"><span>	1 - Hello World Example
+</span></span><span style="display:flex;"><span>	2 - Hello World Example TypeScript
+</span></span><span style="display:flex;"><span>Template: 2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Would you like to enable X-Ray tracing on the function(s) in your application?  [y/N]: n
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Would you like to enable monitoring using CloudWatch Application Insights?
+</span></span><span style="display:flex;"><span>For more info, please view https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html [y/N]: n
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Project name [sam-app]: sam-local-study
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Cloning from https://github.com/aws/aws-sam-cli-app-templates (process may take a moment)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    -----------------------
+</span></span><span style="display:flex;"><span>    Generating application:
+</span></span><span style="display:flex;"><span>    -----------------------
+</span></span><span style="display:flex;"><span>    Name: sam-local-study
+</span></span><span style="display:flex;"><span>    Runtime: nodejs18.x
+</span></span><span style="display:flex;"><span>    Architectures: x86_64
+</span></span><span style="display:flex;"><span>    Dependency Manager: npm
+</span></span><span style="display:flex;"><span>    Application Template: hello-world-typescript
+</span></span><span style="display:flex;"><span>    Output Directory: .
+</span></span><span style="display:flex;"><span>    Configuration file: sam-local-study/samconfig.toml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Next steps can be found in the README file at sam-local-study/README.md
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Commands you can use next
+</span></span><span style="display:flex;"><span>=========================
+</span></span><span style="display:flex;"><span>[*] Create pipeline: cd sam-local-study &amp;&amp; sam pipeline init --bootstrap
+</span></span><span style="display:flex;"><span>[*] Validate SAM template: cd sam-local-study &amp;&amp; sam validate
+</span></span><span style="display:flex;"><span>[*] Test Function in the Cloud: cd sam-local-study &amp;&amp; sam sync --stack-name {stack-name} --watch
+</span></span></code></pre></div><p>By following the prompts, the following files will be generated:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree .
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>└── sam-local-study
+</span></span><span style="display:flex;"><span>    ├── README.md
+</span></span><span style="display:flex;"><span>    ├── events
+</span></span><span style="display:flex;"><span>    │   └── event.json
+</span></span><span style="display:flex;"><span>    ├── hello-world
+</span></span><span style="display:flex;"><span>    │   ├── app.ts
+</span></span><span style="display:flex;"><span>    │   ├── jest.config.ts
+</span></span><span style="display:flex;"><span>    │   ├── package.json
+</span></span><span style="display:flex;"><span>    │   ├── tests
+</span></span><span style="display:flex;"><span>    │   │   └── unit
+</span></span><span style="display:flex;"><span>    │   │       └── test-handler.test.ts
+</span></span><span style="display:flex;"><span>    │   └── tsconfig.json
+</span></span><span style="display:flex;"><span>    ├── samconfig.toml
+</span></span><span style="display:flex;"><span>    └── template.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>6 directories, 9 files
+</span></span></code></pre></div><h2 id="creating-a-sample-lambda-function-that-returns-a-message">Creating a Sample Lambda Function That Returns a Message</h2>
+<p>Let&rsquo;s create a sample Lambda function that returns a message and execute it using SAM.</p>
+<h3 id="code-placement">Code Placement</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree .
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>└── sam-local-study
+</span></span><span style="display:flex;"><span>    ├── src
+</span></span><span style="display:flex;"><span>    │   ├── handlers
+</span></span><span style="display:flex;"><span>    │      └── hello-from-lambda.js
+</span></span><span style="display:flex;"><span>    └── template.yaml
+</span></span></code></pre></div><ul>
+<li>src/handlers/hello-from-lambda.js</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>exports.helloFromLambdaHandler = async () =&gt; {
+</span></span><span style="display:flex;"><span>    const message = &#39;Hello from Lambda!&#39;;
+</span></span><span style="display:flex;"><span>    console.info(`${message}`);
+</span></span><span style="display:flex;"><span>    return message;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>template.yaml</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Resources:
+</span></span><span style="display:flex;"><span>  HelloWorldFunction:
+</span></span><span style="display:flex;"><span>    Type: AWS::Serverless::Function
+</span></span><span style="display:flex;"><span>    Properties:
+</span></span><span style="display:flex;"><span>      Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
+</span></span><span style="display:flex;"><span>      Runtime: nodejs18.x
+</span></span><span style="display:flex;"><span>      MemorySize: 128
+</span></span><span style="display:flex;"><span>      Timeout: 100
+</span></span><span style="display:flex;"><span>      Description: A Lambda function that returns a static string.
+</span></span><span style="display:flex;"><span>      Policies:
+</span></span><span style="display:flex;"><span>        - AWSLambdaBasicExecutionRole
+</span></span></code></pre></div><h3 id="executing-the-lambda-function-that-returns-hello">Executing the Lambda Function That Returns &ldquo;Hello&rdquo;</h3>
+<ul>
+<li>Execute the command:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ sam local invoke HelloWorldFunction
+</span></span></code></pre></div><ul>
+<li>Output:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Invoking src/handlers/hello-from-lambda.helloFromLambdaHandler (nodejs18.x)
+</span></span><span style="display:flex;"><span>Local image is up-to-date
+</span></span><span style="display:flex;"><span>Using local image: public.ecr.aws/lambda/nodejs:18-rapid-x86_64.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Mounting /lambda-sam-localstack/sam-local-study as /var/task:ro,delegated, inside runtime container
+</span></span><span style="display:flex;"><span>START RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a Version: $LATEST
+</span></span><span style="display:flex;"><span>2023-04-05T08:41:27.339Z	6d2615de-b38f-4300-bf87-704e1fa6296a	INFO	Hello from Lambda!
+</span></span><span style="display:flex;"><span>END RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a
+</span></span><span style="display:flex;"><span>REPORT RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a	Init Duration: 0.75 ms	Duration: 953.12 ms	Billed Duration: 954 ms	Memory Size: 128 MB	Max Memory Used: 128 MB
+</span></span><span style="display:flex;"><span>&#34;Hello from Lambda!&#34;%
+</span></span></code></pre></div><h2 id="using-localstack">Using LocalStack</h2>
+<p>I will write about it at a later date&hellip;.</p>
+
+	    
+	</div>
+    <div>
+    	
+    </div>
+    <ul class="tags">
+    
+</ul>
+
+  </div>
+</section>
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>

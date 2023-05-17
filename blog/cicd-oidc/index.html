@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | Deployment Memo for OIDC (Git to AWS)</title>
+  <meta name="description" content="">
+
+  
+  
+    <meta property="og:image" content="https://example.com/img/profile.png" />
+    <meta property="og:title" content="profile | Deployment Memo for OIDC (Git to AWS)" />   
+  
+  <meta property="og:description" content="" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://example.com/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/resume.css"></noscript>
+  <link rel="preload" href="https://example.com/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://example.com/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://example.com/">Home</a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://example.com/blog/">Blog</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://example.com/blog/cicd-oidc/">Deployment Memo for OIDC (Git to AWS)</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+  	<div class="mb-3 d-flex flex-row justify-content-between">
+    	<h2 class="mb-0"><span class="text-primary">Deployment Memo for OIDC (Git to AWS)</span></h2>
+    	<span class="">April 26, 2023</span>
+    </div>
+    <div>
+    	<h2 id="intro">Intro</h2>
+<p>Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.</p>
+<h2 id="tasks">Tasks</h2>
+<ul>
+<li>Set up OIDC with Terraform
+<ul>
+<li>GitHub</li>
+<li>Bitbucket</li>
+</ul>
+</li>
+<li>Deploy using OIDC
+<ul>
+<li>Create simple GitHub Actions and Bitbucket Pipelines</li>
+</ul>
+</li>
+</ul>
+<h2 id="technical-elements">Technical Elements</h2>
+<ul>
+<li>OIDC</li>
+<li>AWS</li>
+<li>Bitbucket</li>
+<li>GitHub</li>
+<li>Terraform</li>
+</ul>
+<h2 id="what-is-oidc">What is OIDC?</h2>
+<p>OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</p>
+<h3 id="benefits-of-oidc">Benefits of OIDC</h3>
+<p>By using OIDC for deployment from Git, there are several benefits, including enhanced security for deployment through Git, easier management of token expiration, and the avoidance of security risks associated with using access keys without MFA enabled. However, using access keys with MFA enabled can be complicated, as it requires considering factors such as device management. With OIDC, users can use their ID provider&rsquo;s authentication credentials, simplifying credential management and improving security.</p>
+<h4 id="background">Background</h4>
+<p>Deploying to AWS used to be cumbersome. It even made me consider deploying from the management console instead of using the CLI.</p>
+<ul>
+<li>The previous flow involved the inconvenience of obtaining keys:
+<ul>
+<li>Checking MFA tokens from an app and executing a command:</li>
+<li><code>$ aws sts get-session-token --serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx --token-code xxxxxx</code></li>
+<li>Exporting the obtained keys or registering them in Git</li>
+<li>Regularly executing commands due to session expiration&hellip;</li>
+</ul>
+</li>
+</ul>
+<h2 id="building-oidc-with-terraform">Building OIDC with Terraform</h2>
+<ul>
+<li>Building with Terraform
+<ul>
+<li>Two scenarios will be explained: using GitHub Actions and using Bitbucket Pipelines.</li>
+</ul>
+</li>
+</ul>
+<h3 id="github-sample">GitHub Sample</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>variable &#34;aws_account_id&#34; {}
+</span></span><span style="display:flex;"><span>variable &#34;github_repo_name&#34; {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>variable &#34;oidc_token_url&#34; {
+</span></span><span style="display:flex;"><span>  default = &#34;https://token.actions.githubusercontent.com&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data &#34;tls_certificate&#34; &#34;github_oidc_token&#34; {
+</span></span><span style="display:flex;"><span>  url = var.oidc_token_url
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resource &#34;aws_iam_openid_connect_provider&#34; &#34;github_oidc_provider&#34; {
+</span></span><span style="display:flex;"><span>  url = var.oidc_token_url
+</span></span><span style="display:flex;"><span>  client_id_list = [
+</span></span><span style="display:flex;"><span>    &#34;sts.amazonaws.com&#34;
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>  thumbprint_list = [data.tls_certificate.github_oidc_token.certificates.0.sha1_fingerprint]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data &#34;aws_iam_policy_document&#34; &#34;github_oidc_policy&#34; {
+</span></span><span style="display:flex;"><span>  statement {
+</span></span><span style="display:flex;"><span>    actions = [&#34;sts:AssumeRoleWithWebIdentity&#34;]
+</span></span><span style="display:flex;"><span>    effect  = &#34;Allow&#34;
+</span></span><span style="display:flex;"><span>    principals {
+</span></span><span style="display:flex;"><span>      type        = &#34;Federated&#34;
+</span></span><span style="display:flex;"><span>      identifiers = [&#34;arn:aws:iam::${var.aws_account_id}:oidc-provider/oidc-provider/token.actions.githubusercontent.com&#34;]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    condition {
+</span></span><span style="display:flex;"><span>      test     = &#34;StringEquals&#34;
+</span></span><span style="display:flex;"><span>      variable = &#34;token.actions.githubusercontent.com:sub&#34;
+</span></span><span style="display:flex;"><span>      values   = [&#34;repo:${var.github_repo_name}:ref:refs/heads/main&#34;]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resource &#34;aws_iam_role&#34; &#34;github_oidc_role&#34; {
+</span></span><span style="display:flex;"><span>  name               = &#34;GithubOIDC-TEST&#34;
+</span></span><span style="display:flex;"><span>  description        = &#34;GithubOIDC-TEST&#34;
+</span></span><span style="display:flex;"><span>  assume_role_policy = data.aws_iam_policy_document.github_oidc_policy.json
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resource &#34;aws_iam_role_policy_attachment&#34; &#34;github_oidc_administrator_access_attachment&#34; {
+</span></span><span style="display:flex;"><span>  role       = aws_iam_role.github_oidc_role.name
+</span></span><span style="display:flex;"><span>  policy_arn = &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="bitbucket-sample">Bitbucket Sample</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>variable &#34;bitbucket_oidc_url&#34; {}
+</span></span><span style="display:flex;"><span>variable &#34;bitbucket_oidc_audience&#34; {}
+</span></span><span style="display:flex;"><span>variable &#34;account_id&#34; {}
+</span></span><span style="display:flex;"><span>variable &#34;git_space&#34; {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data &#34;tls_certificate&#34; &#34;bitbucket&#34; {
+</span></span><span style="display:flex;"><span>  url = var.bitbucket_oidc_url
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resource &#34;aws_iam_openid_connect_provider&#34; &#34;bitbucket&#34; {
+</span></span><span style="display:flex;"><span>  url = var.bitbucket_oidc_url
+</span></span><span style="display:flex;"><span>  client_id_list = [
+</span></span><span style="display:flex;"><span>    var.bitbucket_oidc_audience,
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>  thumbprint_list = [data.tls_certificate.bitbucket.certificates.0.sha1_fingerprint]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data &#34;aws_iam_policy_document&#34; &#34;bitbucket_oidc_policy&#34; {
+</span></span><span style="display:flex;"><span>  statement {
+</span></span><span style="display:flex;"><span>    actions = [&#34;sts:AssumeRoleWithWebIdentity&#34;]
+</span></span><span style="display:flex;"><span>    effect  = &#34;Allow&#34;
+</span></span><span style="display:flex;"><span>    principals {
+</span></span><span style="display:flex;"><span>      type        = &#34;Federated&#34;
+</span></span><span style="display:flex;"><span>      identifiers = [&#34;arn:aws:iam::${var.account_id}:oidc-provider/api.bitbucket.org/2.0/workspaces/${var.git_space}/pipelines-config/identity/oidc&#34;]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    condition {
+</span></span><span style="display:flex;"><span>      test     = &#34;StringEquals&#34;
+</span></span><span style="display:flex;"><span>      variable = &#34;api.bitbucket.org/2.0/workspaces/${var.git_space}/pipelines-config/identity/oidc:aud&#34;
+</span></span><span style="display:flex;"><span>      values   = [var.bitbucket_oidc_audience]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resource &#34;aws_iam_role&#34; &#34;bitbucket_oidc_role&#34; {
+</span></span><span style="display:flex;"><span>  name               = &#34;BitbucketOIDC-TEST&#34;
+</span></span><span style="display:flex;"><span>  description        = &#34;BitbucketOIDC-TEST&#34;
+</span></span><span style="display:flex;"><span>  assume_role_policy = data.aws_iam_policy_document.bitbucket_oidc_policy.json
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resource &#34;aws_iam_role_policy_attachment&#34; &#34;administrator_access_attachment&#34; {
+</span></span><span style="display:flex;"><span>  role       = aws_iam_role.bitbucket_oidc_role.name
+</span></span><span style="display:flex;"><span>  policy_arn = &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="testing-oidc-setup">Testing OIDC Setup</h2>
+<h3 id="github-action">Github Action</h3>
+<ul>
+<li>The sample code deploys statically built Hugo content to S3 using OIDC.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>name: s3-deploy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>on:
+</span></span><span style="display:flex;"><span>  push:
+</span></span><span style="display:flex;"><span>    branches:
+</span></span><span style="display:flex;"><span>      - main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>jobs:
+</span></span><span style="display:flex;"><span>  s3put:
+</span></span><span style="display:flex;"><span>    runs-on: ubuntu-latest
+</span></span><span style="display:flex;"><span>    permissions:
+</span></span><span style="display:flex;"><span>      id-token: write
+</span></span><span style="display:flex;"><span>      contents: read
+</span></span><span style="display:flex;"><span>    steps:
+</span></span><span style="display:flex;"><span>      - name: Checkout code
+</span></span><span style="display:flex;"><span>        uses: actions/checkout@v2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - name: Setup Hugo
+</span></span><span style="display:flex;"><span>        uses: peaceiris/actions-hugo@v2
+</span></span><span style="display:flex;"><span>        with:
+</span></span><span style="display:flex;"><span>          hugo-version: &#39;0.111.3&#39;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - name: Build
+</span></span><span style="display:flex;"><span>        run: hugo --minify
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - uses: aws-actions/configure-aws-credentials@v1
+</span></span><span style="display:flex;"><span>        with:
+</span></span><span style="display:flex;"><span>          aws-region: &#39;ap-northeast-1&#39; # Specify the region
+</span></span><span style="display:flex;"><span>          role-to-assume: &#39;arn:aws:iam::xxxxxxxxxxx:role/oidc-role&#39; # ARN of the created IAM role
+</span></span><span style="display:flex;"><span>      - name: Deploy
+</span></span><span style="display:flex;"><span>        run: aws s3 sync --delete public s3://my-s3-bucket/
+</span></span></code></pre></div><h3 id="bitbucket-pipelines">Bitbucket Pipelines</h3>
+<ul>
+<li>The sample code syncs the &ldquo;public&rdquo; folder from the master branch to <code>my-s3-bucket</code> using OIDC.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>image: amazon/aws-cli
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pipelines:
+</span></span><span style="display:flex;"><span>  default:
+</span></span><span style="display:flex;"><span>    - step: &amp;s3-deploy
+</span></span><span style="display:flex;"><span>        name: Deploy to S3 with OIDC
+</span></span><span style="display:flex;"><span>        oidc: true
+</span></span><span style="display:flex;"><span>        script:
+</span></span><span style="display:flex;"><span>          - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
+</span></span><span style="display:flex;"><span>          - export AWS_ROLE_ARN=&#39;created role&#39;
+</span></span><span style="display:flex;"><span>          - echo $BITBUCKET_STEP_OIDC_TOKEN &gt; $(pwd)/web-identity-token
+</span></span><span style="display:flex;"><span>          - aws s3 sync --delete public s3://my-s3-bucket/
+</span></span><span style="display:flex;"><span>  branches:
+</span></span><span style="display:flex;"><span>    master:
+</span></span><span style="display:flex;"><span>      - step: *s3-deploy
+</span></span></code></pre></div><h3 id="setting-up-oidc-with-cloudformation">Setting up OIDC with CloudFormation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Parameters:
+</span></span><span style="display:flex;"><span>  AwsAccountId:
+</span></span><span style="display:flex;"><span>    Type: String
+</span></span><span style="display:flex;"><span>    Description: AWS Account ID
+</span></span><span style="display:flex;"><span>  GithubRepoName:
+</span></span><span style="display:flex;"><span>    Type: String
+</span></span><span style="display:flex;"><span>    Description: Name of the GitHub repository
+</span></span><span style="display:flex;"><span>  OidcTokenUrl:
+</span></span><span style="display:flex;"><span>    Type: String
+</span></span><span style="display:flex;"><span>    Default: https://token.actions.githubusercontent.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Resources:
+</span></span><span style="display:flex;"><span>  GithubOidcTokenCertificate:
+</span></span><span style="display:flex;"><span>    Type: AWS::CloudFormation::CustomResource
+</span></span><span style="display:flex;"><span>    Version: &#34;1.0&#34;
+</span></span><span style="display:flex;"><span>    Properties:
+</span></span><span style="display:flex;"><span>      ServiceToken: !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:token-actions-github
+</span></span><span style="display:flex;"><span>      Url: !Ref OidcTokenUrl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  GithubOidcProvider:
+</span></span><span style="display:flex;"><span>    Type: AWS::IAM::OpenIDConnectProvider
+</span></span><span style="display:flex;"><span>    Properties:
+</span></span><span style="display:flex;"><span>      Url: !Ref OidcTokenUrl
+</span></span><span style="display:flex;"><span>      ClientIDList:
+</span></span><span style="display:flex;"><span>        - sts.amazonaws.com
+</span></span><span style="display:flex;"><span>      ThumbprintList:
+</span></span><span style="display:flex;"><span>        - !GetAtt GithubOidcTokenCertificate.Sha1Fingerprint
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  GithubOidcPolicyDocument:
+</span></span><span style="display:flex;"><span>    Type: AWS::IAM::Policy
+</span></span><span style="display:flex;"><span>    Properties:
+</span></span><span style="display:flex;"><span>      PolicyName: GithubOIDCPolicy
+</span></span><span style="display:flex;"><span>      PolicyDocument:
+</span></span><span style="display:flex;"><span>        Version: &#34;2012-10-17&#34;
+</span></span><span style="display:flex;"><span>        Statement:
+</span></span><span style="display:flex;"><span>          - Effect: Allow
+</span></span><span style="display:flex;"><span>            Action: sts:AssumeRoleWithWebIdentity
+</span></span><span style="display:flex;"><span>            Resource: &#34;*&#34;
+</span></span><span style="display:flex;"><span>            Condition:
+</span></span><span style="display:flex;"><span>              StringEquals:
+</span></span><span style="display:flex;"><span>                token.actions.githubusercontent.com:sub:
+</span></span><span style="display:flex;"><span>                  - !Sub &#34;repo:${GithubRepoName}:ref:refs/heads/main&#34;
+</span></span><span style="display:flex;"><span>            Principal:
+</span></span><span style="display:flex;"><span>              Federated: !Sub arn:aws:iam::${AwsAccountId}:oidc-provider/oidc-provider/token.actions.githubusercontent.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  GithubOidcRole:
+</span></span><span style="display:flex;"><span>    Type: AWS::IAM::Role
+</span></span><span style="display:flex;"><span>    Properties:
+</span></span><span style="display:flex;"><span>      RoleName: GithubOIDC-TEST
+</span></span><span style="display:flex;"><span>      AssumeRolePolicyDocument: !Ref GithubOidcPolicyDocument
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  GithubOidcAdministratorAccessAttachment:
+</span></span><span style="display:flex;"><span>    Type: AWS::IAM::PolicyAttachment
+</span></span><span style="display:flex;"><span>    Properties:
+</span></span><span style="display:flex;"><span>      PolicyArn: arn:aws:iam::aws:policy/AdministratorAccess
+</span></span><span style="display:flex;"><span>      Roles:
+</span></span><span style="display:flex;"><span>        - !Ref GithubOidcRole
+</span></span></code></pre></div>
+	    
+	</div>
+    <div>
+    	
+    </div>
+    <ul class="tags">
+    
+</ul>
+
+  </div>
+</section>
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>

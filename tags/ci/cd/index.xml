@@ -1,6 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI/CD on n's tech blog</title><link>/tags/ci/cd/</link><description>Recent content in CI/CD on n's tech blog</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>OIDCでのデプロイ備忘録です (git → aws)</title><link>/posts/oidc/</link><pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate><guid>/posts/oidc/</guid><description>やること # OIDCをterraformで構築する github bitbucket OIDCを利用してデプロイする 簡単なgithub actionとbitbucket pipelinesを作成する 技術要素 # oidc aws bitbucket github terraform OIDCとは # OIDC (OpenID Connect) とは、OAuth 2.0 プロトコルを拡張した認証プロトコルの一つで、Webアプリケーションやモバイルアプリケーションなどにおけるユーザー認証を行うための仕組みです。
-導入メリット # GitからのデプロイにOIDCを使用することで、Gitを介したデプロイにおけるセキュリティ強化や、トークンの有効期限管理が容易になるなどのメリットがあります。MFA有効化されてないアクセスキーをデプロイに利用するのにはセキュリティーリスクがあります。とはいえ、MFAを有効にしたキーをデプロイに利用するのは、デバイスをどうするか等考慮することが増えて中々面倒です。OIDCであれば、ユーザーが自身のIDプロバイダーの認証情報を使用するため、認証情報の管理が簡素化され、セキュリティも向上します。
-導入背景 # 今まではawsにデプロイしたいとき運用が煩雑でした。これだったらCLIじゃなくてマネジメントコンソールからデプロイでも良いかなぁと思えるほど。。
-今までのフローはまずキーを取得するところが手間 MFAのトークンをアプリから確認してコマンドを叩く $ aws sts get-session-token --serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx --token-code xxxxxx 取得したキーをエクスポートかGitに登録 セッションに有効期限があるので定期的に実行&amp;hellip; terraformでOIDCを構築 # terraformで構築します github actionを利用する場合と、bitbucket-pipelinesを利用する場合２パターン記載します。 githubの場合 # variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.actions.githubusercontent.com&amp;#34; } data &amp;#34;tls_certificate&amp;#34; &amp;#34;github_oidc_token&amp;#34; { url = var.oidc_token_url } resource &amp;#34;aws_iam_openid_connect_provider&amp;#34; &amp;#34;github_oidc_provider&amp;#34; { url = var.</description></item><item><title>terraformのラッパーterragruntの導入検証を実施してみました</title><link>/posts/terragrunt-1/</link><pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate><guid>/posts/terragrunt-1/</guid><description>導入検証 # 普段terraformを利用しているが、以下の点が不便でした デプロイ毎の影響範囲を少なくするため、Gitリポジトリを細かく分けていた terraformのバージョンアップが大変 コードからリソースの依存関係が読みにくい depends_onで明示出来ない部分でデプロイ順を気にする必要性があった 課題 # 以下2点の検証が済んで無いので導入には至ってない terraformだけではなく、terragruntのバージョンも管理しないといけない。バージョンUP作業が今までとどう変わるのか terragruntの開発が止まったとき、スムーズにterraformコードに戻せるか 技術要素 # terraform terragrunt aws 事前準備 # terragruntとは # Terraformを使用したインフラストラクチャの管理を簡略化するためのツールであるTerraform Wrapperとして知られるオープンソースのツールです。Terraformが提供する機能を拡張して、共通の機能を再利用し、コードの再利用性を高め、モジュールを構成するための柔軟性を提供します。terragruntは、Terraformを使用して複数の環境やアカウントで管理する場合に便利です。
-導入 # $ brew install tfenv # terraform（.terraform-versionに記載のバージョンがインストールされます） $ brew install tgenv # terragrunt（.terragrunt-versionに記載のバージョンがインストールされます） フォルダ構成 # 他記事を参考にして作成しました。 この構成のメリットは、環境ごとに異なる変数を指定することができるため、コードの再利用性が高くなります。
-$ tree . . ├── README.md ├── docs │ └── graph-dependencies.png ├── envs │ ├── prod │ │ ├── リソースグルーピングA │ │ │ └── terragrunt.hcl │ │ ├── リソースグルーピングB │ │ │ └── terragrunt.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI/CD on profile</title>
+    <link>https://example.com/tags/ci/cd/</link>
+    <description>Recent content in CI/CD on profile</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://example.com/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deployment Memo for OIDC (Git to AWS)</title>
+      <link>https://example.com/blog/cicd-oidc/</link>
+      <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/blog/cicd-oidc/</guid>
+      <description>Intro Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.
+Tasks Set up OIDC with Terraform GitHub Bitbucket Deploy using OIDC Create simple GitHub Actions and Bitbucket Pipelines Technical Elements OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</description>
+    </item>
+    
+    <item>
+      <title>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
+      <link>https://example.com/blog/cicd-terragrunt-1/</link>
+      <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/blog/cicd-terragrunt-1/</guid>
+      <description>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&amp;rsquo;t be explicitly used.</description>
+    </item>
+    
+  </channel>
+</rss>

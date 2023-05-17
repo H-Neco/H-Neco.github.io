@@ -1,12 +1,657 @@
-<!doctype html><html dir="ltr" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>n's tech blog</title><meta name="title" content="n's tech blog"><meta name="description" content="記事の内容には万全を期していますが、アウトプットの効率を重視しており、記事にかなりの手抜きがあるかもしれません。それでも、技術分野に興味のある方に有益な情報を提供することを目的に、積極的に投稿しています。"><link rel="canonical" href="/"><link rel="alternate" type="application/rss+xml" href="/index.xml" title="n's tech blog"><link type="text/css" rel="stylesheet" href="/css/main.min.7123c56235160c960829b12eb651c093cc7c484be0a1db27fa6e8bdfff975829.css" integrity="sha256-cSPFYjUWDJYIKbEutlHAk8x8SEvgodsn+m6L3/+XWCk="><link rel="icon" sizes="192x192" href="/img//logo-192.png"><link rel="apple-touch-icon" href="/img//logo-192.png"><link rel="mask-icon" href="/img//logo.svg" color="blue"><link rel="manifest" href="/site.webmanifest"><meta property="og:title" content="n's tech blog"><meta property="og:description" content="記事の内容には万全を期していますが、アウトプットの効率を重視しており、記事にかなりの手抜きがあるかもしれません。それでも、技術分野に興味のある方に有益な情報を提供することを目的に、積極的に投稿しています。"><meta property="og:type" content="website"><meta property="og:url" content="/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="n's tech blog"><meta name="twitter:description" content="記事の内容には万全を期していますが、アウトプットの効率を重視しており、記事にかなりの手抜きがあるかもしれません。それでも、技術分野に興味のある方に有益な情報を提供することを目的に、積極的に投稿しています。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"n\u0027s tech blog","url":"\/","author":{"@type":"Person","name":"n\u0027s"},"thumbnailUrl":"\/img\/logo.jpeg"}</script><meta name="generator" content="Hugo 0.111.3"><meta name="author" content="n's"><script defer src="/js/main.min.3bfc9774c933123803ba09c8b89eeda9822dd63321db002f0bfd9cdc3129b0fa.js" integrity="sha256-O/yXdMkzEjgDugnIuJ7tqYIt1jMh2wAvC/2c3DEpsPo="></script>
-<script>"theme"in localStorage||(localStorage.theme="auto"),(localStorage.theme==="dark"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark")</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-Z6BYZ5M6VX")</script></head><body class="w-full min-h-full" x-data="{ up: false }"><div x-data="{ open: false }" @keydown.window.escape="open = false" class="sticky inset-x-0 top-0 z-10"><div class="fixed z-10 flex w-48 h-screen lg:hidden" :class="open ? '' : 'hidden'" x-ref="dialog" aria-modal="true"><div class="fixed inset-0 bg-black bg-opacity-25" :class="open ? '' : 'hidden'" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Off-canvas menu overlay, show/hide based on off-canvas menu state." @click="open = false" aria-hidden="true"></div><div class="fixed inset-0 flex flex-col w-full h-full pb-12 overflow-y-auto shadow-xl bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200 max-w-xxs" :class="open ? '' : 'hidden'" x-transition:enter="transition ease-in-out duration-300" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-description="Off-canvas menu, show/hide based on off-canvas menu state."><div class="flex px-4 pt-5 pb-2"><button type="button" title="Close menu" class="inline-flex items-center justify-center p-2 -m-2 rounded-md text-neutral-400" @click="open = false">
-<span class="sr-only">Close menu</span><svg class="w-6 h-6" x-description="Heroicon name: outline/x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/></svg></button></div><ul class="py-4 divide-y divide-neutral-200"><li class="flow-root px-4 py-2
-bg-neutral-200 dark:bg-neutral-900"><a href="/" title="n's tech blog" class="block p-2 -m-2 font-medium">Home</a></li><li class="flow-root px-4 py-2"><a href="/about/" title="about" class="block p-2 -m-2 font-medium">About</a></li><li class="flow-root px-4 py-2"><a href="/posts/" title="Posts" class="block p-2 -m-2 font-medium">Blog</a></li><li class="flow-root px-4 py-2"><a href="/tags/" title="Tags" class="block p-2 -m-2 font-medium">Tags</a></li><li class="flow-root px-4 py-2"><a href="https://github.com/H-Neco" title class="block p-2 -m-2 font-medium">GitHub</a></li></ul></div></div><header class="shadow dark:shadow-dark bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200"><nav class="container flex leading-12 items-center px-6 mx-auto max-w-7xl lg:px-8 xl:px-12 bg-neutral-50 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-200" aria-label="Top"><a class="relative hidden p-2 align-middle lg:block" rel="me" href="/" title="n's tech blog"><img src="/img/logo.jpeg" class="h-8 w-auto" alt="n's tech blog"></a>
-<button class="lg:hidden" type="button" @click="open = true" aria-label="Open menu"><svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentcolor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="flex-grow h-12 mx-2"><div class="relative w-full h-full"><div class="absolute max-w-full" :class="up ? 'hidden' : ''" x-transition.duration.500ms><span class="font-semibold overflow-hidden text-ellipsis whitespace-nowrap">n's tech blog</span></div><template x-if="true"><div class="absolute top-0 left-0 right-0 max-w-full" :class="up ? '' : 'hidden'" x-transition.duration.500ms><span class="overflow-hidden text-ellipsis whitespace-nowrap">n's tech blog</span></div></template></div></div><ul class="shrink hidden ml-7 lg:flex flex-row justify-end list-none"><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500
-border-primary-500"><a href="/" title="n's tech blog">Home</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="/about/" title="about">About</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="/posts/" title="Posts">Blog</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="/tags/" title="Tags">Tags</a></li><li class="border-b-2 border-transparent text-right mr-7 hover:border-primary-500"><a href="https://github.com/H-Neco" title>GitHub</a></li></ul><button id="switchTheme" class="w-8 h-8 flex justify-center items-center focus:outline-none">
-<span class="sr-only">Switch theme</span><svg class="w-5 h-5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1A1 1 0 119 4V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707A1 1 0 1113.536 5.05l.707-.707a1 1 0 011.414.0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707A1 1 0 004.343 5.757l.707.707zm1.414 8.486-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/></svg>
-<span class="light"></span><span class="dark"></span></button>
-<script>document.getElementById("switchTheme").addEventListener("click",function(){localStorage.theme==="dark"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: dark)").matches?(document.documentElement.classList.remove("dark"),localStorage.theme="light"):(localStorage.theme==="light"||(!("theme"in localStorage)||localStorage.theme==="auto")&&window.matchMedia("(prefers-color-scheme: light)").matches)&&(document.documentElement.classList.add("dark"),localStorage.theme="dark")})</script></nav></header></div><main class="container flex flex-row px-6 mx-auto my-6 lg:px-8 xl:px-12 max-w-7xl"><div class="mx-auto min-w-0 max-w-2xl lg:max-w-3xl w-full"><article class="prose max-w-none dark:prose-invert"><header><h1>n's tech blog</h1></header><section><p class="lead">個人による技術ブログです。<br>自己紹介は<a href="https://h-neco.github.io/about" data-rel="prefetch">こちら</a>。</p></section></article><section class="w-full"><h2 class="mt-8 text-2xl font-extrabold">Recent</h2><div class="overflow-hidden divide-y divide-neutral-300 dark:divide-neutral-600"><article class="py-4"><h3 class="flex items-center text-xl font-semibold"><a class="hover:underline hover:decoration-primary-500 hover:underline-offset-auto text-neutral-800 dark:text-neutral-200" href="/posts/aws-efs/">aws EFS(バーストモード)の注意点・対策の検討(クレジット枯渇)</a></h3><div class="my-2">EFSをバーストモードで利用していてクレジットが枯渇しそうだったので対応方法を備忘として残します。</div><div class="text-sm text-neutral-400 dark:text-neutral-500"><div class="flex flex-row items-center"><time datetime="2023-05-03 00:00:00 +0000 UTC">3 May 2023</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">1 min</span></div></div></article><article class="py-4"><h3 class="flex items-center text-xl font-semibold"><a class="hover:underline hover:decoration-primary-500 hover:underline-offset-auto text-neutral-800 dark:text-neutral-200" href="/posts/oidc/">OIDCでのデプロイ備忘録です (git → aws)</a></h3><div class="my-2">個人のawsでGitHub/Bitbucketからデプロイするときアクセスキー、シークレットキーを利用していましたが、運用が面倒なのでOIDCに切替ました。</div><div class="text-sm text-neutral-400 dark:text-neutral-500"><div class="flex flex-row items-center"><time datetime="2023-04-26 00:00:00 +0000 UTC">26 April 2023</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">3 mins</span></div></div></article><article class="py-4"><h3 class="flex items-center text-xl font-semibold"><a class="hover:underline hover:decoration-primary-500 hover:underline-offset-auto text-neutral-800 dark:text-neutral-200" href="/posts/terragrunt-1/">terraformのラッパーterragruntの導入検証を実施してみました</a></h3><div class="my-2">terraformで大規模構築が大変だったため、terragruntを利用してみました。</div><div class="text-sm text-neutral-400 dark:text-neutral-500"><div class="flex flex-row items-center"><time datetime="2023-04-26 00:00:00 +0000 UTC">26 April 2023</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">4 mins</span></div></div></article><article class="py-4"><h3 class="flex items-center text-xl font-semibold"><a class="hover:underline hover:decoration-primary-500 hover:underline-offset-auto text-neutral-800 dark:text-neutral-200" href="/posts/lambda-local-execution/">Lambdaローカル開発環境構築メモ( SAM | LocalStack | TypeScript )</a></h3><div class="my-2">PC買い替えついでにLambdaのローカル実行環境を再構築しました。備忘として残していきます。</div><div class="text-sm text-neutral-400 dark:text-neutral-500"><div class="flex flex-row items-center"><time datetime="2023-04-24 00:00:00 +0000 UTC">24 April 2023</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">3 mins</span></div></div></article><article class="py-4"><h3 class="flex items-center text-xl font-semibold"><a class="hover:underline hover:decoration-primary-500 hover:underline-offset-auto text-neutral-800 dark:text-neutral-200" href="/posts/ec2-ebs-delete-on-termination/">EC2にアタッチされたEBSを永続化する</a></h3><div class="my-2">初期設定だとEC2を終了した場合、アタッチされているEBSは削除されてしまいますが、AWSCLIで永続化してみます。</div><div class="text-sm text-neutral-400 dark:text-neutral-500"><div class="flex flex-row items-center"><time datetime="2023-04-21 00:00:00 +0000 UTC">21 April 2023</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">1 min</span></div></div></article></div></section></div></main><footer class="text-neutral-500 dark:text-neutral-500 bg-neutral-200 dark:bg-neutral-900"><div class="container flex flex-row px-6 lg:px-8 xl:px-12 py-4 mx-auto text-sm max-w-7xl"><div class="flex-1"><p>&copy;
-2023
-n's</p><p class="text-sm">Powered by <a class="hover:underline hover:text-primary-500" href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> <a class="hover:underline hover:text-primary-500" href="https://canstand.github.io/compost" target="_blank" rel="noopener noreferrer">Compost</a></p></div><div class="flex-1"></div></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | Home</title>
+  <meta name="description" content="">
+
+  
+  
+    <meta property="og:image" content="https://example.com/img/profile.png" />
+    <meta property="og:title" content="profile | Home" />   
+  
+  <meta property="og:description" content="" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://example.com/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/resume.css"></noscript>
+  <link rel="preload" href="https://example.com/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://example.com/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://example.com/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+   
+
+      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+        <div class="my-auto">
+          <div class="resume-item d-flex flex-column flex-md-row">
+            <div class="mr-auto">
+
+              <h1 class="mb-0">h
+                <span class="text-primary">neco</span>
+              </h1>
+              <div class="subheading mb-5"> ·
+                <a href="mailto:-remove-"><span style="display:none">-remove-</span></a>
+              </div>
+
+            </div>
+
+            
+
+        </div>
+        <div>
+          <p>✈️
+AWSを中心にDevOpsおよびCI/CDを活用して、AnsibleやTerraformでインフラを構築しています。</p>
+<h4 id="contacthttpsformsglej9jmgc2xmw4xk5lu9"><a href="https://forms.gle/j9JMgC2XmW4xK5Lu9">CONTACT</a></h4>
+<p>I have experience with multi-cloud environments and a strong knowledge of AWS, particularly in VPC, S3, Lambda, EC2, and other services. I also utilize Ansible and Terraform as CI/CD tools. In terms of programming languages, I am proficient in Linux, Bash, and Node.js. Additionally, I have expertise in data management using RDS, DynamoDB, and Athena.</p>
+
+          <h3>Certifications</h3>
+          <ul class="list-inline list-social-icons mb-0">
+            
+                <li class="list-inline-item">
+                  <a href="" data-toggle="tooltip" title="AWS Solutions Architect" data-offset="0 10" rel="me">
+                    <img src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png" width=75 />
+                  </a>
+                </li>
+            
+                <li class="list-inline-item">
+                  <a href="" data-toggle="tooltip" title="AWS Developer - Associate" data-offset="0 10" rel="me">
+                    <img src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Developer-Associate_badge.5c083fa855fe82c1cf2d0c8b883c265ec72a17c0.png" width=75 />
+                  </a>
+                </li>
+            
+                <li class="list-inline-item">
+                  <a href="" data-toggle="tooltip" title="AWS SysOps Administrator Associate" data-offset="0 10" rel="me">
+                    <img src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-SysOps-Administrator-Associate_badge.c3586b02748654fb588633314dd66a1d6841893b.png" width=75 />
+                  </a>
+                </li>
+            
+                <li class="list-inline-item">
+                  <a href="" data-toggle="tooltip" title="AWS Security - specialty" data-offset="0 10" rel="me">
+                    <img src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Security-Specialty_badge.75ad1e505c0241bdb321f4c4d9abc51c0109c54f.png" width=75 />
+                  </a>
+                </li>
+            
+          </ul>
+          <h3>Socialization</h3>
+          <ul class="list-inline list-social-icons mb-0">
+            
+                <li class="list-inline-item">
+                  <a href="https://github.com/h-neco/" data-toggle="tooltip" title="GitHub" data-offset="0,10" rel="me">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+                </li>
+            
+            <li class="list-inline-item">
+              <a href="https://github.com/h-neco/leetcode" data-toggle="tooltip" title="leetcode" data-offset="0,10" rel="me">
+                <span class="fa-stack fa-lg">LeetCode
+                <i class="fab fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+   
+       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+  <div class="my-auto" id="skills-content">
+    <h2 class="mb-5">Skills</h2>
+    
+        <div class="subheading mb-3 skills-heading">Platform Cloud</div>
+            <ul>
+            
+                
+                    
+                    <li class="list-inline-item">
+                      <i class="devicons devicons-aws"></i>
+                      
+                          AWS
+                      
+                    </li>
+                
+            
+                
+                    
+                    <li class="list-inline-item">
+                      <i class="devicons devicons-terminal_badge"></i>
+                      
+                          Google Cloud(Currently Studying)
+                      
+                    </li>
+                
+            
+                
+                    
+                    <li class="list-inline-item">
+                      <i class="devicons devicons-terminal_badge"></i>
+                      
+                          NiftyCloud
+                      
+                    </li>
+                
+            
+            </ul>
+    
+        <div class="subheading mb-3 skills-heading">AWS details</div>
+            <ul>
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    VPC
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    CloudFront
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    S3
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    APIGateWay
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Lambda/Lambda@Edge
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    EFS
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    LB(NLB/ALB)
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    ECS(Fargate)
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Athena/QuickSight
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    DXGW
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    CloudTrail
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    SecurityHub
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Config
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    GuardDuty
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Organizations
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    SSO
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    AmazonConnect
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    WAF
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    IAM
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    etc.
+                  </li>
+                
+            
+            </ul>
+    
+        <div class="subheading mb-3 skills-heading">CI/CD tools</div>
+            <ul>
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Ansible
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Packer
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Terraform
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Terragrunt
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    GitHub-Actions
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Bitbucket-Pipelines
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-docker"></i>
+                    Docker
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    LocalStack
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    SAM
+                  </li>
+                
+            
+            </ul>
+    
+        <div class="subheading mb-3 skills-heading">Languages</div>
+            <ul>
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    bash
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    HCL/HCL2
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    php(cake/laravel)
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-nodejs"></i>
+                    nodejs
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    TypeScript
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Python(Currently Studying)
+                  </li>
+                
+            
+            </ul>
+    
+        <div class="subheading mb-3 skills-heading">Operating Systems</div>
+            <ul>
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    centos6,7
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    amazonLinux2
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Windows(2019/2022)
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    macOS
+                  </li>
+                
+            
+            </ul>
+    
+        <div class="subheading mb-3 skills-heading">WebServer</div>
+            <ul>
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-nginx"></i>
+                    Nginx
+                  </li>
+                
+            
+                
+                  <li class="list-inline-item">
+                    <i class="devicons devicons-terminal_badge"></i>
+                    Apache
+                  </li>
+                
+            
+            </ul>
+    
+        <div class="subheading mb-3 skills-heading">Data Management</div>
+            <ul>
+            
+                
+                    
+                    <li class="list-inline-item">
+                      <i class="devicons devicons-msql_server"></i>
+                      
+                          RDS(MySql,MariaDB)
+                      
+                    </li>
+                
+            
+                
+                    
+                    <li class="list-inline-item">
+                      <i class="devicons devicons-database"></i>
+                      
+                          DynamoDB
+                      
+                    </li>
+                
+            
+                
+                    
+                    <li class="list-inline-item">
+                      <i class="devicons devicons-terminal_badge"></i>
+                      
+                          Athena
+                      
+                    </li>
+                
+            
+                
+                    
+                    <li class="list-inline-item">
+                      <i class="devicons devicons-terminal_badge"></i>
+                      
+                          QuickSight
+                      
+                    </li>
+                
+            
+            </ul>
+    
+  </div>
+</section>
+
+   
+   
+   
+   
+   
+       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
+  <div class="my-auto" id="experience-content">
+    <h2 class="mb-5">Experience</h2>
+    
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Developer</h3>
+            <div class="subheading mb-3">Media Company</div>
+            <p>I handle infrastructure design, construction, and operation. I also provide cost-saving suggestions and conduct configuration considerations for fully managed architectures.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">July 2021 - Present</span>
+          </div>
+        </div>
+    
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Developer</h3>
+            <div class="subheading mb-3">freelancer</div>
+            <p>I have experience creating web applications and embedded applications as part of an application development team using PHP and VB.NET.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">January 2019 - Jun 2021</span>
+          </div>
+        </div>
+    
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <div class="resume-content mr-auto">
+            <h3 class="mb-0">Developer</h3>
+            <div class="subheading mb-3">Tech Company</div>
+            <p>As a server engineer, I was responsible for configuration management.</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">April 2016 - December 2018</span>
+          </div>
+        </div>
+    
+  </div>
+
+</section>
+
+   
+   
+   
+      
+         
+         <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="blog">
+  <div class="my-auto" id="projects-content">
+    <div class=" pb-2 pt-3">
+      <h2>Blog</h2>
+      <p class="lead">While I strive for the utmost quality in the content of my articles, I prioritize efficiency in my output, which may result in some shortcuts in the articles. Nevertheless, my aim is to provide valuable information to individuals interested in the technical field, and I actively contribute with that goal in mind.</p>
+      
+    </div>
+    
+    
+    <h3><a href="/blog/list/">📖 Articles list</a></h3>
+  </div>
+  
+    <div class="my-auto">
+      <h3></h3>
+      <p><a href="https://example.com/blog/">all posts</a>!</p>
+    </div>
+  
+</section>
+      
+    
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>

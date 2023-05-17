@@ -1,0 +1,11 @@
+.bg-profile {
+  background-color: #4b4745 !important;
+}
+
+a {
+  color: #55a5f0;
+}
+
+a:hover, a:focus, a:active {
+  color: #1a6dd3;
+}
