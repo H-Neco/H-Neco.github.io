@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>profile | EFS Burst Mode Credit Exhaustion Countermeasures Memo.</title>
+  <title>profile | EFS Burst Mode のクレジット枯渇対策メモ</title>
   <meta name="description" content="">
 
   
   
     <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
-    <meta property="og:title" content="profile | EFS Burst Mode Credit Exhaustion Countermeasures Memo." />   
+    <meta property="og:title" content="profile | EFS Burst Mode のクレジット枯渇対策メモ" />   
   
   <meta property="og:description" content="" />
   <meta name="author" content="h neco">
@@ -98,7 +98,7 @@
 
 
 <li class="breadcrumb-item active">
-  <a href="https://h-neco.github.io/blog/aws-efs/">EFS Burst Mode Credit Exhaustion Countermeasures Memo.</a>
+  <a href="https://h-neco.github.io/blog/aws-efs/">EFS Burst Mode のクレジット枯渇対策メモ</a>
 </li>
 
   </ol>
@@ -110,108 +110,110 @@
 <section class="resume-section p-3 p-lg-5 d-flex flex-column">
   <div class="my-auto">
   	<div class="mb-3 d-flex flex-row justify-content-between">
-    	<h2 class="mb-0"><span class="text-primary">EFS Burst Mode Credit Exhaustion Countermeasures Memo.</span></h2>
+    	<h2 class="mb-0"><span class="text-primary">EFS Burst Mode のクレジット枯渇対策メモ</span></h2>
     	<span class="">May 3, 2023</span>
     </div>
     <div>
     	<h2 id="intro">Intro</h2>
 <ul>
-<li>EFS Burst Mode Credit Exhaustion Countermeasures Memo.
+<li>EFSバーストモードのクレジット枯渇対策メモ
 <ul>
-<li>I will provide the countermeasures I took as a memo since I was using EFS in burst mode and my credits were running low.</li>
+<li>EFSをバーストモードで使用していて、クレジットが不足してきたため、私が取った対策をメモとして提供します。</li>
 </ul>
 </li>
 </ul>
-<h2 id="technical-elements">Technical Elements</h2>
+<h2 id="技術要素">技術要素</h2>
 <ul>
 <li>EFS</li>
 <li>aws</li>
 </ul>
-<h2 id="two-modes-of-efs">Two Modes of EFS</h2>
+<h2 id="efsの2つのモード">EFSの2つのモード</h2>
 <ul>
 <li>
-<p>EFS has two modes: Burst Mode (General Purpose) and Provisioned Mode.</p>
+<p>EFSには2つのモードがあります: バーストモード（汎用）とプロビジョンドモード。</p>
 </li>
 <li>
-<p>Burst Mode automatically adjusts the traffic based on the amount of storage used and can handle temporary increases in traffic. The burstable bandwidth varies based on traffic usage and allows bursts as low as 105 Mbps. However, there is a limit on the number of read/write requests per second, so exceeding the limit may result in decreased throughput.</p>
+<p>バーストモードは、使用されているストレージの量に基づいてトラフィックを自動的に調整し、一時的なトラフィックの増加に対応できます。バースト可能な帯域幅はトラフィックの使用状況によって異なり、最低105 Mbpsのバーストが可能です。ただし、1秒あたりの読み取り/書き込みリクエストの数には制限があり、制限を超えるとスループットが低下する可能性があります。</p>
 </li>
 <li>
-<p>Provisioned Mode allows you to set the volume&rsquo;s throughput, minimum/maximum/burst, and specify write throughput. The read throughput is three times the write throughput. While Provisioned Mode does not have automatic scaling based on traffic, it can accommodate the required traffic based on the throughput settings.</p>
+<p>プロビジョンドモードでは、ボリュームのスループット、最小/最大/バースト、および書き込みスループットを設定できます。読み取りスループットは書き込みスループットの3倍です。プロビジョンドモードはトラフィックに基づいた自動スケーリングはありませんが、スループットの設定に基づいて必要なトラフィックに対応できます。</p>
 </li>
 </ul>
-<h2 id="notes-and-countermeasures-for-burst-mode-general-purpose">Notes and Countermeasures for Burst Mode (General Purpose)</h2>
-<p><!-- raw HTML omitted -->Note 1<!-- raw HTML omitted -->: Burst Credits</p>
-<ul>
-<li>Burst Mode consumes credits accumulated from file read/write operations and replenishes the credits based on the data usage on the NAS. The minimum speed of Burst Mode is 105 Mbps. However, when burst credits are exhausted, the performance of throughput significantly decreases, and file references from the mounting system may time out.</li>
-<li>How to check:
-<ul>
-<li>Metric Name: BurstCreditBalance</li>
-</ul>
-</li>
-<li>Initially, 2.3T credits are provided.</li>
-<li>To avoid exhausting burst credits, you can take the following countermeasures:
-<ul>
-<li>Place a large amount of data to accelerate credit recovery.</li>
-<li>Switch to Provisioned Mode to ensure a constant throughput.</li>
-<li>Utilize caching mechanisms like CloudFront.</li>
-</ul>
-</li>
-</ul>
-<p><!-- raw HTML omitted -->Note 2<!-- raw HTML omitted -->: Request Limits</p>
-<ul>
-<li>Burst Mode has limits on the number of requests.
-<ul>
-<li>There is a maximum limit on IOPS, which is 35,000 for reads and 7,000 for writes.
-<ul>
-<li>If the maximum IOPS in Burst Mode is exceeded, the performance of throughput decreases. Therefore, if you require high IOPS, consider using Provisioned Mode.</li>
-</ul>
-</li>
-<li>How to check:
-<ul>
-<li>Metric Name: PercentIOLimit</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="countermeasures-taken-based-on-consideration">Countermeasures Taken Based on Consideration</h2>
+<h2 id="バーストモード汎用の注意事項と対策">バーストモード（汎用）の注意事項と対策</h2>
+<p>バーストモード（汎用）の注意事項と対策</p>
+<p><!-- raw HTML omitted -->注意事項1<!-- raw HTML omitted -->: バーストクレジット</p>
 <ul>
 <li>
-<p>I adopted a strategy of placing a large amount of data in Burst Mode to accelerate the credit recovery speed.</p>
+<p>バーストモードは、ファイルの読み取り/書き込み操作から蓄積されたクレジットを消費し、NAS上のデータ使用状況に基づいてクレジットを補充します。バーストモードの最低速度は105 Mbpsです。ただし、バーストクレジットが枯渇すると、スループットの性能が著しく低下し、マウントシステムからのファイル参照がタイムアウトする場合があります。</p>
+</li>
+<li>
+<p>確認方法:</p>
 <ul>
-<li>Attempting to place a 10GB file.
-<ul>
-<li>Cost: $3/month</li>
+<li>メトリック名: BurstCreditBalance</li>
+<li>最初に2.3Tのクレジットが提供されます。</li>
 </ul>
 </li>
-<li>Command:
+<li>
+<p>バーストクレジットの枯渇を避けるためには、以下の対策を取ることができます:</p>
+<ul>
+<li>クレジットの回復を加速するために大量のデータを配置する。</li>
+<li>プロビジョンドモードに切り替えて一定のスループットを確保する。</li>
+</ul>
+</li>
+</ul>
+<p><!-- raw HTML omitted -->注意事項2<!-- raw HTML omitted -->: リクエスト制限</p>
+<ul>
+<li>バーストモードにはリクエストの制限があります。
+<ul>
+<li>リード用の最大IOPSは35,000、ライト用の最大IOPSは7,000です。</li>
+<li>バーストモードの最大IOPSを超えると、スループットのパフォーマンスが低下します。したがって、高いIOPSが必要な場合は、プロビジョンドモードの使用を検討してください。
+<ul>
+<li>確認方法:
+<ul>
+<li>メトリック名: PercentIOLimit</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="検討に基づく対策の取得">検討に基づく対策の取得</h2>
+<p>バーストモードに大量のデータを配置してクレジットの回復速度を加速するという戦略を採用しました。</p>
+<ul>
+<li>10GBのファイルを配置する試み。
+<ul>
+<li>コスト: $3/月
+<ul>
+<li>コマンド:
 <ul>
 <li><code>$ dd if=/dev/zero of=10GB_file_1 bs=10240k count=1000</code></li>
 </ul>
 </li>
-<li>How to check:
+<li>確認方法:
 <ul>
-<li>Metric Name: BurstCreditBalance</li>
+<li>メトリック名: BurstCreditBalance</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>
-<p>Provisioned Mode is not used due to high cost.</p>
-<ul>
-<li>Throughput 33(Mib/s) / Max Read Throughput 99(Mib/s)
-<ul>
-<li>Cost: $238/month</li>
 </ul>
 </li>
-<li>Throughput 15(Mib/s) / Max Read Throughput 45(Mib/s)
+<li>高いコストのため、プロビジョンドモードは使用していません。
 <ul>
-<li>Cost: $108/month</li>
+<li>スループット 33(Mib/s) / 最大読み取りスループット 99(Mib/s)
+<ul>
+<li>コスト: $238/月</li>
 </ul>
 </li>
-<li>Throughput 5(Mib/s) / Max Read Throughput 15(Mib/s)
+<li>スループット 15(Mib/s) / 最大読み取りスループット 45(Mib/s)
 <ul>
-<li>Cost: $36/month</li>
+<li>コスト: $108/月</li>
+</ul>
+</li>
+<li>スループット 5(Mib/s) / 最大読み取りスループット 15(Mib/s)
+<ul>
+<li>コスト: $36/月</li>
 </ul>
 </li>
 </ul>

@@ -45,13 +45,22 @@ Don’t mandate DevOps. Give employees the chance to master their discipline wit
     </item>
     
     <item>
-      <title>EFS Burst Mode Credit Exhaustion Countermeasures Memo.</title>
+      <title>EFS Burst Mode のクレジット枯渇対策メモ</title>
       <link>https://h-neco.github.io/blog/aws-efs/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-efs/</guid>
-      <description>Intro EFS Burst Mode Credit Exhaustion Countermeasures Memo. I will provide the countermeasures I took as a memo since I was using EFS in burst mode and my credits were running low. Technical Elements EFS aws Two Modes of EFS EFS has two modes: Burst Mode (General Purpose) and Provisioned Mode.
-Burst Mode automatically adjusts the traffic based on the amount of storage used and can handle temporary increases in traffic.</description>
+      <description>Intro EFSバーストモードのクレジット枯渇対策メモ EFSをバーストモードで使用していて、クレジットが不足してきたため、私が取った対策をメモとして提供します。 技術要素 EFS aws EFSの2つのモード EFSには2つのモードがあります: バーストモード（汎用）とプロビジョンドモード。
+バーストモードは、使用されているストレージの量に基づいてトラフィックを自動的に調整し、一時的なトラフィックの増加に対応できます。バースト可能な帯域幅はトラフィックの使用状況によって異なり、最低105 Mbpsのバーストが可能です。ただし、1秒あたりの読み取り/書き込みリクエストの数には制限があり、制限を超えるとスループットが低下する可能性があります。
+プロビジョンドモードでは、ボリュームのスループット、最小/最大/バースト、および書き込みスループットを設定できます。読み取りスループットは書き込みスループットの3倍です。プロビジョンドモードはトラフィックに基づいた自動スケーリングはありませんが、スループットの設定に基づいて必要なトラフィックに対応できます。
+バーストモード（汎用）の注意事項と対策 バーストモード（汎用）の注意事項と対策
+注意事項1: バーストクレジット
+バーストモードは、ファイルの読み取り/書き込み操作から蓄積されたクレジットを消費し、NAS上のデータ使用状況に基づいてクレジットを補充します。バーストモードの最低速度は105 Mbpsです。ただし、バーストクレジットが枯渇すると、スループットの性能が著しく低下し、マウントシステムからのファイル参照がタイムアウトする場合があります。
+確認方法:
+メトリック名: BurstCreditBalance 最初に2.3Tのクレジットが提供されます。 バーストクレジットの枯渇を避けるためには、以下の対策を取ることができます:
+クレジットの回復を加速するために大量のデータを配置する。 プロビジョンドモードに切り替えて一定のスループットを確保する。 注意事項2: リクエスト制限
+バーストモードにはリクエストの制限があります。 リード用の最大IOPSは35,000、ライト用の最大IOPSは7,000です。 バーストモードの最大IOPSを超えると、スループットのパフォーマンスが低下します。したがって、高いIOPSが必要な場合は、プロビジョンドモードの使用を検討してください。 確認方法: メトリック名: PercentIOLimit 検討に基づく対策の取得 バーストモードに大量のデータを配置してクレジットの回復速度を加速するという戦略を採用しました。
+10GBのファイルを配置する試み。 コスト: $3/月 コマンド: $ dd if=/dev/zero of=10GB_file_1 bs=10240k count=1000 確認方法: メトリック名: BurstCreditBalance 高いコストのため、プロビジョンドモードは使用していません。 スループット 33(Mib/s) / 最大読み取りスループット 99(Mib/s) コスト: $238/月 スループット 15(Mib/s) / 最大読み取りスループット 45(Mib/s) コスト: $108/月 スループット 5(Mib/s) / 最大読み取りスループット 15(Mib/s) コスト: $36/月 </description>
     </item>
     
     <item>
@@ -60,46 +69,57 @@ Burst Mode automatically adjusts the traffic based on the amount of storage used
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/</guid>
-      <description>Intro By default, when an EC2 instance is terminated, the attached EBS volumes are also deleted. However, let&amp;rsquo;s explore how to persist them using AWS CLI. Technical Elements EC2/EBS Commands Retrieve the volume information of the target instance filtered by tags. If DeleteOnTermination is true, it means the volume is not persisted. $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .Reservations[0].Instances[0].BlockDeviceMappings [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;AttachTime&amp;#34;: &amp;#34;2023-04-18T04:59:14+00:00&amp;#34;, &amp;#34;DeleteOnTermination&amp;#34;: true, &amp;#34;Status&amp;#34;: &amp;#34;attached&amp;#34;, &amp;#34;VolumeId&amp;#34;: &amp;#34;vol-xxxxxxxxxxxx&amp;#34; } } ] Prepare a configuration file.</description>
+      <description>Intro デフォルトでは、EC2インスタンスが終了すると、アタッチされたEBSボリュームも削除されます。しかし、AWS CLIを使用してこれらを永続化する方法を探ってみましょう。 技術要素 EC2/EBS コマンド タグによってフィルタリングされた対象インスタンスのボリューム情報を取得します。 DeleteOnTerminationがtrueである場合、ボリュームは永続化されていないことを意味します。 $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .Reservations[0].Instances[0].BlockDeviceMappings [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;AttachTime&amp;#34;: &amp;#34;2023-04-18T04:59:14+00:00&amp;#34;, &amp;#34;DeleteOnTermination&amp;#34;: true, &amp;#34;Status&amp;#34;: &amp;#34;attached&amp;#34;, &amp;#34;VolumeId&amp;#34;: &amp;#34;vol-xxxxxxxxxxxx&amp;#34; } } ] 設定ファイルを準備します。 DeleteOnTerminationをfalseに設定します。 $ vim mapping.json [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;DeleteOnTermination&amp;#34;: false } } ] インスタンスの設定変更 $ aws ec2 modify-instance-attribute --instance-id &amp;#34;i-xxxxxxxxxxxxxx&amp;#34; --block-device-mappings file://mapping.json タグでフィルタリングされた対象インスタンスのボリューム情報を取得します。 DeleteOnTerminationがfalseであることを確認します。 $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .</description>
     </item>
     
     <item>
-      <title>Deployment Memo for OIDC (Git to AWS)</title>
+      <title>OIDCでのデプロイメモ (Git to AWS)</title>
       <link>https://h-neco.github.io/blog/cicd-oidc/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-oidc/</guid>
-      <description>Intro Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.
-Tasks Set up OIDC with Terraform GitHub Bitbucket Deploy using OIDC Create simple GitHub Actions and Bitbucket Pipelines Technical Elements OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</description>
+      <description>Intro 以前は、GitHubやBitbucketから個人のAWSへのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDCに切り替えました。
+OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDCを使用することで、AWSへのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDCを使用する場合、AWSへのアクセスにはアクセストークンが使用されます。
+OIDCを導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。
+やること TerraformでOIDCを設定する方法 GitHub Bitbucket OIDCを使用してデプロイする方法 シンプルなGitHub ActionsとBitbucket Pipelinesの作成 技術要素 OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC（OpenID Connect）は、OAuth 2.0プロトコルを拡張し、Webアプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。
+Benefits of OIDC GitからのデプロイにOIDCを使用することで、いくつかの利点があります。それには、Gitを介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFAが有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFAが有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDCを使用することで、ユーザーはIDプロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。
+構築背景 以前は、AWSへのデプロイは手間がかかるものでした。CLIの代わりに管理コンソールからデプロイすることを考えるほどです。
+以前のフローでは、キーの取得に不便さが伴いました： アプリからMFAトークンを確認してコマンドを実行する： $ aws sts get-session-token &amp;ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &amp;ndash;token-code xxxxxx 取得したキーをエクスポートするか、Gitに登録する セッションの有効期限が切れるたびに定期的にコマンドを実行する&amp;hellip; TerraformでOIDCを構築する Terraformでの構築 GitHub Actionsを使用するシナリオとBitbucket Pipelinesを使用するシナリオの2つを説明します。 GitHub Sample variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.actions.githubusercontent.com&amp;#34; } data &amp;#34;tls_certificate&amp;#34; &amp;#34;github_oidc_token&amp;#34; { url = var.</description>
     </item>
     
     <item>
-      <title>Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</title>
+      <title>Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</title>
       <link>https://h-neco.github.io/blog/aws-lambda-local-execution/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-lambda-local-execution/</guid>
-      <description>Intro As part of replacing my PC, I rebuilt the local execution environment for Lambda. I&amp;rsquo;ll leave some notes as a memo. Rebuilt the local execution environment for Lambda while replacing my PC. I&amp;rsquo;ll leave some notes as a memo.
-Technical Elements Volta Lambda LocalStack TypeScript SAM Prerequisites Installing Volta Installing Volta Volta is a tool specialized in managing Node.js versions. It allows you to switch between different Node.js versions for each project, making it easy to manage different versions without the need to install or manage Node.</description>
+      <description>Intro PCの入れ替えに伴い、Lambdaのローカル実行環境を再構築した。メモとして残しておきます。 PCリプレースのついでにLambdaのローカル実行環境を再構築。メモとして残しておく。
+技術要素 Volta Lambda LocalStack TypeScript SAM 前提条件 Installing Volta Voltaのインストール Volta は Node.js のバージョン管理に特化したツールです。プロジェクトごとに異なるNode.jsのバージョンを切り替えることができ、Node.jsのバージョンを手動でインストール・管理することなく、異なるバージョンを簡単に管理することができます。Voltaは、他のバージョン管理ツールと比較して切り替えが簡単という利点があり、OSやシェルに依存しないため様々な環境で利用することができます。
+$ curl https://get.volta.sh | bash $ echo &amp;#39;export VOLTA_HOME=&amp;#34;$HOME/.volta&amp;#34;&amp;#39; &amp;gt;&amp;gt; .zshrc $ echo &amp;#39;export PATH=&amp;#34;$VOLTA_HOME/bin:$PATH&amp;#34;&amp;#39; &amp;gt;&amp;gt; .zshrc Node.jsとYarnのインストール 利用可能なバージョンを確認するには、volta list nodeを使用します。特定のバージョンをインストールしたい場合は、volta install node@18.15.0 というフォーマットを使ってください。
+$ volta install node success: installed and set node@18.15.0 (with npm@9.5.0) as default $ volta install yarn success: installed and set yarn@4.0.0-rc.42 as default SAM のインストール 以下の手順はmacOS用である。Windowsユーザーの方は公式サイトからMSIファイルをダウンロードすることをお勧めします。
+macOS $ brew tap aws/tap $ brew install aws-sam-cli $ sam --version SAM CLI, version 1.</description>
     </item>
     
     <item>
-      <title>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
+      <title>TerraformのWrapperツール、Terragrunt導入の検証を行いました。</title>
       <link>https://h-neco.github.io/blog/cicd-terragrunt-1/</link>
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
-      <description>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&amp;rsquo;t be explicitly used.</description>
+      <description>Intro TerraformのWrapperツール、Terragrunt導入の検証を行いました。 導入の検証 通常、私はTerraformを使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Gitリポジトリをより小さなものに分割する必要がありました。Terraformのバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_onが明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の2点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraformの管理だけでなく、Terragruntのバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もしTerragruntの開発が停止した場合、スムーズにTerraformのコードに戻せるか 技術要素 terraform terragrunt aws Terragruntとは Terragruntは、Terraformを使用してインフラストラクチャを管理するための作業を簡素化するためのTerraform Wrapperとして知られるオープンソースのツールです。TerragruntはTerraformが提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraformを使用して複数の環境やアカウントを管理する際にTerragruntは非常に便利です。
+インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成
+このフォルダ構成は、他の記事を参考に作成されました。この構造の利点は、各環境ごとに異なる変数を指定できるため、コードの再利用性が向上することです。
+$ tree . . ├── README.md ├── docs │ └── graph-dependencies.png ├── envs │ ├── prod │ │ ├── ResourceGroupA │ │ │ └── terragrunt.hcl │ │ ├── ResourceGroupB │ │ │ └── terragrunt.</description>
     </item>
     
     <item>
-      <title>Creating a NAT instance on Amazon Linux 2 using Packer and Ansible.</title>
+      <title>PackerとAnsibleを使用してAmazon Linux 2にNATインスタンスを作成します。</title>
       <link>https://h-neco.github.io/blog/aws-ec2-nat-instance/</link>
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-ec2-nat-instance/</guid>
-      <description>Intro I have set up a NAT instance using amazonLinux2. I utilized Packer and Ansible for the configuration process.
-Set up a NAT instance using amazonLinux2. Explain why amazonLinux2 is chosen: Lambda does not support incoming connections initiated externally, so it does not support FTP in active mode. ECS does not allow for the static allocation of private IP addresses. While it is possible to achieve static allocation by combining it with NAT Private Gateway, since it is a gateway type, it cannot accept incoming connections from external sources.</description>
+      <description>Intro AmazonLinux2を使用してNATインスタンスを設定しました。構成プロセスにPackerとAnsibleを使用しました。
+AmazonLinux2を使用してNATインスタンスを設定します。 Amazonlinux2が選択する理由 Lambdaは外部から開始される着信接続をサポートしていないため、アクティブモードでFTPをサポートしません。 ECSは、プライベートIPアドレスの静的割り当てを許可していません。 Gatewayタイプであるため、NATプライベートゲートウェイと組み合わせることで静的割り当てを実現することは可能ですが、外部ソースからの着信接続を受け入れることはできません。 技術要素 Packer Ansible iptables CENTOS7（AmazonLinux2）では、デフォルトのファイアウォール管理システムはファイアウォールです。ただし、IPTablesを紹介して、NATインスタンスをセットアップします。 ファイル構造 $ tree . . ├── ansible.cfg ├── bin │ └── init.sh ├── inventory │ └── hosts ├── packer-template │ └── nat_instance.json ├── playbook │ └── setup.yml └── roles └── iptable └── tasks ├── main.yml └── templates ├── iptables-config.j2 ├── nat_cidr.j2 └── sysctl.conf Packerとテンプレートファイルの実行 Execution Command packer build packer-template/nat_instance.json . └── packer-template └── nat_instance.json { &amp;#34;variables&amp;#34;: { &amp;#34;aws_access_key&amp;#34;: &amp;#34;{{env `AWS_ACCESS_KEY`}}&amp;#34;, &amp;#34;aws_secret_key&amp;#34;: &amp;#34;{{env `AWS_SECRET_KEY`}}&amp;#34; }, &amp;#34;builders&amp;#34;: [ { &amp;#34;type&amp;#34;: &amp;#34;amazon-ebs&amp;#34;, &amp;#34;access_key&amp;#34;: &amp;#34;{{user `aws_access_key`}}&amp;#34;, &amp;#34;secret_key&amp;#34;: &amp;#34;{{user `aws_secret_key`}}&amp;#34;, &amp;#34;region&amp;#34;: &amp;#34;ap-northeast-1&amp;#34;, &amp;#34;ami_regions&amp;#34;: [ &amp;#34;ap-northeast-1&amp;#34; ], &amp;#34;associate_public_ip_address&amp;#34;: true, &amp;#34;source_ami&amp;#34;: &amp;#34;ami-0a3d21ec6281df8cb&amp;#34;, &amp;#34;instance_type&amp;#34;: &amp;#34;t3.</description>
     </item>
     
     <item>
@@ -135,7 +155,7 @@ Set up a NAT instance using amazonLinux2. Explain why amazonLinux2 is chosen: La
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>aws EFS Burst Mode Credit Exhaustion Countermeasures Memo. 2023-05-03 Persisting an Attached EBS Volume to EC2 Using AWS CLI. 2023-05-01 Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript). 2023-04-24 Creating a NAT instance on Amazon Linux 2 using Packer and Ansible. 2023-04-11 ci/cd I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. 2023-04-27 Deployment Memo for OIDC (Git to AWS). 2023-04-26 </description>
+      <description>aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ci/cd Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 </description>
     </item>
     
     <item>

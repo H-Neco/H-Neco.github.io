@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>profile | I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
+  <title>profile | TerraformのWrapperツール、Terragrunt導入の検証を行いました。</title>
   <meta name="description" content="">
 
   
   
     <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
-    <meta property="og:title" content="profile | I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform." />   
+    <meta property="og:title" content="profile | TerraformのWrapperツール、Terragrunt導入の検証を行いました。" />   
   
   <meta property="og:description" content="" />
   <meta name="author" content="h neco">
@@ -98,7 +98,7 @@
 
 
 <li class="breadcrumb-item active">
-  <a href="https://h-neco.github.io/blog/cicd-terragrunt-1/">I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</a>
+  <a href="https://h-neco.github.io/blog/cicd-terragrunt-1/">TerraformのWrapperツール、Terragrunt導入の検証を行いました。</a>
 </li>
 
   </ol>
@@ -110,54 +110,49 @@
 <section class="resume-section p-3 p-lg-5 d-flex flex-column">
   <div class="my-auto">
   	<div class="mb-3 d-flex flex-row justify-content-between">
-    	<h2 class="mb-0"><span class="text-primary">I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</span></h2>
+    	<h2 class="mb-0"><span class="text-primary">TerraformのWrapperツール、Terragrunt導入の検証を行いました。</span></h2>
     	<span class="">April 22, 2023</span>
     </div>
     <div>
     	<h2 id="intro">Intro</h2>
 <ul>
-<li>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</li>
+<li>TerraformのWrapperツール、Terragrunt導入の検証を行いました。</li>
 </ul>
-<h3 id="introduction-validation">Introduction Validation</h3>
+<h3 id="導入の検証">導入の検証</h3>
 <ul>
-<li>Although I usually use Terraform, I found the following inconveniences:
+<li>通常、私はTerraformを使用していますが、次のような不便さがありました：
 <ul>
-<li>To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones.
+<li>各デプロイの影響範囲を最小限に抑えるために、Gitリポジトリをより小さなものに分割する必要がありました。Terraformのバージョンアップが面倒でした。</li>
+<li>コードからリソースの依存関係を理解するのが難しかったです。
 <ul>
-<li>Upgrading Terraform versions became challenging.</li>
-</ul>
-</li>
-<li>It was difficult to understand resource dependencies from the code.
-<ul>
-<li>There was a need to be mindful of the deployment order in areas where depends_on couldn&rsquo;t be explicitly used.</li>
+<li>depends_onが明示的に使用できない場所でデプロイ順序に注意する必要がありました。</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="challenges-after-implementation">Challenges After Implementation</h3>
+<h3 id="導入後の課題">導入後の課題</h3>
 <ul>
-<li>The introduction is pending validation for the following two points:
+<li>導入に関して、以下の2点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。
 <ul>
-<li>Not only managing Terraform but also managing Terragrunt versions. How does the version upgrade process change?</li>
-<li>If Terragrunt development stops, can we smoothly revert back to Terraform code?</li>
+<li>Terraformの管理だけでなく、Terragruntのバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか</li>
+<li>もしTerragruntの開発が停止した場合、スムーズにTerraformのコードに戻せるか</li>
 </ul>
 </li>
 </ul>
-<h3 id="technical-components">Technical Components</h3>
+<h3 id="技術要素">技術要素</h3>
 <ul>
 <li>terraform</li>
 <li>terragrunt</li>
 <li>aws</li>
 </ul>
-<h3 id="prerequisites">Prerequisites</h3>
-<h4 id="what-is-terragrunt">What is terragrunt?</h4>
-<p>Terragrunt is an open-source tool known as a Terraform Wrapper, designed to simplify the management of infrastructure using Terraform. It extends the capabilities provided by Terraform, allowing for code reuse, increased reusability, and flexibility in configuring modules. Terragrunt is especially useful when managing multiple environments or accounts using Terraform.</p>
-<h3 id="installation">Installation</h3>
+<h3 id="terragruntとは">Terragruntとは</h3>
+<p>Terragruntは、Terraformを使用してインフラストラクチャを管理するための作業を簡素化するためのTerraform Wrapperとして知られるオープンソースのツールです。TerragruntはTerraformが提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraformを使用して複数の環境やアカウントを管理する際にTerragruntは非常に便利です。</p>
+<h3 id="インストール">インストール</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ brew install tfenv # Installs Terraform (version specified in .terraform-version)
 </span></span><span style="display:flex;"><span>$ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version)
-</span></span></code></pre></div><h3 id="folder-structure">Folder Structure</h3>
-<p>This folder structure was created based on references from other articles. The advantage of this structure is that it allows for specifying different variables for each environment, resulting in increased code reusability.</p>
+</span></span></code></pre></div><p>###　フォルダ構成</p>
+<p>このフォルダ構成は、他の記事を参考に作成されました。この構造の利点は、各環境ごとに異なる変数を指定できるため、コードの再利用性が向上することです。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree .
 </span></span><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>├── README.md
@@ -176,9 +171,9 @@
 </span></span><span style="display:flex;"><span>    │   └── xx.tf
 </span></span><span style="display:flex;"><span>    └── ResourceGroupB
 </span></span><span style="display:flex;"><span>        └── xx.tf
-</span></span></code></pre></div><h3 id="common-file-envsterragrunthcl">Common File (envs/terragrunt.hcl)</h3>
-<p>This file contains the configuration for storing *.tfstate files in an AWS S3 bucket as a backend, allowing each environment to have its own *.tfstate file stored within the S3 bucket. It also includes the provider definitions used by Terraform to create AWS resources. The configuration specifies different provider settings for each AWS region.</p>
-<p>By managing the state of resources using *.tfstate files, conflicts can be avoided even when multiple people are working on the project.</p>
+</span></span></code></pre></div><h3 id="共通ファイルenvsterragrunthcl">共通ファイル（envs/terragrunt.hcl）</h3>
+<p>このファイルには、バックエンドとしてAWS S3バケットに*.tfstateファイルを保存するための設定が含まれており、各環境に独自の*.tfstateファイルをS3バケット内に保存することができます。また、AWSリソースを作成するためにTerraformが使用するプロバイダの定義も含まれています。設定では、各AWSリージョンごとに異なるプロバイダ設定が指定されています。</p>
+<p>*.tfstateファイルを使用してリソースの状態を管理することで、複数の人がプロジェクトに取り組んでいても競合を回避することができます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># Configuration for storing *.tfstate files for each environment
 </span></span><span style="display:flex;"><span>remote_state {
 </span></span><span style="display:flex;"><span>  backend = &#34;s3&#34;
@@ -222,21 +217,24 @@
 </span></span><span style="display:flex;"><span># ... Other regions
 </span></span><span style="display:flex;"><span>EOF
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="environment-specific-file-envsprodenvhcl">Environment-Specific File (envs/prod/env.hcl)</h3>
-<p>This file is an environment-specific file for terragrunt, containing the configuration for the prod environment. These variables are used in other terragrunt files to define environment-specific settings. Specifically, they are called in the hcl file of envs/prod/ResourceGroupA and passed as parameters to the Terraform code in module/ResourceGroupA.</p>
+</span></span></code></pre></div><h3 id="環境固有のファイルenvsprodenvhcl">環境固有のファイル（envs/prod/env.hcl）</h3>
+<p>このファイルは、Terragruntの環境固有のファイルであり、prod環境の設定が含まれています。これらの変数は、他のTerragruntファイルで使用され、環境固有の設定を定義するために使用されます。具体的には、envs/prod/ResourceGroupAのhclファイルで呼び出され、Terraformコードのmodule/ResourceGroupAにパラメータとして渡されます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>locals {
 </span></span><span style="display:flex;"><span>  ENV    = &#34;prod&#34;
 </span></span><span style="display:flex;"><span>  PROJECT_NAME = &#34;test&#34;
 </span></span><span style="display:flex;"><span>  ACCOUNT_ID   = &#34;123456789&#34;
 </span></span><span style="display:flex;"><span>  VPC_CIDE     = &#34;10.0.0.0/24&#34;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="hcl-files-for-each-resource-grouping">HCL Files for Each Resource Grouping</h3>
-<p>Let&rsquo;s provide an example of the hcl files for &ldquo;ResourceGroupA&rdquo; and &ldquo;ResourceGroupB&rdquo;.</p>
-<p>Assuming there are no dependencies initially, we&rsquo;ll consider a clean slate scenario called A, with B being a resource grouping that depends on A.</p>
-<p>Creating the hcl file for &ldquo;ResourceGroupA&rdquo;:</p>
+</span></span></code></pre></div><h3 id="各リソースグループのためのhclファイル">各リソースグループのためのHCLファイル</h3>
+<p>「ResourceGroupA」と「ResourceGroupB」のHCLファイルの例を示しましょう。</p>
+<p>最初は依存関係がないと仮定し、Aというクリーンなスレートのシナリオを考えます。BはAに依存するリソースグループとします。</p>
+<ul>
+<li>「ResourceGroupA」のHCLファイルの作成
 <ul>
 <li><code>vim envs/prod/ResourceGroupA/terragrunt.hcl</code></li>
-<li>Receive variables from env.hcl and pass them as values to the module.</li>
+<li>env.hclから変数を受け取り、それらをモジュールに値として渡します。</li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zed" data-lang="zed"><span style="display:flex;"><span>locals {
 </span></span><span style="display:flex;"><span>  ENV <span style="color:#f92672">=</span> read_terragrunt_config(find_in_parent_folders(<span style="color:#960050;background-color:#1e0010">&#34;</span>env.hcl<span style="color:#960050;background-color:#1e0010">&#34;</span>))
@@ -259,11 +257,11 @@
 </span></span><span style="display:flex;"><span>  ACCOUNT_ID   <span style="color:#f92672">=</span> local.ENV.locals.ACCOUNT_ID
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
-<li>Creating the file for ResourceGroupB:
+<li>「ResourceGroupB」のファイルの作成：
 <ul>
-<li>vim envs/prod/ResourceGroupB/terragrunt.hcl</li>
-<li>Retrieve variables from env.hcl and pass values to the module.</li>
-<li>The example assumes passing the VPC ID created in ResourceGroupA to ResourceGroupB.</li>
+<li><code>vim envs/prod/ResourceGroupB/terragrunt.hcl</code></li>
+<li>env.hclから変数を取得し、それらをモジュールに渡します。</li>
+<li>この例では、ResourceGroupAで作成したVPCのIDをResourceGroupBに渡すことを想定しています。</li>
 </ul>
 </li>
 </ul>
@@ -288,10 +286,10 @@
 </span></span><span style="display:flex;"><span>  ACCOUNT_ID   <span style="color:#f92672">=</span> local.ENV.locals.ACCOUNT_ID
 </span></span><span style="display:flex;"><span>  VPC_ID       <span style="color:#f92672">=</span> local.ENV.locals.VPC_ID
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="modules-tf-file">Module&rsquo;s tf file</h3>
+</span></span></code></pre></div><h3 id="モジュールのtfファイル">モジュールのtfファイル</h3>
 <ul>
-<li>In general, you can write Terraform code as usual.</li>
-<li>If you want to receive parameters from other modules (in the case of dependencies or when passing parameters from env.hcl), you need to define empty variables in the variables block. In the example of ResourceGroupB mentioned above, it would look like the following:</li>
+<li>一般的には、通常どおりTerraformのコードを記述できます。</li>
+<li>他のモジュールからパラメータを受け取りたい場合（依存関係がある場合やenv.hclからパラメータを渡す場合）、変数ブロックで空の変数を定義する必要があります。上記で言及したResourceGroupBの例では、次のようになります。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>variable &#34;ENV&#34; {
 </span></span><span style="display:flex;"><span>  description = &#34;Environment&#34;
@@ -306,23 +304,15 @@
 </span></span><span style="display:flex;"><span>  type = string
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
-<li>If you want to pass parameters from one resource group to another, you need to define them as outputs. For example, in the case of Resource Group A, you would need to define them as follows:</li>
+<li>1つのリソースグループから別のリソースグループにパラメータを渡す場合は、それらを出力として定義する必要があります。例えば、Resource Group Aの場合、以下のように定義する必要があります：</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>output &#34;vpc_id&#34; {
 </span></span><span style="display:flex;"><span>  value = aws_vpc.main.id
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ul>
-<li>macOS</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ brew tap aws/tap
-</span></span><span style="display:flex;"><span>$ brew install aws-sam-cli
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ sam --version
-</span></span><span style="display:flex;"><span>SAM CLI, version 1.78.0
 </span></span></code></pre></div><h2 id="deployment">Deployment</h2>
 <h3 id="terragrunt-commands">Terragrunt Commands</h3>
 <ul>
-<li>Formatting:</li>
+<li>Formatting</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cd envs/prod
 </span></span><span style="display:flex;"><span>terragrunt run-all hclfmt

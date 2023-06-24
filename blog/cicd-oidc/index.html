@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>profile | Deployment Memo for OIDC (Git to AWS)</title>
+  <title>profile | OIDCでのデプロイメモ (Git to AWS)</title>
   <meta name="description" content="">
 
   
   
     <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
-    <meta property="og:title" content="profile | Deployment Memo for OIDC (Git to AWS)" />   
+    <meta property="og:title" content="profile | OIDCでのデプロイメモ (Git to AWS)" />   
   
   <meta property="og:description" content="" />
   <meta name="author" content="h neco">
@@ -98,7 +98,7 @@
 
 
 <li class="breadcrumb-item active">
-  <a href="https://h-neco.github.io/blog/cicd-oidc/">Deployment Memo for OIDC (Git to AWS)</a>
+  <a href="https://h-neco.github.io/blog/cicd-oidc/">OIDCでのデプロイメモ (Git to AWS)</a>
 </li>
 
   </ol>
@@ -110,27 +110,29 @@
 <section class="resume-section p-3 p-lg-5 d-flex flex-column">
   <div class="my-auto">
   	<div class="mb-3 d-flex flex-row justify-content-between">
-    	<h2 class="mb-0"><span class="text-primary">Deployment Memo for OIDC (Git to AWS)</span></h2>
+    	<h2 class="mb-0"><span class="text-primary">OIDCでのデプロイメモ (Git to AWS)</span></h2>
     	<span class="">April 26, 2023</span>
     </div>
     <div>
     	<h2 id="intro">Intro</h2>
-<p>Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.</p>
-<h2 id="tasks">Tasks</h2>
+<p>以前は、GitHubやBitbucketから個人のAWSへのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDCに切り替えました。</p>
+<p>OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDCを使用することで、AWSへのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDCを使用する場合、AWSへのアクセスにはアクセストークンが使用されます。</p>
+<p>OIDCを導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。</p>
+<h2 id="やること">やること</h2>
 <ul>
-<li>Set up OIDC with Terraform
+<li>TerraformでOIDCを設定する方法
 <ul>
 <li>GitHub</li>
 <li>Bitbucket</li>
 </ul>
 </li>
-<li>Deploy using OIDC
+<li>OIDCを使用してデプロイする方法
 <ul>
-<li>Create simple GitHub Actions and Bitbucket Pipelines</li>
+<li>シンプルなGitHub ActionsとBitbucket Pipelinesの作成</li>
 </ul>
 </li>
 </ul>
-<h2 id="technical-elements">Technical Elements</h2>
+<h2 id="技術要素">技術要素</h2>
 <ul>
 <li>OIDC</li>
 <li>AWS</li>
@@ -139,26 +141,29 @@
 <li>Terraform</li>
 </ul>
 <h2 id="what-is-oidc">What is OIDC?</h2>
-<p>OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</p>
+<p>OIDC（OpenID Connect）は、OAuth 2.0プロトコルを拡張し、Webアプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。</p>
 <h3 id="benefits-of-oidc">Benefits of OIDC</h3>
-<p>By using OIDC for deployment from Git, there are several benefits, including enhanced security for deployment through Git, easier management of token expiration, and the avoidance of security risks associated with using access keys without MFA enabled. However, using access keys with MFA enabled can be complicated, as it requires considering factors such as device management. With OIDC, users can use their ID provider&rsquo;s authentication credentials, simplifying credential management and improving security.</p>
-<h4 id="background">Background</h4>
-<p>Deploying to AWS used to be cumbersome. It even made me consider deploying from the management console instead of using the CLI.</p>
+<p>GitからのデプロイにOIDCを使用することで、いくつかの利点があります。それには、Gitを介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFAが有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFAが有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDCを使用することで、ユーザーはIDプロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。</p>
+<h4 id="構築背景">構築背景</h4>
+<p>以前は、AWSへのデプロイは手間がかかるものでした。CLIの代わりに管理コンソールからデプロイすることを考えるほどです。</p>
 <ul>
-<li>The previous flow involved the inconvenience of obtaining keys:
+<li>以前のフローでは、キーの取得に不便さが伴いました：
 <ul>
-<li>Checking MFA tokens from an app and executing a command:</li>
-<li><code>$ aws sts get-session-token --serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx --token-code xxxxxx</code></li>
-<li>Exporting the obtained keys or registering them in Git</li>
-<li>Regularly executing commands due to session expiration&hellip;</li>
+<li>アプリからMFAトークンを確認してコマンドを実行する：
+<ul>
+<li>$ aws sts get-session-token &ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &ndash;token-code xxxxxx</li>
+<li>取得したキーをエクスポートするか、Gitに登録する</li>
+<li>セッションの有効期限が切れるたびに定期的にコマンドを実行する&hellip;</li>
 </ul>
 </li>
 </ul>
-<h2 id="building-oidc-with-terraform">Building OIDC with Terraform</h2>
+</li>
+</ul>
+<h2 id="terraformでoidcを構築する">TerraformでOIDCを構築する</h2>
 <ul>
-<li>Building with Terraform
+<li>Terraformでの構築
 <ul>
-<li>Two scenarios will be explained: using GitHub Actions and using Bitbucket Pipelines.</li>
+<li>GitHub Actionsを使用するシナリオとBitbucket Pipelinesを使用するシナリオの2つを説明します。</li>
 </ul>
 </li>
 </ul>

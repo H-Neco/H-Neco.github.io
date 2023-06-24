@@ -8,12 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/terragrunt/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
+      <title>TerraformのWrapperツール、Terragrunt導入の検証を行いました。</title>
       <link>https://h-neco.github.io/blog/cicd-terragrunt-1/</link>
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
-      <description>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&amp;rsquo;t be explicitly used.</description>
+      <description>Intro TerraformのWrapperツール、Terragrunt導入の検証を行いました。 導入の検証 通常、私はTerraformを使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Gitリポジトリをより小さなものに分割する必要がありました。Terraformのバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_onが明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の2点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraformの管理だけでなく、Terragruntのバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もしTerragruntの開発が停止した場合、スムーズにTerraformのコードに戻せるか 技術要素 terraform terragrunt aws Terragruntとは Terragruntは、Terraformを使用してインフラストラクチャを管理するための作業を簡素化するためのTerraform Wrapperとして知られるオープンソースのツールです。TerragruntはTerraformが提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraformを使用して複数の環境やアカウントを管理する際にTerragruntは非常に便利です。
+インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成
+このフォルダ構成は、他の記事を参考に作成されました。この構造の利点は、各環境ごとに異なる変数を指定できるため、コードの再利用性が向上することです。
+$ tree . . ├── README.md ├── docs │ └── graph-dependencies.png ├── envs │ ├── prod │ │ ├── ResourceGroupA │ │ │ └── terragrunt.hcl │ │ ├── ResourceGroupB │ │ │ └── terragrunt.</description>
     </item>
     
   </channel>

@@ -8,13 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 24 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</title>
+      <title>Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</title>
       <link>https://h-neco.github.io/blog/aws-lambda-local-execution/</link>
       <pubDate>Mon, 24 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-lambda-local-execution/</guid>
-      <description>Intro As part of replacing my PC, I rebuilt the local execution environment for Lambda. I&amp;rsquo;ll leave some notes as a memo. Rebuilt the local execution environment for Lambda while replacing my PC. I&amp;rsquo;ll leave some notes as a memo.
-Technical Elements Volta Lambda LocalStack TypeScript SAM Prerequisites Installing Volta Installing Volta Volta is a tool specialized in managing Node.js versions. It allows you to switch between different Node.js versions for each project, making it easy to manage different versions without the need to install or manage Node.</description>
+      <description>Intro PCの入れ替えに伴い、Lambdaのローカル実行環境を再構築した。メモとして残しておきます。 PCリプレースのついでにLambdaのローカル実行環境を再構築。メモとして残しておく。
+技術要素 Volta Lambda LocalStack TypeScript SAM 前提条件 Installing Volta Voltaのインストール Volta は Node.js のバージョン管理に特化したツールです。プロジェクトごとに異なるNode.jsのバージョンを切り替えることができ、Node.jsのバージョンを手動でインストール・管理することなく、異なるバージョンを簡単に管理することができます。Voltaは、他のバージョン管理ツールと比較して切り替えが簡単という利点があり、OSやシェルに依存しないため様々な環境で利用することができます。
+$ curl https://get.volta.sh | bash $ echo &amp;#39;export VOLTA_HOME=&amp;#34;$HOME/.volta&amp;#34;&amp;#39; &amp;gt;&amp;gt; .zshrc $ echo &amp;#39;export PATH=&amp;#34;$VOLTA_HOME/bin:$PATH&amp;#34;&amp;#39; &amp;gt;&amp;gt; .zshrc Node.jsとYarnのインストール 利用可能なバージョンを確認するには、volta list nodeを使用します。特定のバージョンをインストールしたい場合は、volta install node@18.15.0 というフォーマットを使ってください。
+$ volta install node success: installed and set node@18.15.0 (with npm@9.5.0) as default $ volta install yarn success: installed and set yarn@4.0.0-rc.42 as default SAM のインストール 以下の手順はmacOS用である。Windowsユーザーの方は公式サイトからMSIファイルをダウンロードすることをお勧めします。
+macOS $ brew tap aws/tap $ brew install aws-sam-cli $ sam --version SAM CLI, version 1.</description>
     </item>
     
   </channel>

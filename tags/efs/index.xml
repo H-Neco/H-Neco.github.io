@@ -8,13 +8,22 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/efs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>EFS Burst Mode Credit Exhaustion Countermeasures Memo.</title>
+      <title>EFS Burst Mode のクレジット枯渇対策メモ</title>
       <link>https://h-neco.github.io/blog/aws-efs/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-efs/</guid>
-      <description>Intro EFS Burst Mode Credit Exhaustion Countermeasures Memo. I will provide the countermeasures I took as a memo since I was using EFS in burst mode and my credits were running low. Technical Elements EFS aws Two Modes of EFS EFS has two modes: Burst Mode (General Purpose) and Provisioned Mode.
-Burst Mode automatically adjusts the traffic based on the amount of storage used and can handle temporary increases in traffic.</description>
+      <description>Intro EFSバーストモードのクレジット枯渇対策メモ EFSをバーストモードで使用していて、クレジットが不足してきたため、私が取った対策をメモとして提供します。 技術要素 EFS aws EFSの2つのモード EFSには2つのモードがあります: バーストモード（汎用）とプロビジョンドモード。
+バーストモードは、使用されているストレージの量に基づいてトラフィックを自動的に調整し、一時的なトラフィックの増加に対応できます。バースト可能な帯域幅はトラフィックの使用状況によって異なり、最低105 Mbpsのバーストが可能です。ただし、1秒あたりの読み取り/書き込みリクエストの数には制限があり、制限を超えるとスループットが低下する可能性があります。
+プロビジョンドモードでは、ボリュームのスループット、最小/最大/バースト、および書き込みスループットを設定できます。読み取りスループットは書き込みスループットの3倍です。プロビジョンドモードはトラフィックに基づいた自動スケーリングはありませんが、スループットの設定に基づいて必要なトラフィックに対応できます。
+バーストモード（汎用）の注意事項と対策 バーストモード（汎用）の注意事項と対策
+注意事項1: バーストクレジット
+バーストモードは、ファイルの読み取り/書き込み操作から蓄積されたクレジットを消費し、NAS上のデータ使用状況に基づいてクレジットを補充します。バーストモードの最低速度は105 Mbpsです。ただし、バーストクレジットが枯渇すると、スループットの性能が著しく低下し、マウントシステムからのファイル参照がタイムアウトする場合があります。
+確認方法:
+メトリック名: BurstCreditBalance 最初に2.3Tのクレジットが提供されます。 バーストクレジットの枯渇を避けるためには、以下の対策を取ることができます:
+クレジットの回復を加速するために大量のデータを配置する。 プロビジョンドモードに切り替えて一定のスループットを確保する。 注意事項2: リクエスト制限
+バーストモードにはリクエストの制限があります。 リード用の最大IOPSは35,000、ライト用の最大IOPSは7,000です。 バーストモードの最大IOPSを超えると、スループットのパフォーマンスが低下します。したがって、高いIOPSが必要な場合は、プロビジョンドモードの使用を検討してください。 確認方法: メトリック名: PercentIOLimit 検討に基づく対策の取得 バーストモードに大量のデータを配置してクレジットの回復速度を加速するという戦略を採用しました。
+10GBのファイルを配置する試み。 コスト: $3/月 コマンド: $ dd if=/dev/zero of=10GB_file_1 bs=10240k count=1000 確認方法: メトリック名: BurstCreditBalance 高いコストのため、プロビジョンドモードは使用していません。 スループット 33(Mib/s) / 最大読み取りスループット 99(Mib/s) コスト: $238/月 スループット 15(Mib/s) / 最大読み取りスループット 45(Mib/s) コスト: $108/月 スループット 5(Mib/s) / 最大読み取りスループット 15(Mib/s) コスト: $36/月 </description>
     </item>
     
   </channel>

@@ -56,13 +56,13 @@
     <loc>https://h-neco.github.io/tags/bitbucket-pipelines/</loc>
     <lastmod>2023-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://h-neco.github.io/blog/cicd-oidc/</loc>
-    <lastmod>2023-04-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://h-neco.github.io/tags/github-action/</loc>
     <lastmod>2023-04-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://h-neco.github.io/tags/oidc/</loc>
+    <lastmod>2023-04-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://h-neco.github.io/blog/cicd-oidc/</loc>
     <lastmod>2023-04-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://h-neco.github.io/tags/terraform/</loc>
@@ -95,13 +95,13 @@
     <loc>https://h-neco.github.io/tags/ansible/</loc>
     <lastmod>2023-04-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://h-neco.github.io/blog/aws-ec2-nat-instance/</loc>
-    <lastmod>2023-04-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://h-neco.github.io/tags/nat/</loc>
     <lastmod>2023-04-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://h-neco.github.io/tags/packer/</loc>
+    <lastmod>2023-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://h-neco.github.io/blog/aws-ec2-nat-instance/</loc>
     <lastmod>2023-04-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://h-neco.github.io/tags/docker/</loc>

@@ -8,22 +8,30 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/oidc/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Deployment Memo for OIDC (Git to AWS)</title>
+      <title>OIDCでのデプロイメモ (Git to AWS)</title>
       <link>https://h-neco.github.io/blog/cicd-oidc/</link>
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-oidc/</guid>
-      <description>Intro Previously, when deploying from GitHub/Bitbucket to personal AWS, I used access keys and secret keys. However, it became cumbersome to manage, so I switched to OIDC.
-Tasks Set up OIDC with Terraform GitHub Bitbucket Deploy using OIDC Create simple GitHub Actions and Bitbucket Pipelines Technical Elements OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC (OpenID Connect) is an authentication protocol that extends the OAuth 2.0 protocol and provides a mechanism for user authentication in web applications and mobile applications.</description>
+      <description>Intro 以前は、GitHubやBitbucketから個人のAWSへのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDCに切り替えました。
+OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDCを使用することで、AWSへのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDCを使用する場合、AWSへのアクセスにはアクセストークンが使用されます。
+OIDCを導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。
+やること TerraformでOIDCを設定する方法 GitHub Bitbucket OIDCを使用してデプロイする方法 シンプルなGitHub ActionsとBitbucket Pipelinesの作成 技術要素 OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC（OpenID Connect）は、OAuth 2.0プロトコルを拡張し、Webアプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。
+Benefits of OIDC GitからのデプロイにOIDCを使用することで、いくつかの利点があります。それには、Gitを介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFAが有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFAが有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDCを使用することで、ユーザーはIDプロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。
+構築背景 以前は、AWSへのデプロイは手間がかかるものでした。CLIの代わりに管理コンソールからデプロイすることを考えるほどです。
+以前のフローでは、キーの取得に不便さが伴いました： アプリからMFAトークンを確認してコマンドを実行する： $ aws sts get-session-token &amp;ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &amp;ndash;token-code xxxxxx 取得したキーをエクスポートするか、Gitに登録する セッションの有効期限が切れるたびに定期的にコマンドを実行する&amp;hellip; TerraformでOIDCを構築する Terraformでの構築 GitHub Actionsを使用するシナリオとBitbucket Pipelinesを使用するシナリオの2つを説明します。 GitHub Sample variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.actions.githubusercontent.com&amp;#34; } data &amp;#34;tls_certificate&amp;#34; &amp;#34;github_oidc_token&amp;#34; { url = var.</description>
     </item>
     
     <item>
-      <title>I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform.</title>
+      <title>TerraformのWrapperツール、Terragrunt導入の検証を行いました。</title>
       <link>https://h-neco.github.io/blog/cicd-terragrunt-1/</link>
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
-      <description>Intro I Conducted a Validation of Introducing Terragrunt, a Wrapper for Terraform. Introduction Validation Although I usually use Terraform, I found the following inconveniences: To minimize the impact scope of each deployment, I had to split Git repositories into smaller ones. Upgrading Terraform versions became challenging. It was difficult to understand resource dependencies from the code. There was a need to be mindful of the deployment order in areas where depends_on couldn&amp;rsquo;t be explicitly used.</description>
+      <description>Intro TerraformのWrapperツール、Terragrunt導入の検証を行いました。 導入の検証 通常、私はTerraformを使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Gitリポジトリをより小さなものに分割する必要がありました。Terraformのバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_onが明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の2点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraformの管理だけでなく、Terragruntのバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もしTerragruntの開発が停止した場合、スムーズにTerraformのコードに戻せるか 技術要素 terraform terragrunt aws Terragruntとは Terragruntは、Terraformを使用してインフラストラクチャを管理するための作業を簡素化するためのTerraform Wrapperとして知られるオープンソースのツールです。TerragruntはTerraformが提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraformを使用して複数の環境やアカウントを管理する際にTerragruntは非常に便利です。
+インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成
+このフォルダ構成は、他の記事を参考に作成されました。この構造の利点は、各環境ごとに異なる変数を指定できるため、コードの再利用性が向上することです。
+$ tree . . ├── README.md ├── docs │ └── graph-dependencies.png ├── envs │ ├── prod │ │ ├── ResourceGroupA │ │ │ └── terragrunt.hcl │ │ ├── ResourceGroupB │ │ │ └── terragrunt.</description>
     </item>
     
   </channel>

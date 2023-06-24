@@ -8,13 +8,13 @@
     <language>en-us</language>
     <lastBuildDate>Tue, 11 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/packer/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Creating a NAT instance on Amazon Linux 2 using Packer and Ansible.</title>
+      <title>PackerとAnsibleを使用してAmazon Linux 2にNATインスタンスを作成します。</title>
       <link>https://h-neco.github.io/blog/aws-ec2-nat-instance/</link>
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-ec2-nat-instance/</guid>
-      <description>Intro I have set up a NAT instance using amazonLinux2. I utilized Packer and Ansible for the configuration process.
-Set up a NAT instance using amazonLinux2. Explain why amazonLinux2 is chosen: Lambda does not support incoming connections initiated externally, so it does not support FTP in active mode. ECS does not allow for the static allocation of private IP addresses. While it is possible to achieve static allocation by combining it with NAT Private Gateway, since it is a gateway type, it cannot accept incoming connections from external sources.</description>
+      <description>Intro AmazonLinux2を使用してNATインスタンスを設定しました。構成プロセスにPackerとAnsibleを使用しました。
+AmazonLinux2を使用してNATインスタンスを設定します。 Amazonlinux2が選択する理由 Lambdaは外部から開始される着信接続をサポートしていないため、アクティブモードでFTPをサポートしません。 ECSは、プライベートIPアドレスの静的割り当てを許可していません。 Gatewayタイプであるため、NATプライベートゲートウェイと組み合わせることで静的割り当てを実現することは可能ですが、外部ソースからの着信接続を受け入れることはできません。 技術要素 Packer Ansible iptables CENTOS7（AmazonLinux2）では、デフォルトのファイアウォール管理システムはファイアウォールです。ただし、IPTablesを紹介して、NATインスタンスをセットアップします。 ファイル構造 $ tree . . ├── ansible.cfg ├── bin │ └── init.sh ├── inventory │ └── hosts ├── packer-template │ └── nat_instance.json ├── playbook │ └── setup.yml └── roles └── iptable └── tasks ├── main.yml └── templates ├── iptables-config.j2 ├── nat_cidr.j2 └── sysctl.conf Packerとテンプレートファイルの実行 Execution Command packer build packer-template/nat_instance.json . └── packer-template └── nat_instance.json { &amp;#34;variables&amp;#34;: { &amp;#34;aws_access_key&amp;#34;: &amp;#34;{{env `AWS_ACCESS_KEY`}}&amp;#34;, &amp;#34;aws_secret_key&amp;#34;: &amp;#34;{{env `AWS_SECRET_KEY`}}&amp;#34; }, &amp;#34;builders&amp;#34;: [ { &amp;#34;type&amp;#34;: &amp;#34;amazon-ebs&amp;#34;, &amp;#34;access_key&amp;#34;: &amp;#34;{{user `aws_access_key`}}&amp;#34;, &amp;#34;secret_key&amp;#34;: &amp;#34;{{user `aws_secret_key`}}&amp;#34;, &amp;#34;region&amp;#34;: &amp;#34;ap-northeast-1&amp;#34;, &amp;#34;ami_regions&amp;#34;: [ &amp;#34;ap-northeast-1&amp;#34; ], &amp;#34;associate_public_ip_address&amp;#34;: true, &amp;#34;source_ami&amp;#34;: &amp;#34;ami-0a3d21ec6281df8cb&amp;#34;, &amp;#34;instance_type&amp;#34;: &amp;#34;t3.</description>
     </item>
     
   </channel>

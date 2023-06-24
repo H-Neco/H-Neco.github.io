@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>profile | Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</title>
+  <title>profile | Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</title>
   <meta name="description" content="">
 
   
   
     <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
-    <meta property="og:title" content="profile | Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)" />   
+    <meta property="og:title" content="profile | Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript)" />   
   
   <meta property="og:description" content="" />
   <meta name="author" content="h neco">
@@ -98,7 +98,7 @@
 
 
 <li class="breadcrumb-item active">
-  <a href="https://h-neco.github.io/blog/aws-lambda-local-execution/">Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</a>
+  <a href="https://h-neco.github.io/blog/aws-lambda-local-execution/">Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</a>
 </li>
 
   </ol>
@@ -110,14 +110,14 @@
 <section class="resume-section p-3 p-lg-5 d-flex flex-column">
   <div class="my-auto">
   	<div class="mb-3 d-flex flex-row justify-content-between">
-    	<h2 class="mb-0"><span class="text-primary">Lambda Local Development Environment Setup Memo (SAM | LocalStack | TypeScript)</span></h2>
+    	<h2 class="mb-0"><span class="text-primary">Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</span></h2>
     	<span class="">April 24, 2023</span>
     </div>
     <div>
     	<h2 id="intro">Intro</h2>
-<p>As part of replacing my PC, I rebuilt the local execution environment for Lambda. I&rsquo;ll leave some notes as a memo.
-Rebuilt the local execution environment for Lambda while replacing my PC. I&rsquo;ll leave some notes as a memo.</p>
-<h2 id="technical-elements">Technical Elements</h2>
+<p>PCの入れ替えに伴い、Lambdaのローカル実行環境を再構築した。メモとして残しておきます。
+PCリプレースのついでにLambdaのローカル実行環境を再構築。メモとして残しておく。</p>
+<h2 id="技術要素">技術要素</h2>
 <ul>
 <li>Volta</li>
 <li>Lambda</li>
@@ -125,21 +125,23 @@ Rebuilt the local execution environment for Lambda while replacing my PC. I&rsqu
 <li>TypeScript</li>
 <li>SAM</li>
 </ul>
-<h2 id="prerequisites">Prerequisites</h2>
+<h2 id="前提条件">前提条件</h2>
 <h3 id="installing-volta">Installing Volta</h3>
-<p>Installing Volta
-Volta is a tool specialized in managing Node.js versions. It allows you to switch between different Node.js versions for each project, making it easy to manage different versions without the need to install or manage Node.js versions manually. Volta provides the advantage of easy switching compared to other version management tools, and it can be used in various environments since it is not dependent on the operating system or shell.</p>
+<ul>
+<li>Voltaのインストール</li>
+</ul>
+<p>Volta は Node.js のバージョン管理に特化したツールです。プロジェクトごとに異なるNode.jsのバージョンを切り替えることができ、Node.jsのバージョンを手動でインストール・管理することなく、異なるバージョンを簡単に管理することができます。Voltaは、他のバージョン管理ツールと比較して切り替えが簡単という利点があり、OSやシェルに依存しないため様々な環境で利用することができます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curl https://get.volta.sh | bash
 </span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;export VOLTA_HOME=&#34;$HOME/.volta&#34;&#39;</span> &gt;&gt; .zshrc
 </span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;export PATH=&#34;$VOLTA_HOME/bin:$PATH&#34;&#39;</span> &gt;&gt; .zshrc
-</span></span></code></pre></div><h3 id="installing-nodejs-and-yarn">Installing Node.js and Yarn</h3>
-<p>You can use volta list node to check the available versions. If you want to install a specific version, use the format volta install <a href="mailto:node@18.15.0">node@18.15.0</a></p>
+</span></span></code></pre></div><h3 id="nodejsとyarnのインストール">Node.jsとYarnのインストール</h3>
+<p>利用可能なバージョンを確認するには、volta list nodeを使用します。特定のバージョンをインストールしたい場合は、volta install <a href="mailto:node@18.15.0">node@18.15.0</a> というフォーマットを使ってください。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ volta install node
 </span></span><span style="display:flex;"><span>  success: installed and set node@18.15.0 (with npm@9.5.0) as default
 </span></span><span style="display:flex;"><span>$ volta install yarn
 </span></span><span style="display:flex;"><span>  success: installed and set yarn@4.0.0-rc.42 as default
-</span></span></code></pre></div><h3 id="installing-sam">Installing SAM</h3>
-<p>The following instructions are for macOS. For Windows users, it is recommended to download the MSI file from the <a href="https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/">official website</a>.</p>
+</span></span></code></pre></div><h3 id="sam-のインストール">SAM のインストール</h3>
+<p>以下の手順はmacOS用である。Windowsユーザーの方は<a href="https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/">公式サイト</a>からMSIファイルをダウンロードすることをお勧めします。</p>
 <ul>
 <li>macOS</li>
 </ul>
@@ -213,7 +215,7 @@ Volta is a tool specialized in managing Node.js versions. It allows you to switc
 </span></span><span style="display:flex;"><span>[*] Create pipeline: cd sam-local-study &amp;&amp; sam pipeline init --bootstrap
 </span></span><span style="display:flex;"><span>[*] Validate SAM template: cd sam-local-study &amp;&amp; sam validate
 </span></span><span style="display:flex;"><span>[*] Test Function in the Cloud: cd sam-local-study &amp;&amp; sam sync --stack-name {stack-name} --watch
-</span></span></code></pre></div><p>By following the prompts, the following files will be generated:</p>
+</span></span></code></pre></div><p>プロンプトに従うと、以下のファイルが生成される：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree .
 </span></span><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>└── sam-local-study
@@ -232,9 +234,9 @@ Volta is a tool specialized in managing Node.js versions. It allows you to switc
 </span></span><span style="display:flex;"><span>    └── template.yaml
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>6 directories, 9 files
-</span></span></code></pre></div><h2 id="creating-a-sample-lambda-function-that-returns-a-message">Creating a Sample Lambda Function That Returns a Message</h2>
-<p>Let&rsquo;s create a sample Lambda function that returns a message and execute it using SAM.</p>
-<h3 id="code-placement">Code Placement</h3>
+</span></span></code></pre></div><h2 id="メッセージを返すサンプル-lambda-関数の作成">メッセージを返すサンプル Lambda 関数の作成</h2>
+<p>メッセージを返す Lambda 関数のサンプルを作成し、SAM を使って実行してみましょう。</p>
+<h3 id="コードの準備">コードの準備</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree .
 </span></span><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>└── sam-local-study
@@ -264,7 +266,7 @@ Volta is a tool specialized in managing Node.js versions. It allows you to switc
 </span></span><span style="display:flex;"><span>      Description: A Lambda function that returns a static string.
 </span></span><span style="display:flex;"><span>      Policies:
 </span></span><span style="display:flex;"><span>        - AWSLambdaBasicExecutionRole
-</span></span></code></pre></div><h3 id="executing-the-lambda-function-that-returns-hello">Executing the Lambda Function That Returns &ldquo;Hello&rdquo;</h3>
+</span></span></code></pre></div><h3 id="hello-を返すラムダ関数の実行">&ldquo;Hello &ldquo;を返すラムダ関数の実行</h3>
 <ul>
 <li>Execute the command:</li>
 </ul>
@@ -282,8 +284,8 @@ Volta is a tool specialized in managing Node.js versions. It allows you to switc
 </span></span><span style="display:flex;"><span>END RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a
 </span></span><span style="display:flex;"><span>REPORT RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a	Init Duration: 0.75 ms	Duration: 953.12 ms	Billed Duration: 954 ms	Memory Size: 128 MB	Max Memory Used: 128 MB
 </span></span><span style="display:flex;"><span>&#34;Hello from Lambda!&#34;%
-</span></span></code></pre></div><h2 id="using-localstack">Using LocalStack</h2>
-<p>I will write about it at a later date&hellip;.</p>
+</span></span></code></pre></div><h2 id="localstackを使う">LocalStackを使う</h2>
+<p>これについてはまた後日書きます&hellip;。</p>
 
 	    
 	</div>
