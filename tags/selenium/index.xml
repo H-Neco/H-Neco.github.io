@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>selenium on profile</title>
+    <link>https://h-neco.github.io/tags/selenium/</link>
+    <description>Recent content in selenium on profile</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/selenium/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する</title>
+      <link>https://h-neco.github.io/blog/browser-selenium/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/browser-selenium/</guid>
+      <description>背景 NFSからs3へデータを移行してWEBホスティングするように基盤移行を行った際、404のオブジェクトが多数発生していた。 また、s3のオブジェクト名・プレフィックス名には禁則文字というものが存在するうらしい。 何が対象なのか判断するために、ブラウザのコンソールログを取得する必要があった。
+動作環境 環境・ツール
+$ sw_vers ProductName: Mac OS X ProductVersion: 10.15.2 BuildVersion: 19C57 $ python3 -V Python 3.7.3z $ pip3 list | grep -e chrome -e selenium chromedriver-binary 83.0.4103.39.0 selenium 3.141.0 install手順
+$ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.39.0 技術要素 selenium web driver python ec2 ファイル構成 ./log/ (ログ出力先ディレクトリ) ./config.ini (設定ファイル) ./grep.py (実行ファイル) ./url.txt (検索対象のURLリスト) 実行準備 クローリング対象のURLを記載する $ vi url.txt http://user:password@google.com/ http://www.google.com/ ... configファイルの配置 $ vi config.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -47,5 +47,17 @@
 $ tree . . ├── README.md ├── docs │ └── graph-dependencies.png ├── envs │ ├── prod │ │ ├── ResourceGroupA │ │ │ └── terragrunt.hcl │ │ ├── ResourceGroupB │ │ │ └── terragrunt.</description>
     </item>
     
+    <item>
+      <title>ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する</title>
+      <link>https://h-neco.github.io/blog/browser-selenium/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/browser-selenium/</guid>
+      <description>背景 NFSからs3へデータを移行してWEBホスティングするように基盤移行を行った際、404のオブジェクトが多数発生していた。 また、s3のオブジェクト名・プレフィックス名には禁則文字というものが存在するうらしい。 何が対象なのか判断するために、ブラウザのコンソールログを取得する必要があった。
+動作環境 環境・ツール
+$ sw_vers ProductName: Mac OS X ProductVersion: 10.15.2 BuildVersion: 19C57 $ python3 -V Python 3.7.3z $ pip3 list | grep -e chrome -e selenium chromedriver-binary 83.0.4103.39.0 selenium 3.141.0 install手順
+$ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.39.0 技術要素 selenium web driver python ec2 ファイル構成 ./log/ (ログ出力先ディレクトリ) ./config.ini (設定ファイル) ./grep.py (実行ファイル) ./url.txt (検索対象のURLリスト) 実行準備 クローリング対象のURLを記載する $ vi url.txt http://user:password@google.com/ http://www.google.com/ ... configファイルの配置 $ vi config.</description>
+    </item>
+    
   </channel>
 </rss>

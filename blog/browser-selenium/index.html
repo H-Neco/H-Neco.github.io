@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する</title>
+  <meta name="description" content="別基盤からawsのs3へ移管した際、ブラウザのコンソールログを取得する必要があったので、Seleniumで取得する方法を調べました。">
+
+  
+  
+    <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
+    <meta property="og:title" content="profile | ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する" />   
+  
+  <meta property="og:description" content="別基盤からawsのs3へ移管した際、ブラウザのコンソールログを取得する必要があったので、Seleniumで取得する方法を調べました。" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://h-neco.github.io/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/">Home</a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/blog/">Blog</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://h-neco.github.io/blog/browser-selenium/">ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+  	<div class="mb-3 d-flex flex-row justify-content-between">
+    	<h2 class="mb-0"><span class="text-primary">ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する</span></h2>
+    	<span class="">August 26, 2020</span>
+    </div>
+    <div>
+    	<h2 id="背景">背景</h2>
+<p>NFSからs3へデータを移行してWEBホスティングするように基盤移行を行った際、404のオブジェクトが多数発生していた。
+また、s3のオブジェクト名・プレフィックス名には禁則文字というものが存在するうらしい。
+何が対象なのか判断するために、ブラウザのコンソールログを取得する必要があった。</p>
+<h2 id="動作環境">動作環境</h2>
+<p>環境・ツール</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ sw_vers
+</span></span><span style="display:flex;"><span>ProductName:    Mac OS X
+</span></span><span style="display:flex;"><span>ProductVersion: 10.15.2
+</span></span><span style="display:flex;"><span>BuildVersion:   19C57
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ python3 -V
+</span></span><span style="display:flex;"><span>Python 3.7.3z
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ pip3 list | grep -e chrome -e selenium
+</span></span><span style="display:flex;"><span>chromedriver-binary 83.0.4103.39.0
+</span></span><span style="display:flex;"><span>selenium            3.141.0 
+</span></span></code></pre></div><p>install手順</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ sudo pip3 install selenium
+</span></span><span style="display:flex;"><span>$ sudo pip3 install chromedriver-binary==83.0.4103.39.0 
+</span></span></code></pre></div><h2 id="技術要素">技術要素</h2>
+<ul>
+<li>selenium web driver</li>
+<li>python</li>
+<li>ec2</li>
+</ul>
+<h2 id="ファイル構成">ファイル構成</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>./log/ (ログ出力先ディレクトリ)
+</span></span><span style="display:flex;"><span>./config.ini (設定ファイル)
+</span></span><span style="display:flex;"><span>./grep.py (実行ファイル)
+</span></span><span style="display:flex;"><span>./url.txt (検索対象のURLリスト)
+</span></span></code></pre></div><h3 id="実行準備">実行準備</h3>
+<ul>
+<li>クローリング対象のURLを記載する</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ vi url.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>http://user:password@google.com/
+</span></span><span style="display:flex;"><span>http://www.google.com/
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><ul>
+<li>configファイルの配置</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ vi config.ini
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[INTERVAL]
+</span></span><span style="display:flex;"><span>TIME_SEC = 5
+</span></span><span style="display:flex;"><span>[URL]
+</span></span><span style="display:flex;"><span>FILE = url.txt
+</span></span><span style="display:flex;"><span>[RESPONSE_CODE]
+</span></span><span style="display:flex;"><span>OK = 200
+</span></span><span style="display:flex;"><span>[LOG]
+</span></span><span style="display:flex;"><span>DIR = ./log/
+</span></span><span style="display:flex;"><span>TARGET = browser
+</span></span><span style="display:flex;"><span>LEVEL = SEVERE
+</span></span><span style="display:flex;"><span>TEXT_START = START
+</span></span><span style="display:flex;"><span>TEXT_DONE = DONE
+</span></span></code></pre></div><ul>
+<li>実行ファイルの配置</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -*- coding: utf-8 -*-</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># selenium</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> selenium <span style="color:#f92672">import</span> webdriver
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> selenium.webdriver.common.desired_capabilities <span style="color:#f92672">import</span> DesiredCapabilities
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> selenium.webdriver.chrome.options <span style="color:#f92672">import</span> Options
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> chromedriver_binary
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># other modules</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> signal
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> configparser
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># iniファイルの読み込み</span>
+</span></span><span style="display:flex;"><span>conf <span style="color:#f92672">=</span> configparser<span style="color:#f92672">.</span>ConfigParser()
+</span></span><span style="display:flex;"><span>conf<span style="color:#f92672">.</span>read(<span style="color:#e6db74">&#39;config.ini&#39;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;utf-8&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ログ設定</span>
+</span></span><span style="display:flex;"><span>logging<span style="color:#f92672">.</span>basicConfig(
+</span></span><span style="display:flex;"><span>  filename<span style="color:#f92672">=</span> conf[<span style="color:#e6db74">&#39;LOG&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;DIR&#39;</span>) <span style="color:#f92672">+</span> datetime<span style="color:#f92672">.</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y%m</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">_%H%M%S&#39;</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;.log&#39;</span>,
+</span></span><span style="display:flex;"><span>  level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>INFO,
+</span></span><span style="display:flex;"><span>  format<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(asctime)s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(levelname)s</span><span style="color:#e6db74"> </span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># chrome webdriver ログレベルの指定 ※オプション設定の影響を受ける</span>
+</span></span><span style="display:flex;"><span>caps <span style="color:#f92672">=</span> DesiredCapabilities<span style="color:#f92672">.</span>CHROME
+</span></span><span style="display:flex;"><span>caps[<span style="color:#e6db74">&#34;goog:loggingPrefs&#34;</span>] <span style="color:#f92672">=</span> {conf[<span style="color:#e6db74">&#39;LOG&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;TARGET&#39;</span>):conf[<span style="color:#e6db74">&#39;LOG&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;LEVEL&#39;</span>)}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># chrome オプション設定</span>
+</span></span><span style="display:flex;"><span>options <span style="color:#f92672">=</span> Options()
+</span></span><span style="display:flex;"><span>options<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--headless&#39;</span>) <span style="color:#75715e"># ブラウザーのUIなしにする</span>
+</span></span><span style="display:flex;"><span>options<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--ignore-certificate-errors&#39;</span>) <span style="color:#75715e"># SSL証明書失効サイト対策</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 他にも適宜オプション追加できる。mobileUIにするなど。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    logging<span style="color:#f92672">.</span>info(conf[<span style="color:#e6db74">&#39;LOG&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;TEXT_START&#39;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Webdriver</span>
+</span></span><span style="display:flex;"><span>    browser <span style="color:#f92672">=</span> webdriver<span style="color:#f92672">.</span>Chrome(desired_capabilities<span style="color:#f92672">=</span>caps,options<span style="color:#f92672">=</span>options)
+</span></span><span style="display:flex;"><span>    f <span style="color:#f92672">=</span> open(conf[<span style="color:#e6db74">&#39;URL&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;FILE&#39;</span>))
+</span></span><span style="display:flex;"><span>    urlList <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>    f<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>    urls <span style="color:#f92672">=</span> urlList<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    count <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls:
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> len(url) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        logging<span style="color:#f92672">.</span>info(conf[<span style="color:#e6db74">&#39;LOG&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;TEXT_DONE&#39;</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># URLのステータスチェック</span>
+</span></span><span style="display:flex;"><span>        status <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(str(url))        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 対象URL及びステータスのログ出力</span>
+</span></span><span style="display:flex;"><span>        target_url_log <span style="color:#f92672">=</span> str(count) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> str(status) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> str(url)
+</span></span><span style="display:flex;"><span>        print(target_url_log)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># ステータスコードが200の場合はINFO、それ以外はWARNINGでログ出力</span>
+</span></span><span style="display:flex;"><span>        logging<span style="color:#f92672">.</span>info(target_url_log) <span style="color:#66d9ef">if</span> status<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> int(conf[<span style="color:#e6db74">&#39;RESPONSE_CODE&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;OK&#39;</span>)) <span style="color:#66d9ef">else</span> logging<span style="color:#f92672">.</span>warning(target_url_log)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> status<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> int(conf[<span style="color:#e6db74">&#39;RESPONSE_CODE&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;OK&#39;</span>)):
+</span></span><span style="display:flex;"><span>          <span style="color:#75715e"># 対象URLをブラウズし、指定したログを取得する</span>
+</span></span><span style="display:flex;"><span>          browser<span style="color:#f92672">.</span>get(url)
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">for</span> _log <span style="color:#f92672">in</span> browser<span style="color:#f92672">.</span>get_log(conf[<span style="color:#e6db74">&#39;LOG&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;TARGET&#39;</span>)):
+</span></span><span style="display:flex;"><span>            print(_log)
+</span></span><span style="display:flex;"><span>            logging<span style="color:#f92672">.</span>warning(_log)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 負荷対策のためsleepをいれる</span>
+</span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(int(conf[<span style="color:#e6db74">&#39;INTERVAL&#39;</span>]<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;TIME_SEC&#39;</span>)))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+</span></span><span style="display:flex;"><span>    print(e)
+</span></span><span style="display:flex;"><span>    logging<span style="color:#f92672">.</span>error(e)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">finally</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># chromedriver のプロセスが残ってしまうためkillする</span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>kill(browser<span style="color:#f92672">.</span>service<span style="color:#f92672">.</span>process<span style="color:#f92672">.</span>pid,signal<span style="color:#f92672">.</span>SIGTERM)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></div><h2 id="実行">実行</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ python3 grep.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2020-07-13 10:36:59,209 INFO START
+</span></span><span style="display:flex;"><span>2020-07-13 10:37:00,883 INFO 1:&lt;Response [200]&gt;:https://google.com/
+</span></span><span style="display:flex;"><span>2020-07-13 10:37:10,228 WARNING 2:&lt;Response [404]&gt;:https://google.com/aaa
+</span></span><span style="display:flex;"><span>2020-07-13 10:37:17,021 INFO 3:&lt;Response [200]&gt;:http://www.google.com/googlegooglegooglegooglegoogle...
+</span></span><span style="display:flex;"><span>2020-07-13 10:37:22,576 WARNING {&#39;level&#39;: &#39;SEVERE&#39;, &#39;message&#39;: &#39;xxx&#39;, &#39;source&#39;: &#39;network&#39;, &#39;timestamp&#39;: 1594604239554}
+</span></span><span style="display:flex;"><span>2020-07-13 10:37:22,576 WARNING {&#39;level&#39;: &#39;SEVERE&#39;, &#39;message&#39;: &#39;xxx&#39;, &#39;source&#39;: &#39;console-api&#39;, &#39;timestamp&#39;: 1594604239823}
+</span></span><span style="display:flex;"><span>2020-07-13 10:37:22,576 WARNING {&#39;level&#39;: &#39;SEVERE&#39;, &#39;message&#39;: &#39;xxx&#39;, &#39;source&#39;: &#39;console-api&#39;, &#39;timestamp&#39;: 1594604241138}
+</span></span></code></pre></div><h3 id="tips">tips</h3>
+<ul>
+<li>
+<p>Chromeのバージョン（stable)と、pythonのchromedriver-binaryのバージョンがうまく合わないと、うまく動いてくれません。</p>
+</li>
+<li>
+<p>EC2(amazonlinux2)にchromeを入れる方法</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>## chrome install (yumは依存で詰まるからcurl) 
+</span></span><span style="display:flex;"><span>$ curl https://intoli.com/install-google-chrome.sh | bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## GConf2 リポジトリ追加 (ChromeDeiver動かすのに必要らしい) 
+</span></span><span style="display:flex;"><span>$ sudo vim /etc/yum.repos.d/centos.repo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[CentOS-base]
+</span></span><span style="display:flex;"><span>name=CentOS-6 - Base
+</span></span><span style="display:flex;"><span>mirrorlist=http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=os
+</span></span><span style="display:flex;"><span>gpgcheck=1
+</span></span><span style="display:flex;"><span>gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
+</span></span><span style="display:flex;"><span>#released updates
+</span></span><span style="display:flex;"><span>[CentOS-updates]
+</span></span><span style="display:flex;"><span>name=CentOS-6 - Updates
+</span></span><span style="display:flex;"><span>mirrorlist=http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=updates
+</span></span><span style="display:flex;"><span>gpgcheck=1
+</span></span><span style="display:flex;"><span>gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
+</span></span><span style="display:flex;"><span>#additional packages that may be useful
+</span></span><span style="display:flex;"><span>[CentOS-extras]
+</span></span><span style="display:flex;"><span>name=CentOS-6 - Extras
+</span></span><span style="display:flex;"><span>mirrorlist=http://mirrorlist.centos.org/?release=6&amp;arch=x86_64&amp;repo=extras
+</span></span><span style="display:flex;"><span>gpgcheck=1
+</span></span><span style="display:flex;"><span>gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6&#34;
+</span></span><span style="display:flex;"><span>GPG key インポート rpm --import http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Google Noto Fontsいれる（キャプチャ取るわけじゃないから入れなくてもいいのかも）
+</span></span><span style="display:flex;"><span>$ Gconf2 install yum -y install GConf2
+</span></span><span style="display:flex;"><span>$ mkdir ~dl &amp;&amp; cd dl
+</span></span><span style="display:flex;"><span>$ unzip Noto-hinted.zip   
+</span></span><span style="display:flex;"><span>$ mkdir -p /usr/share/fonts/opentype/noto 
+</span></span><span style="display:flex;"><span>$ cp *otf *ttf /usr/share/fonts/opentype/noto 
+</span></span><span style="display:flex;"><span>$ fc-cache -f -v  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### python3系いれる 
+</span></span><span style="display:flex;"><span>$ sudo yum install python3
+</span></span><span style="display:flex;"><span>$ sudo pip3 update 
+</span></span><span style="display:flex;"><span>$ sudo pip3 install --upgrade pip
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>###  利用しているchromeのバージョンと合わせる
+</span></span><span style="display:flex;"><span># sudo pip3 install chromedriver-binary==84.0.4147.30
+</span></span></code></pre></div>
+	    
+	</div>
+    <div>
+    	
+    </div>
+    <ul class="tags">
+    
+</ul>
+
+  </div>
+</section>
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>
