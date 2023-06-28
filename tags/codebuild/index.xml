@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>codebuild on profile</title>
+    <link>https://h-neco.github.io/tags/codebuild/</link>
+    <description>Recent content in codebuild on profile</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/codebuild/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>codebuild構築とdeployフローの整備</title>
+      <link>https://h-neco.github.io/blog/aws-codebuild/</link>
+      <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-codebuild/</guid>
+      <description>はじめに BitBucketPipelinesでimageのpushを行っていましたが、cpuがマルチプラットフォームに対応しておらず、x86_64のみしか対応していないため、イメージのpushをCodeBuildで行うことにしました。 arm64でECSタスクを実行するとコストが20％落ち、使い方によってはパフォーマンスが向上するらしい。
+今まで [BitBucketPipelines]　→　[awsECR] 変更後 [BitBucketPipelines]　→　[awsCodeBuild]　→　[awsECR] 結果 コストが20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
+やること CodeBuildの設定 構成 /image/以下のDockerfileをbuildしてECRにpushする /image/以下にbuildspec.ymlを配置 BitbucketからCodeBuildを実行するためのscript用意 bitbuket-pipelines.ymlの修正 CodeBuildの設定 data &amp;#34;aws_region&amp;#34; &amp;#34;this&amp;#34; {} resource &amp;#34;aws_codebuild_project&amp;#34; &amp;#34;ecr&amp;#34; { badge_enabled = false build_timeout = 20 // 20分 concurrent_build_limit = 1 // 並列実行数 encryption_key = &amp;#34;arn:aws:kms:${data.aws_region.this.name}:${data.aws_caller_identity.self.account_id}:alias/aws/s3&amp;#34; name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; project_visibility = &amp;#34;PRIVATE&amp;#34; queued_timeout = 480 service_role = aws_iam_role.codebuild_role.arn tags = { Environment = &amp;#34;${terraform.workspace}&amp;#34; Name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; } environment { compute_type = &amp;#34;BUILD_GENERAL1_SMALL&amp;#34; // 1vCPU, 3.</description>
+    </item>
+    
+  </channel>
+</rss>

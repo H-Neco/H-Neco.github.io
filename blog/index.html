@@ -110,6 +110,26 @@
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-codebuild/">codebuild構築とdeployフローの整備</a></h3>
+    <div>はじめに BitBucketPipelinesでimageのpushを行っていましたが、cpuがマルチプラットフォームに対応しておらず、x86_64のみしか対応していないため、イメージのpushをCodeBuildで行うことにしました。 arm64でECSタスクを実行するとコストが20％落ち、使い方によってはパフォーマンスが向上するらしい。
+今まで [BitBucketPipelines]　→　[awsECR] 変更後 [BitBucketPipelines]　→　[awsCodeBuild]　→　[awsECR] 結果 コストが20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
+やること CodeBuildの設定 構成 /image/以下のDockerfileをbuildしてECRにpushする /image/以下にbuildspec.ymlを配置 BitbucketからCodeBuildを実行するためのscript用意 bitbuket-pipelines.ymlの修正 CodeBuildの設定 data &#34;aws_region&#34; &#34;this&#34; {} resource &#34;aws_codebuild_project&#34; &#34;ecr&#34; { badge_enabled = false build_timeout = 20 // 20分 concurrent_build_limit = 1 // 並列実行数 encryption_key = &#34;arn:aws:kms:${data.aws_region.this.name}:${data.aws_caller_identity.self.account_id}:alias/aws/s3&#34; name = &#34;ecr-build-${terraform.workspace}&#34; project_visibility = &#34;PRIVATE&#34; queued_timeout = 480 service_role = aws_iam_role.codebuild_role.arn tags = { Environment = &#34;${terraform.workspace}&#34; Name = &#34;ecr-build-${terraform.workspace}&#34; } environment { compute_type = &#34;BUILD_GENERAL1_SMALL&#34; // 1vCPU, 3.</div>
+    <div><ul class="tags">
+    
+</ul>
+</div>
+  </div>
+  <div class="resume-date text-md-right flex-col">
+    <span class="text-primary">June 27, 2023</span>
+  </div>
+</div>
+
+      
+    
+      
+        
+<div class="resume-item d-flex flex-row mb-5">
+  <div class="publication-content mr-auto">
     <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-efs/">EFS Burst Mode のクレジット枯渇対策メモ</a></h3>
     <div>Intro EFSバーストモードのクレジット枯渇対策メモ EFSをバーストモードで使用していて、クレジットが不足してきたため、私が取った対策をメモとして提供します。 技術要素 EFS aws EFSの2つのモード EFSには2つのモードがあります: バーストモード（汎用）とプロビジョンドモード。
 バーストモードは、使用されているストレージの量に基づいてトラフィックを自動的に調整し、一時的なトラフィックの増加に対応できます。バースト可能な帯域幅はトラフィックの使用状況によって異なり、最低105 Mbpsのバーストが可能です。ただし、1秒あたりの読み取り/書き込みリクエストの数には制限があり、制限を超えるとスループットが低下する可能性があります。
@@ -264,7 +284,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
     <h3 class="mb-0"><a href="https://h-neco.github.io/blog/list/">List</a></h3>
-    <div>aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 ci/cd Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 </div>
+    <div>devops codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </div>
     <div><ul class="tags">
     
 </ul>

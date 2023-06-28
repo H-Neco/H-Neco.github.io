@@ -8,6 +8,17 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 17 May 2023 07:27:58 +0900</lastBuildDate><atom:link href="https://h-neco.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>codebuild構築とdeployフローの整備</title>
+      <link>https://h-neco.github.io/blog/aws-codebuild/</link>
+      <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-codebuild/</guid>
+      <description>はじめに BitBucketPipelinesでimageのpushを行っていましたが、cpuがマルチプラットフォームに対応しておらず、x86_64のみしか対応していないため、イメージのpushをCodeBuildで行うことにしました。 arm64でECSタスクを実行するとコストが20％落ち、使い方によってはパフォーマンスが向上するらしい。
+今まで [BitBucketPipelines]　→　[awsECR] 変更後 [BitBucketPipelines]　→　[awsCodeBuild]　→　[awsECR] 結果 コストが20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
+やること CodeBuildの設定 構成 /image/以下のDockerfileをbuildしてECRにpushする /image/以下にbuildspec.ymlを配置 BitbucketからCodeBuildを実行するためのscript用意 bitbuket-pipelines.ymlの修正 CodeBuildの設定 data &amp;#34;aws_region&amp;#34; &amp;#34;this&amp;#34; {} resource &amp;#34;aws_codebuild_project&amp;#34; &amp;#34;ecr&amp;#34; { badge_enabled = false build_timeout = 20 // 20分 concurrent_build_limit = 1 // 並列実行数 encryption_key = &amp;#34;arn:aws:kms:${data.aws_region.this.name}:${data.aws_caller_identity.self.account_id}:alias/aws/s3&amp;#34; name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; project_visibility = &amp;#34;PRIVATE&amp;#34; queued_timeout = 480 service_role = aws_iam_role.codebuild_role.arn tags = { Environment = &amp;#34;${terraform.workspace}&amp;#34; Name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; } environment { compute_type = &amp;#34;BUILD_GENERAL1_SMALL&amp;#34; // 1vCPU, 3.</description>
+    </item>
+    
+    <item>
       <title>EFS Burst Mode のクレジット枯渇対策メモ</title>
       <link>https://h-neco.github.io/blog/aws-efs/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
@@ -103,7 +114,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 ci/cd Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 </description>
+      <description>devops codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
     </item>
     
   </channel>

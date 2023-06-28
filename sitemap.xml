@@ -29,11 +29,23 @@
     <lastmod>2020-01-07T17:08:21+00:00</lastmod>
     <priority>0.8</priority>
   </url><url>
+    <loc>https://h-neco.github.io/tags/aws/</loc>
+    <lastmod>2023-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://h-neco.github.io/tags/codebuild/</loc>
+    <lastmod>2023-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://h-neco.github.io/blog/aws-codebuild/</loc>
+    <lastmod>2023-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://h-neco.github.io/tags/</loc>
+    <lastmod>2023-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://h-neco.github.io/tags/terraform/</loc>
+    <lastmod>2023-06-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://h-neco.github.io/blog/</loc>
     <lastmod>2023-05-17T07:27:58+09:00</lastmod>
-  </url><url>
-    <loc>https://h-neco.github.io/tags/aws/</loc>
-    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://h-neco.github.io/tags/aws-cli/</loc>
     <lastmod>2023-05-03T00:00:00+00:00</lastmod>
@@ -50,9 +62,6 @@
     <loc>https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/</loc>
     <lastmod>2023-05-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://h-neco.github.io/tags/</loc>
-    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://h-neco.github.io/tags/bitbucket-pipelines/</loc>
     <lastmod>2023-04-26T00:00:00+00:00</lastmod>
   </url><url>
@@ -63,9 +72,6 @@
     <lastmod>2023-04-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://h-neco.github.io/blog/cicd-oidc/</loc>
-    <lastmod>2023-04-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://h-neco.github.io/tags/terraform/</loc>
     <lastmod>2023-04-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://h-neco.github.io/tags/lambda/</loc>
