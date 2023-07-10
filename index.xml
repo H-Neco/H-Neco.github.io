@@ -45,6 +45,16 @@ Don’t mandate DevOps. Give employees the chance to master their discipline wit
     </item>
     
     <item>
+      <title>dockerでterraformを実行する</title>
+      <link>https://h-neco.github.io/blog/docker-terraform/</link>
+      <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/docker-terraform/</guid>
+      <description>はじめに dockerでterraformを実行するためのdocker-compose.ymlを作成しました。
+メリット 環境の統一 Dockerは環境の統一を容易にします。異なるプラットフォームやOSで作業している場合でも、Dockerコンテナ内でTerraformを実行することで、実行環境を一貫させることができます。 バージョン管理 Terraformのバージョン管理は重要です。異なるプロジェクトや環境で複数のTerraformバージョンを使用する場合、Dockerコンテナ内でTerraformを実行することで、各プロジェクトや環境ごとに適切なTerraformバージョンを管理することができます。 windowsユーザーはtfenvが使えないので、dockerで管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.ymlファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraformの実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
+    </item>
+    
+    <item>
       <title>codebuild構築とdeployフローの整備</title>
       <link>https://h-neco.github.io/blog/aws-codebuild/</link>
       <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
@@ -178,7 +188,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>devops codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
+      <description>devops DockerからTerraformを実行する 2023-07-10 Codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
     </item>
     
     <item>

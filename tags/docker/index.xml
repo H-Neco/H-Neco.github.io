@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on profile</title>
+    <title>docker on profile</title>
     <link>https://h-neco.github.io/tags/docker/</link>
-    <description>Recent content in Docker on profile</description>
+    <description>Recent content in docker on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Jan 2020 17:09:26 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Added Docker Build Status Badge to shields.io</title>
       <link>https://h-neco.github.io/projects/contributions/shields-docker/</link>
@@ -14,6 +14,16 @@
       
       <guid>https://h-neco.github.io/projects/contributions/shields-docker/</guid>
       <description>Shields.io is a massive library of badges that can be inserted into project README&amp;rsquo;s or websites displaying various statuses (code coverage, health, version, etc). Support for docker was missing the current build health, and was a pretty trivial addition.</description>
+    </item>
+    
+    <item>
+      <title>dockerでterraformを実行する</title>
+      <link>https://h-neco.github.io/blog/docker-terraform/</link>
+      <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/docker-terraform/</guid>
+      <description>はじめに dockerでterraformを実行するためのdocker-compose.ymlを作成しました。
+メリット 環境の統一 Dockerは環境の統一を容易にします。異なるプラットフォームやOSで作業している場合でも、Dockerコンテナ内でTerraformを実行することで、実行環境を一貫させることができます。 バージョン管理 Terraformのバージョン管理は重要です。異なるプロジェクトや環境で複数のTerraformバージョンを使用する場合、Dockerコンテナ内でTerraformを実行することで、各プロジェクトや環境ごとに適切なTerraformバージョンを管理することができます。 windowsユーザーはtfenvが使えないので、dockerで管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.ymlファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraformの実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
     </item>
     
     <item>

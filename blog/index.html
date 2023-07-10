@@ -110,6 +110,25 @@
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/docker-terraform/">dockerでterraformを実行する</a></h3>
+    <div>はじめに dockerでterraformを実行するためのdocker-compose.ymlを作成しました。
+メリット 環境の統一 Dockerは環境の統一を容易にします。異なるプラットフォームやOSで作業している場合でも、Dockerコンテナ内でTerraformを実行することで、実行環境を一貫させることができます。 バージョン管理 Terraformのバージョン管理は重要です。異なるプロジェクトや環境で複数のTerraformバージョンを使用する場合、Dockerコンテナ内でTerraformを実行することで、各プロジェクトや環境ごとに適切なTerraformバージョンを管理することができます。 windowsユーザーはtfenvが使えないので、dockerで管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.ymlファイルの作成 version: &#34;3&#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &#34;/workdir&#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &#39;terraform init &amp;&amp; terraform workspace select &#34;${WORKSPACE}&#34; 2&gt;/dev/null || terraform workspace new &#34;${WORKSPACE}&#34; &amp;&amp; terraform &#34;${COMMAND}&#34;&#39; terraformの実行 # コードフォーマッターの実行 export WORKSPACE=&#34;prod&#34; COMMAND=&#34;fmt&#34; &amp;&amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&#34;prod&#34; COMMAND=&#34;validate&#34; &amp;&amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&#34;prod&#34; COMMAND=&#34;plan&#34; &amp;&amp; docker-compose -p プロジェクト名 run --rm terraform </div>
+    <div><ul class="tags">
+    
+</ul>
+</div>
+  </div>
+  <div class="resume-date text-md-right flex-col">
+    <span class="text-primary">July 10, 2023</span>
+  </div>
+</div>
+
+      
+    
+      
+        
+<div class="resume-item d-flex flex-row mb-5">
+  <div class="publication-content mr-auto">
     <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-codebuild/">codebuild構築とdeployフローの整備</a></h3>
     <div>はじめに BitBucketPipelinesでimageのpushを行っていましたが、cpuがマルチプラットフォームに対応しておらず、x86_64のみしか対応していないため、イメージのpushをCodeBuildで行うことにしました。 arm64でECSタスクを実行するとコストが20％落ち、使い方によってはパフォーマンスが向上するらしい。
 今まで [BitBucketPipelines]　→　[awsECR] 変更後 [BitBucketPipelines]　→　[awsCodeBuild]　→　[awsECR] 結果 コストが20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
@@ -284,7 +303,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
     <h3 class="mb-0"><a href="https://h-neco.github.io/blog/list/">List</a></h3>
-    <div>devops codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </div>
+    <div>devops DockerからTerraformを実行する 2023-07-10 Codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </div>
     <div><ul class="tags">
     
 </ul>
