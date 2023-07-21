@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CloudFrontFunction on profile</title>
+    <link>https://h-neco.github.io/tags/cloudfrontfunction/</link>
+    <description>Recent content in CloudFrontFunction on profile</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/cloudfrontfunction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CloudFrontFunctionとLambdaEdgeの違い</title>
+      <link>https://h-neco.github.io/blog/aws-cloudfront-functions/</link>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-cloudfront-functions/</guid>
+      <description>CloudFrontFunction / LambdaEdgeについて CloudFront Functionsは、Amazon CloudFrontのサービスであり、Lambda@Edgeより手前で動作し、シンプルな処理を高速かつ安価に実行できるように設計された機能です。従来のLambda@Edgeは、CloudFrontのエッジロケーションで動作するカスタムのAWS Lambda関数を作成して、リクエストまたはレスポンスを処理することができます。一方、CloudFront Functionsはよりシンプルで軽量であり、Lambda@Edgeよりも低いレイテンシと高いパフォーマンスを持っています。
+CloudFront Functionsを使用すると、よりユーザーに近いエッジロケーションでリクエストを処理できるため、レスポンス時間が短縮され、ユーザーエクスペリエンスが向上します。また、コスト面でもLambda@Edgeよりも経済的であるため、シンプルな処理にはCloudFront Functionsが適しています。
+さらに、CloudFront FunctionsとLambda@Edgeを組み合わせて使用することも可能です。例えば、シンプルな処理やヘッダーの操作、URLの書き換えなどのタスクをCloudFront Functionsで処理し、より高度な処理を必要とする場合にはLambda@Edgeで追加の処理を行うことができます。 これにより、より効率的で高速なコンテンツデリバリーサービスを提供することができるため、AWSのクラウドインフラストラクチャを活用したウェブアプリケーションやコンテンツの配信を行う際に便利です。
+比較表 特徴 CloudFrontFunction Lambda@Edge ランタイムサポート JavaScript (ECMAScript 5.1準拠) Node.js、Python 実行場所 218 以上の CloudFront エッジロケーション 13 の CloudFront リージョンのエッジキャッシュ サポートされる CloudFront トリガー ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス 最大実行時間 1 ミリ秒未満 5 秒 (ビューアトリガー)、30 秒 (オリジントリガー) 最大メモリ 2 MB 128 MB (ビューアトリガー)、10 GB (オリジントリガー) 合計パッケージサイズ 10 KB 1 MB (ビューアトリガー)、50 MB (オリジントリガー) ネットワークアクセス なし あり ファイルシステムアクセス なし あり リクエスト本文へのアクセス なし あり 料金 無料利用枠あり。リクエストごとに課金。 無料利用枠なし。リクエストと関数の実行時間ごとに課金。 まとめ・考察 どちらにするかは処理時間か鍵になりそうです。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -8,6 +8,18 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 17 May 2023 07:27:58 +0900</lastBuildDate><atom:link href="https://h-neco.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>CloudFrontFunctionとLambdaEdgeの違い</title>
+      <link>https://h-neco.github.io/blog/aws-cloudfront-functions/</link>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-cloudfront-functions/</guid>
+      <description>CloudFrontFunction / LambdaEdgeについて CloudFront Functionsは、Amazon CloudFrontのサービスであり、Lambda@Edgeより手前で動作し、シンプルな処理を高速かつ安価に実行できるように設計された機能です。従来のLambda@Edgeは、CloudFrontのエッジロケーションで動作するカスタムのAWS Lambda関数を作成して、リクエストまたはレスポンスを処理することができます。一方、CloudFront Functionsはよりシンプルで軽量であり、Lambda@Edgeよりも低いレイテンシと高いパフォーマンスを持っています。
+CloudFront Functionsを使用すると、よりユーザーに近いエッジロケーションでリクエストを処理できるため、レスポンス時間が短縮され、ユーザーエクスペリエンスが向上します。また、コスト面でもLambda@Edgeよりも経済的であるため、シンプルな処理にはCloudFront Functionsが適しています。
+さらに、CloudFront FunctionsとLambda@Edgeを組み合わせて使用することも可能です。例えば、シンプルな処理やヘッダーの操作、URLの書き換えなどのタスクをCloudFront Functionsで処理し、より高度な処理を必要とする場合にはLambda@Edgeで追加の処理を行うことができます。 これにより、より効率的で高速なコンテンツデリバリーサービスを提供することができるため、AWSのクラウドインフラストラクチャを活用したウェブアプリケーションやコンテンツの配信を行う際に便利です。
+比較表 特徴 CloudFrontFunction Lambda@Edge ランタイムサポート JavaScript (ECMAScript 5.1準拠) Node.js、Python 実行場所 218 以上の CloudFront エッジロケーション 13 の CloudFront リージョンのエッジキャッシュ サポートされる CloudFront トリガー ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス 最大実行時間 1 ミリ秒未満 5 秒 (ビューアトリガー)、30 秒 (オリジントリガー) 最大メモリ 2 MB 128 MB (ビューアトリガー)、10 GB (オリジントリガー) 合計パッケージサイズ 10 KB 1 MB (ビューアトリガー)、50 MB (オリジントリガー) ネットワークアクセス なし あり ファイルシステムアクセス なし あり リクエスト本文へのアクセス なし あり 料金 無料利用枠あり。リクエストごとに課金。 無料利用枠なし。リクエストと関数の実行時間ごとに課金。 まとめ・考察 どちらにするかは処理時間か鍵になりそうです。</description>
+    </item>
+    
+    <item>
       <title>dockerでterraformを実行する</title>
       <link>https://h-neco.github.io/blog/docker-terraform/</link>
       <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
@@ -124,7 +136,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>devops DockerからTerraformを実行する 2023-07-10 Codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
+      <description>devops DockerからTerraformを実行する 2023-07-10 Codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunctionとLambdaEdgeの違い 2023-07-21 EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
     </item>
     
   </channel>
