@@ -115,8 +115,8 @@
     </div>
     <div>
     	<h2 id="intro">Intro</h2>
-<p>PCの入れ替えに伴い、Lambdaのローカル実行環境を再構築した。メモとして残しておきます。
-PCリプレースのついでにLambdaのローカル実行環境を再構築。メモとして残しておく。</p>
+<p>PC の入れ替えに伴い、Lambda のローカル実行環境を再構築した。メモとして残しておきます。
+PC リプレースのついでに Lambda のローカル実行環境を再構築。メモとして残しておく。</p>
 <h2 id="技術要素">技術要素</h2>
 <ul>
 <li>Volta</li>
@@ -128,95 +128,95 @@ PCリプレースのついでにLambdaのローカル実行環境を再構築。
 <h2 id="前提条件">前提条件</h2>
 <h3 id="installing-volta">Installing Volta</h3>
 <ul>
-<li>Voltaのインストール</li>
+<li>Volta のインストール</li>
 </ul>
-<p>Volta は Node.js のバージョン管理に特化したツールです。プロジェクトごとに異なるNode.jsのバージョンを切り替えることができ、Node.jsのバージョンを手動でインストール・管理することなく、異なるバージョンを簡単に管理することができます。Voltaは、他のバージョン管理ツールと比較して切り替えが簡単という利点があり、OSやシェルに依存しないため様々な環境で利用することができます。</p>
+<p>Volta は Node.js のバージョン管理に特化したツールです。プロジェクトごとに異なる Node.js のバージョンを切り替えることができ、Node.js のバージョンを手動でインストール・管理することなく、異なるバージョンを簡単に管理することができます。Volta は、他のバージョン管理ツールと比較して切り替えが簡単という利点があり、OS やシェルに依存しないため様々な環境で利用することができます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curl https://get.volta.sh | bash
 </span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;export VOLTA_HOME=&#34;$HOME/.volta&#34;&#39;</span> &gt;&gt; .zshrc
 </span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#39;export PATH=&#34;$VOLTA_HOME/bin:$PATH&#34;&#39;</span> &gt;&gt; .zshrc
-</span></span></code></pre></div><h3 id="nodejsとyarnのインストール">Node.jsとYarnのインストール</h3>
-<p>利用可能なバージョンを確認するには、volta list nodeを使用します。特定のバージョンをインストールしたい場合は、volta install <a href="mailto:node@18.15.0">node@18.15.0</a> というフォーマットを使ってください。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ volta install node
-</span></span><span style="display:flex;"><span>  success: installed and set node@18.15.0 (with npm@9.5.0) as default
+</span></span></code></pre></div><h3 id="nodejs-と-yarn-のインストール">Node.js と Yarn のインストール</h3>
+<p>利用可能なバージョンを確認するには、volta list node を使用します。特定のバージョンをインストールしたい場合は、volta install <a href="mailto:node@18.15.0">node@18.15.0</a> というフォーマットを使ってください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ volta install node
+</span></span><span style="display:flex;"><span>  success: installed and set node@18.15.0 <span style="color:#f92672">(</span>with npm@9.5.0<span style="color:#f92672">)</span> as default
 </span></span><span style="display:flex;"><span>$ volta install yarn
 </span></span><span style="display:flex;"><span>  success: installed and set yarn@4.0.0-rc.42 as default
 </span></span></code></pre></div><h3 id="sam-のインストール">SAM のインストール</h3>
-<p>以下の手順はmacOS用である。Windowsユーザーの方は<a href="https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/">公式サイト</a>からMSIファイルをダウンロードすることをお勧めします。</p>
+<p>以下の手順は macOS 用である。Windows ユーザーの方は<a href="https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/">公式サイト</a>から MSI ファイルをダウンロードすることをお勧めします。</p>
 <ul>
 <li>macOS</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ brew tap aws/tap
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ brew tap aws/tap
 </span></span><span style="display:flex;"><span>$ brew install aws-sam-cli
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>$ sam --version
 </span></span><span style="display:flex;"><span>SAM CLI, version 1.78.0
 </span></span></code></pre></div><h3 id="creating-a-project">Creating a Project</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ sam init -r nodejs18.x
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">$</span> <span style="color:#a6e22e">sam</span> <span style="color:#a6e22e">init</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">r</span> <span style="color:#a6e22e">nodejs18</span>.<span style="color:#a6e22e">x</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	SAM CLI now collects telemetry to better understand customer needs.
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">SAM</span> <span style="color:#a6e22e">CLI</span> <span style="color:#a6e22e">now</span> <span style="color:#a6e22e">collects</span> <span style="color:#a6e22e">telemetry</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">better</span> <span style="color:#a6e22e">understand</span> <span style="color:#a6e22e">customer</span> <span style="color:#a6e22e">needs</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	You can OPT OUT and disable telemetry collection by setting the
-</span></span><span style="display:flex;"><span>	environment variable SAM_CLI_TELEMETRY=0 in your shell.
-</span></span><span style="display:flex;"><span>	Thanks for your help!
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">You</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">OPT</span> <span style="color:#a6e22e">OUT</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">disable</span> <span style="color:#a6e22e">telemetry</span> <span style="color:#a6e22e">collection</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">setting</span> <span style="color:#a6e22e">the</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">environment</span> <span style="color:#a6e22e">variable</span> <span style="color:#a6e22e">SAM_CLI_TELEMETRY</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">shell</span>.
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Thanks</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">help</span><span style="color:#f92672">!</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	Learn More: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-telemetry.html
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Learn</span> <span style="color:#a6e22e">More</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-telemetry.html
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Which</span> <span style="color:#a6e22e">template</span> <span style="color:#a6e22e">source</span> <span style="color:#a6e22e">would</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">like</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span><span style="color:#f92672">?</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">AWS</span> <span style="color:#a6e22e">Quick</span> <span style="color:#a6e22e">Start</span> <span style="color:#a6e22e">Templates</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Custom</span> <span style="color:#a6e22e">Template</span> <span style="color:#a6e22e">Location</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Choice</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Which template source would you like to use?
-</span></span><span style="display:flex;"><span>	1 - AWS Quick Start Templates
-</span></span><span style="display:flex;"><span>	2 - Custom Template Location
-</span></span><span style="display:flex;"><span>Choice: 1
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Choose</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">AWS</span> <span style="color:#a6e22e">Quick</span> <span style="color:#a6e22e">Start</span> <span style="color:#a6e22e">application</span> <span style="color:#a6e22e">template</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span> <span style="color:#a6e22e">Example</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span> <span style="color:#a6e22e">Example</span> <span style="color:#a6e22e">With</span> <span style="color:#a6e22e">Powertools</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">3</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Multi</span><span style="color:#f92672">-</span><span style="color:#a6e22e">step</span> <span style="color:#a6e22e">workflow</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Standalone</span> <span style="color:#66d9ef">function</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">5</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Scheduled</span> <span style="color:#a6e22e">task</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">6</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Data</span> <span style="color:#a6e22e">processing</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">7</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Serverless</span> <span style="color:#a6e22e">API</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Template</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Choose an AWS Quick Start application template
-</span></span><span style="display:flex;"><span>	1 - Hello World Example
-</span></span><span style="display:flex;"><span>	2 - Hello World Example With Powertools
-</span></span><span style="display:flex;"><span>	3 - Multi-step workflow
-</span></span><span style="display:flex;"><span>	4 - Standalone function
-</span></span><span style="display:flex;"><span>	5 - Scheduled task
-</span></span><span style="display:flex;"><span>	6 - Data processing
-</span></span><span style="display:flex;"><span>	7 - Serverless API
-</span></span><span style="display:flex;"><span>Template: 1
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Based</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">selections</span>, <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">Package</span> <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">available</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">Zip</span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">We</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">proceed</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">selecting</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">Package</span> <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">Zip</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Based on your selections, the only Package type available is Zip.
-</span></span><span style="display:flex;"><span>We will proceed to selecting the Package type as Zip.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Based</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">selections</span>, <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">dependency</span> <span style="color:#a6e22e">manager</span> <span style="color:#a6e22e">available</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">npm</span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">We</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">proceed</span> <span style="color:#a6e22e">copying</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">template</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">npm</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Based on your selections, the only dependency manager available is npm.
-</span></span><span style="display:flex;"><span>We will proceed copying the template using npm.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Select</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">starter</span> <span style="color:#a6e22e">template</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span> <span style="color:#a6e22e">Example</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">World</span> <span style="color:#a6e22e">Example</span> <span style="color:#a6e22e">TypeScript</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Template</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Select your starter template
-</span></span><span style="display:flex;"><span>	1 - Hello World Example
-</span></span><span style="display:flex;"><span>	2 - Hello World Example TypeScript
-</span></span><span style="display:flex;"><span>Template: 2
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Would</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">like</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">enable</span> <span style="color:#a6e22e">X</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Ray</span> <span style="color:#a6e22e">tracing</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">the</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">s</span>) <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">application</span><span style="color:#f92672">?</span>  [<span style="color:#a6e22e">y</span><span style="color:#f92672">/</span><span style="color:#a6e22e">N</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">n</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Would you like to enable X-Ray tracing on the function(s) in your application?  [y/N]: n
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Would</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">like</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">enable</span> <span style="color:#a6e22e">monitoring</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">CloudWatch</span> <span style="color:#a6e22e">Application</span> <span style="color:#a6e22e">Insights</span><span style="color:#f92672">?</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">For</span> <span style="color:#a6e22e">more</span> <span style="color:#a6e22e">info</span>, <span style="color:#a6e22e">please</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html [y/N]: n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Project</span> <span style="color:#a6e22e">name</span> [<span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">app</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">study</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Would you like to enable monitoring using CloudWatch Application Insights?
-</span></span><span style="display:flex;"><span>For more info, please view https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html [y/N]: n
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Cloning</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//github.com/aws/aws-sam-cli-app-templates (process may take a moment)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-----------------------</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Generating</span> <span style="color:#a6e22e">application</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-----------------------</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">study</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Runtime</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">nodejs18</span>.<span style="color:#a6e22e">x</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Architectures</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">x86_64</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Dependency</span> <span style="color:#a6e22e">Manager</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">npm</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Application</span> <span style="color:#a6e22e">Template</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">hello</span><span style="color:#f92672">-</span><span style="color:#a6e22e">world</span><span style="color:#f92672">-</span><span style="color:#a6e22e">typescript</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Output</span> <span style="color:#a6e22e">Directory</span><span style="color:#f92672">:</span> .
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Configuration</span> <span style="color:#a6e22e">file</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">study</span><span style="color:#f92672">/</span><span style="color:#a6e22e">samconfig</span>.<span style="color:#a6e22e">toml</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Project name [sam-app]: sam-local-study
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Cloning from https://github.com/aws/aws-sam-cli-app-templates (process may take a moment)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    -----------------------
-</span></span><span style="display:flex;"><span>    Generating application:
-</span></span><span style="display:flex;"><span>    -----------------------
-</span></span><span style="display:flex;"><span>    Name: sam-local-study
-</span></span><span style="display:flex;"><span>    Runtime: nodejs18.x
-</span></span><span style="display:flex;"><span>    Architectures: x86_64
-</span></span><span style="display:flex;"><span>    Dependency Manager: npm
-</span></span><span style="display:flex;"><span>    Application Template: hello-world-typescript
-</span></span><span style="display:flex;"><span>    Output Directory: .
-</span></span><span style="display:flex;"><span>    Configuration file: sam-local-study/samconfig.toml
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    Next steps can be found in the README file at sam-local-study/README.md
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Next</span> <span style="color:#a6e22e">steps</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">found</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">README</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">study</span><span style="color:#f92672">/</span><span style="color:#a6e22e">README</span>.<span style="color:#a6e22e">md</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Commands you can use next
-</span></span><span style="display:flex;"><span>=========================
-</span></span><span style="display:flex;"><span>[*] Create pipeline: cd sam-local-study &amp;&amp; sam pipeline init --bootstrap
-</span></span><span style="display:flex;"><span>[*] Validate SAM template: cd sam-local-study &amp;&amp; sam validate
-</span></span><span style="display:flex;"><span>[*] Test Function in the Cloud: cd sam-local-study &amp;&amp; sam sync --stack-name {stack-name} --watch
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Commands</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">next</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">=========================</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">*</span>] <span style="color:#a6e22e">Create</span> <span style="color:#a6e22e">pipeline</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">cd</span> <span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">study</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">sam</span> <span style="color:#a6e22e">pipeline</span> <span style="color:#a6e22e">init</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">bootstrap</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">*</span>] <span style="color:#a6e22e">Validate</span> <span style="color:#a6e22e">SAM</span> <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">cd</span> <span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">study</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">sam</span> <span style="color:#a6e22e">validate</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">*</span>] <span style="color:#a6e22e">Test</span> Function <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">Cloud</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">cd</span> <span style="color:#a6e22e">sam</span><span style="color:#f92672">-</span><span style="color:#a6e22e">local</span><span style="color:#f92672">-</span><span style="color:#a6e22e">study</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">sam</span> <span style="color:#a6e22e">sync</span> <span style="color:#f92672">--</span><span style="color:#a6e22e">stack</span><span style="color:#f92672">-</span><span style="color:#a6e22e">name</span> {<span style="color:#a6e22e">stack</span><span style="color:#f92672">-</span><span style="color:#a6e22e">name</span>} <span style="color:#f92672">--</span><span style="color:#a6e22e">watch</span>
 </span></span></code></pre></div><p>プロンプトに従うと、以下のファイルが生成される：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ tree .
 </span></span><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>└── sam-local-study
 </span></span><span style="display:flex;"><span>    ├── README.md
@@ -233,11 +233,11 @@ PCリプレースのついでにLambdaのローカル実行環境を再構築。
 </span></span><span style="display:flex;"><span>    ├── samconfig.toml
 </span></span><span style="display:flex;"><span>    └── template.yaml
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>6 directories, 9 files
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span> directories, <span style="color:#ae81ff">9</span> files
 </span></span></code></pre></div><h2 id="メッセージを返すサンプル-lambda-関数の作成">メッセージを返すサンプル Lambda 関数の作成</h2>
 <p>メッセージを返す Lambda 関数のサンプルを作成し、SAM を使って実行してみましょう。</p>
 <h3 id="コードの準備">コードの準備</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ tree .
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ tree .
 </span></span><span style="display:flex;"><span>.
 </span></span><span style="display:flex;"><span>└── sam-local-study
 </span></span><span style="display:flex;"><span>    ├── src
@@ -247,25 +247,25 @@ PCリプレースのついでにLambdaのローカル実行環境を再構築。
 </span></span></code></pre></div><ul>
 <li>src/handlers/hello-from-lambda.js</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>exports.helloFromLambdaHandler = async () =&gt; {
-</span></span><span style="display:flex;"><span>    const message = &#39;Hello from Lambda!&#39;;
-</span></span><span style="display:flex;"><span>    console.info(`${message}`);
-</span></span><span style="display:flex;"><span>    return message;
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">exports</span>.<span style="color:#a6e22e">helloFromLambdaHandler</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello from Lambda!&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">message</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">message</span>;
+</span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><ul>
 <li>template.yaml</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Resources:
-</span></span><span style="display:flex;"><span>  HelloWorldFunction:
-</span></span><span style="display:flex;"><span>    Type: AWS::Serverless::Function
-</span></span><span style="display:flex;"><span>    Properties:
-</span></span><span style="display:flex;"><span>      Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
-</span></span><span style="display:flex;"><span>      Runtime: nodejs18.x
-</span></span><span style="display:flex;"><span>      MemorySize: 128
-</span></span><span style="display:flex;"><span>      Timeout: 100
-</span></span><span style="display:flex;"><span>      Description: A Lambda function that returns a static string.
-</span></span><span style="display:flex;"><span>      Policies:
-</span></span><span style="display:flex;"><span>        - AWSLambdaBasicExecutionRole
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">Resources</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">HelloWorldFunction</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::Serverless::Function</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Handler</span>: <span style="color:#ae81ff">src/handlers/hello-from-lambda.helloFromLambdaHandler</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Runtime</span>: <span style="color:#ae81ff">nodejs18.x</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MemorySize</span>: <span style="color:#ae81ff">128</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Timeout</span>: <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Description</span>: <span style="color:#ae81ff">A Lambda function that returns a static string.</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Policies</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">AWSLambdaBasicExecutionRole</span>
 </span></span></code></pre></div><h3 id="hello-を返すラムダ関数の実行">&ldquo;Hello &ldquo;を返すラムダ関数の実行</h3>
 <ul>
 <li>Execute the command:</li>
@@ -274,7 +274,7 @@ PCリプレースのついでにLambdaのローカル実行環境を再構築。
 </span></span></code></pre></div><ul>
 <li>Output:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Invoking src/handlers/hello-from-lambda.helloFromLambdaHandler (nodejs18.x)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>Invoking src/handlers/hello-from-lambda.helloFromLambdaHandler <span style="color:#f92672">(</span>nodejs18.x<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>Local image is up-to-date
 </span></span><span style="display:flex;"><span>Using local image: public.ecr.aws/lambda/nodejs:18-rapid-x86_64.
 </span></span><span style="display:flex;"><span>
@@ -282,11 +282,60 @@ PCリプレースのついでにLambdaのローカル実行環境を再構築。
 </span></span><span style="display:flex;"><span>START RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a Version: $LATEST
 </span></span><span style="display:flex;"><span>2023-04-05T08:41:27.339Z	6d2615de-b38f-4300-bf87-704e1fa6296a	INFO	Hello from Lambda!
 </span></span><span style="display:flex;"><span>END RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a
-</span></span><span style="display:flex;"><span>REPORT RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a	Init Duration: 0.75 ms	Duration: 953.12 ms	Billed Duration: 954 ms	Memory Size: 128 MB	Max Memory Used: 128 MB
-</span></span><span style="display:flex;"><span>&#34;Hello from Lambda!&#34;%
-</span></span></code></pre></div><h2 id="localstackを使う">LocalStackを使う</h2>
-<p>これについてはまた後日書きます&hellip;。</p>
-
+</span></span><span style="display:flex;"><span>REPORT RequestId: 6d2615de-b38f-4300-bf87-704e1fa6296a	Init Duration: 0.75 ms	Duration: 953.12 ms	Billed Duration: <span style="color:#ae81ff">954</span> ms	Memory Size: <span style="color:#ae81ff">128</span> MB	Max Memory Used: <span style="color:#ae81ff">128</span> MB
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Hello from Lambda!&#34;</span>%
+</span></span></code></pre></div><h2 id="localstack-を使う">LocalStack を使う</h2>
+<ul>
+<li>クレデンシャルの設定 (~/.aws/credentials)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#f92672">[</span>localstack<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>aws_access_key_id <span style="color:#f92672">=</span> dummy
+</span></span><span style="display:flex;"><span>aws_secret_access_key <span style="color:#f92672">=</span> dummy
+</span></span></code></pre></div><ul>
+<li>docker-compose.yml を用意する</li>
+<li>docker-compose.yml を使って LocalStack を起動する</li>
+<li>コマンド：<code>docker-compose up -d</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.7&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">localstack</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">localstack/localstack</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;4566:4566&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SERVICES=s3,dynamodb</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PERSISTENCE=1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">localstack</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">localstack</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">sam-local-localstack</span>
+</span></span></code></pre></div><ul>
+<li>SAM を使って LocalStack で実行する</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sam local invoke HelloWorldFunction <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span> -e events/event.json <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span> --docker-network sam-local-localstack <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span> --profile localstack
+</span></span></code></pre></div><h4 id="ローカル環境をプログラムから参照する方法">ローカル環境をプログラムから参照する方法</h4>
+<ul>
+<li>s3 を作成する</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aws s3 mb s3://xxxxxxxx  --endpoint-url http://localhost:4566 --profile localstack
+</span></span></code></pre></div><ul>
+<li>ローカル環境をプログラムから参照する方法。一部抜粋</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">endpoint</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">isLocal</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;http://localstack:4566&#34;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">undefined</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">s3Client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">S3Client</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">apiVersion</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2006-03-01&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">endpoint</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">endpoint</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">forcePathStyle</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">isLocal</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div>
 	    
 	</div>
     <div>

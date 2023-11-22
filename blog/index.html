@@ -241,11 +241,10 @@ Benefits of OIDC GitからのデプロイにOIDCを使用することで、い�
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
     <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-lambda-local-execution/">Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</a></h3>
-    <div>Intro PCの入れ替えに伴い、Lambdaのローカル実行環境を再構築した。メモとして残しておきます。 PCリプレースのついでにLambdaのローカル実行環境を再構築。メモとして残しておく。
-技術要素 Volta Lambda LocalStack TypeScript SAM 前提条件 Installing Volta Voltaのインストール Volta は Node.js のバージョン管理に特化したツールです。プロジェクトごとに異なるNode.jsのバージョンを切り替えることができ、Node.jsのバージョンを手動でインストール・管理することなく、異なるバージョンを簡単に管理することができます。Voltaは、他のバージョン管理ツールと比較して切り替えが簡単という利点があり、OSやシェルに依存しないため様々な環境で利用することができます。
-$ curl https://get.volta.sh | bash $ echo &#39;export VOLTA_HOME=&#34;$HOME/.volta&#34;&#39; &gt;&gt; .zshrc $ echo &#39;export PATH=&#34;$VOLTA_HOME/bin:$PATH&#34;&#39; &gt;&gt; .zshrc Node.jsとYarnのインストール 利用可能なバージョンを確認するには、volta list nodeを使用します。特定のバージョンをインストールしたい場合は、volta install node@18.15.0 というフォーマットを使ってください。
-$ volta install node success: installed and set node@18.15.0 (with npm@9.5.0) as default $ volta install yarn success: installed and set yarn@4.0.0-rc.42 as default SAM のインストール 以下の手順はmacOS用である。Windowsユーザーの方は公式サイトからMSIファイルをダウンロードすることをお勧めします。
-macOS $ brew tap aws/tap $ brew install aws-sam-cli $ sam --version SAM CLI, version 1.</div>
+    <div>Intro PC の入れ替えに伴い、Lambda のローカル実行環境を再構築した。メモとして残しておきます。 PC リプレースのついでに Lambda のローカル実行環境を再構築。メモとして残しておく。
+技術要素 Volta Lambda LocalStack TypeScript SAM 前提条件 Installing Volta Volta のインストール Volta は Node.js のバージョン管理に特化したツールです。プロジェクトごとに異なる Node.js のバージョンを切り替えることができ、Node.js のバージョンを手動でインストール・管理することなく、異なるバージョンを簡単に管理することができます。Volta は、他のバージョン管理ツールと比較して切り替えが簡単という利点があり、OS やシェルに依存しないため様々な環境で利用することができます。
+$ curl https://get.volta.sh | bash $ echo &#39;export VOLTA_HOME=&#34;$HOME/.volta&#34;&#39; &gt;&gt; .zshrc $ echo &#39;export PATH=&#34;$VOLTA_HOME/bin:$PATH&#34;&#39; &gt;&gt; .zshrc Node.js と Yarn のインストール 利用可能なバージョンを確認するには、volta list node を使用します。特定のバージョンをインストールしたい場合は、volta install node@18.15.0 というフォーマットを使ってください。
+$ volta install node success: installed and set node@18.15.0 (with npm@9.5.0) as default $ volta install yarn success: installed and set yarn@4.</div>
     <div><ul class="tags">
     
 </ul>
