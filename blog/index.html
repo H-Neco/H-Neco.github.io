@@ -110,6 +110,28 @@
         
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
+    <h3 class="mb-0"><a href="https://h-neco.github.io/blog/chatgpt-mermaid/">ChatGPT&#43;Mermaidでシーケンス図を作成する</a></h3>
+    <div>ChatGPT+Mermaid でシーケンス図を作成する ChatGPT と Mermaid を使って、シーケンス図を作成してみました。
+ChatGPT と Mermaid を組み合わせることで、シーケンス図を簡単に作成できます。ChatGPT は自然な文章生成に優れており、Mermaid はシンプルな記法でシーケンス図を描画できます。この組み合わせにより、手軽に要約や説明を行いながら、視覚的な図を生成できます。AI が生成したテキストを元に、Mermaid を使ってシーケンス図を作成することで、複雑なプロセスやアルゴリズムを視覚的に理解しやすくなります。
+簡単なバッチの図を作成してみました プロンプトでの指示 「&ldquo;a&quot;が&quot;b&quot;に対して&quot;x&quot;を非同期で要求し、その後&quot;b&quot;の状態を確認し続けるというプロセスを Mermaid のシーケンス図で作成してください。状態が変更されていない場合は、&ldquo;a&quot;が状態確認を継続し、状態が変更された場合は、&ldquo;b&quot;が&quot;a&quot;にその旨を通知するシーケンスも図に含めてください。」
+回答 あなたが求めているシーケンス図は、以下のような形になります。
+mermaid sequenceDiagram participant a participant b a-&gt;&gt;b: xを非同期で要求 loop 状態確認 a-&gt;&gt;b: bの状態を確認 opt 変更なし a-&gt;&gt;a: 状態の確認を継続 end b--&gt;&gt;a: 状態変更あり end このシーケンス図は、&ldquo;a&quot;が&quot;b&quot;に非同期で&quot;x&quot;を要求し、その後&quot;b&quot;の状態を確認し続けるプロセスを表現しています。&ldquo;b&quot;の状態が変更されない場合、&ldquo;a&quot;は状態の確認を続けます。一方、&ldquo;b&quot;の状態が変更された場合、&ldquo;b&quot;は&quot;a&quot;にその旨を通知します。</div>
+    <div><ul class="tags">
+    
+</ul>
+</div>
+  </div>
+  <div class="resume-date text-md-right flex-col">
+    <span class="text-primary">February 21, 2024</span>
+  </div>
+</div>
+
+      
+    
+      
+        
+<div class="resume-item d-flex flex-row mb-5">
+  <div class="publication-content mr-auto">
     <h3 class="mb-0"><a href="https://h-neco.github.io/blog/aws-cloudfront-functions/">CloudFrontFunctionとLambdaEdgeの違い</a></h3>
     <div>CloudFrontFunction / LambdaEdgeについて CloudFront Functionsは、Amazon CloudFrontのサービスであり、Lambda@Edgeより手前で動作し、シンプルな処理を高速かつ安価に実行できるように設計された機能です。従来のLambda@Edgeは、CloudFrontのエッジロケーションで動作するカスタムのAWS Lambda関数を作成して、リクエストまたはレスポンスを処理することができます。一方、CloudFront Functionsはよりシンプルで軽量であり、Lambda@Edgeよりも低いレイテンシと高いパフォーマンスを持っています。
 CloudFront Functionsを使用すると、よりユーザーに近いエッジロケーションでリクエストを処理できるため、レスポンス時間が短縮され、ユーザーエクスペリエンスが向上します。また、コスト面でもLambda@Edgeよりも経済的であるため、シンプルな処理にはCloudFront Functionsが適しています。
@@ -323,7 +345,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
 <div class="resume-item d-flex flex-row mb-5">
   <div class="publication-content mr-auto">
     <h3 class="mb-0"><a href="https://h-neco.github.io/blog/list/">List</a></h3>
-    <div>devops DockerからTerraformを実行する 2023-07-10 Codebuild構築とDeployフローの整備 2023-06-27 Terraformのラッパーツール、Terragruntの導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunctionとLambdaEdgeの違い 2023-07-21 EFSバーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLIを使ったEC2へのEBSボリュームの永続化 2023-05-01 Lambdaローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログをSelenium(ヘッドレスブラウザ)で取得する 2020-08-26 </div>
+    <div>devops Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunction と LambdaEdge の違い 2023-07-21 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 </div>
     <div><ul class="tags">
     
 </ul>

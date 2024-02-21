@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mermaid on profile</title>
+    <link>https://h-neco.github.io/tags/mermaid/</link>
+    <description>Recent content in mermaid on profile</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/mermaid/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ChatGPT&#43;Mermaidでシーケンス図を作成する</title>
+      <link>https://h-neco.github.io/blog/chatgpt-mermaid/</link>
+      <pubDate>Wed, 21 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/chatgpt-mermaid/</guid>
+      <description>ChatGPT+Mermaid でシーケンス図を作成する ChatGPT と Mermaid を使って、シーケンス図を作成してみました。
+ChatGPT と Mermaid を組み合わせることで、シーケンス図を簡単に作成できます。ChatGPT は自然な文章生成に優れており、Mermaid はシンプルな記法でシーケンス図を描画できます。この組み合わせにより、手軽に要約や説明を行いながら、視覚的な図を生成できます。AI が生成したテキストを元に、Mermaid を使ってシーケンス図を作成することで、複雑なプロセスやアルゴリズムを視覚的に理解しやすくなります。
+簡単なバッチの図を作成してみました プロンプトでの指示 「&amp;ldquo;a&amp;quot;が&amp;quot;b&amp;quot;に対して&amp;quot;x&amp;quot;を非同期で要求し、その後&amp;quot;b&amp;quot;の状態を確認し続けるというプロセスを Mermaid のシーケンス図で作成してください。状態が変更されていない場合は、&amp;ldquo;a&amp;quot;が状態確認を継続し、状態が変更された場合は、&amp;ldquo;b&amp;quot;が&amp;quot;a&amp;quot;にその旨を通知するシーケンスも図に含めてください。」
+回答 あなたが求めているシーケンス図は、以下のような形になります。
+mermaid sequenceDiagram participant a participant b a-&amp;gt;&amp;gt;b: xを非同期で要求 loop 状態確認 a-&amp;gt;&amp;gt;b: bの状態を確認 opt 変更なし a-&amp;gt;&amp;gt;a: 状態の確認を継続 end b--&amp;gt;&amp;gt;a: 状態変更あり end このシーケンス図は、&amp;ldquo;a&amp;quot;が&amp;quot;b&amp;quot;に非同期で&amp;quot;x&amp;quot;を要求し、その後&amp;quot;b&amp;quot;の状態を確認し続けるプロセスを表現しています。&amp;ldquo;b&amp;quot;の状態が変更されない場合、&amp;ldquo;a&amp;quot;は状態の確認を続けます。一方、&amp;ldquo;b&amp;quot;の状態が変更された場合、&amp;ldquo;b&amp;quot;は&amp;quot;a&amp;quot;にその旨を通知します。</description>
+    </item>
+    
+  </channel>
+</rss>
