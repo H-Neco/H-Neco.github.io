@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | Trivy を用いたコンテナImage,DockerFileへの脆弱性診断</title>
+  <meta name="description" content="">
+
+  
+  
+    <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
+    <meta property="og:title" content="profile | Trivy を用いたコンテナImage,DockerFileへの脆弱性診断" />   
+  
+  <meta property="og:description" content="" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://h-neco.github.io/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/">Home</a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/blog/">Blog</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://h-neco.github.io/blog/docker-trivy/">Trivy を用いたコンテナImage,DockerFileへの脆弱性診断</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+  	<div class="mb-3 d-flex flex-row justify-content-between">
+    	<h2 class="mb-0"><span class="text-primary">Trivy を用いたコンテナImage,DockerFileへの脆弱性診断</span></h2>
+    	<span class="">March 20, 2024</span>
+    </div>
+    <div>
+    	<h2 id="intro">Intro</h2>
+<p>trivy は、コンテナイメージの脆弱性診断を行うツールです。trivy を使用することで、コンテナイメージに含まれる脆弱性を検出し、セキュリティを向上させることができます。</p>
+<ul>
+<li>docker の環境構築についてはこちら
+<a href="../vm-multipass">環境構築</a></li>
+</ul>
+<h2 id="作業の大枠">作業の大枠</h2>
+<ul>
+<li>Dockerfile に対して trivy で診断を行います。</li>
+<li>問題なければ、イメージをビルドし、trivy で再度スキャンを行います。</li>
+</ul>
+<h2 id="事前準備">事前準備</h2>
+<ul>
+<li>適当なディレクトリを作成し、Dockerfile を作成します。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir test
+</span></span><span style="display:flex;"><span>$ vim test/Dockerfile
+</span></span><span style="display:flex;"><span>FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim
+</span></span><span style="display:flex;"><span>EXPOSE 80/tcp
+</span></span></code></pre></div><h2 id="診断">診断</h2>
+<ul>
+<li>DockerFile を trivy で診断します。config コマンドを実行します。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/test:/workdir aquasec/trivy config --ignorefile .trivy/.trivyignore --severity HIGH,CRITICAL .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2024-03-20T13:16:35.209Z	INFO	Misconfiguration scanning is enabled
+</span></span><span style="display:flex;"><span>2024-03-20T13:16:35.210Z	INFO	Need to update the built-in policies
+</span></span><span style="display:flex;"><span>2024-03-20T13:16:35.211Z	INFO	Downloading the built-in policies...
+</span></span><span style="display:flex;"><span>46.13 KiB / 46.13 KiB <span style="color:#f92672">[</span>-------------------------------------------------------------------------------------------------------------------------------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 100ms
+</span></span><span style="display:flex;"><span>2024-03-20T13:16:36.947Z	INFO	Detected config files: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Dockerfile <span style="color:#f92672">(</span>dockerfile<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Tests: <span style="color:#ae81ff">20</span> <span style="color:#f92672">(</span>SUCCESSES: 19, FAILURES: 1, EXCEPTIONS: 0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Failures: <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>HIGH: 1, CRITICAL: 0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HIGH: Specify at least <span style="color:#ae81ff">1</span> USER command in Dockerfile with non-root user as argument
+</span></span><span style="display:flex;"><span>═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+</span></span><span style="display:flex;"><span>Running containers with <span style="color:#e6db74">&#39;root&#39;</span> user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be <span style="color:#66d9ef">done</span> by adding a <span style="color:#e6db74">&#39;USER&#39;</span> statement to the Dockerfile.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>See https://avd.aquasec.com/misconfig/ds002
+</span></span><span style="display:flex;"><span>─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+</span></span></code></pre></div><ul>
+<li>root ユーザでの実行が検出されたので修正してみます。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ vim test/Dockerfile
+</span></span><span style="display:flex;"><span>FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim
+</span></span><span style="display:flex;"><span>RUN apk add --no-cache shadow <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    useradd -u <span style="color:#ae81ff">9000</span> test
+</span></span><span style="display:flex;"><span>USER test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 再確認</span>
+</span></span><span style="display:flex;"><span>docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/test:/workdir aquasec/trivy config --ignorefile .trivy/.trivyignore --severity HIGH,CRITICAL .
+</span></span><span style="display:flex;"><span>2024-03-20T13:28:55.680Z	INFO	Misconfiguration scanning is enabled
+</span></span><span style="display:flex;"><span>2024-03-20T13:28:55.681Z	INFO	Need to update the built-in policies
+</span></span><span style="display:flex;"><span>2024-03-20T13:28:55.682Z	INFO	Downloading the built-in policies...
+</span></span><span style="display:flex;"><span>46.13 KiB / 46.13 KiB <span style="color:#f92672">[</span>-------------------------------------------------------------------------------------------------------------------------------------------------<span style="color:#f92672">]</span> 100.00% ? p/s 100ms
+</span></span><span style="display:flex;"><span>2024-03-20T13:28:57.980Z	INFO	Detected config files: <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><ul>
+<li>検出しなくなったので build します。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ cd test <span style="color:#f92672">&amp;&amp;</span> docker build -f Dockerfile -t test-nginx-01:latest .
+</span></span></code></pre></div><ul>
+<li>イメージを trivy でスキャンします。image コマンドを実行します。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ubuntu@test-vm-01:~$ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/test:/workdir aquasec/trivy image test-nginx-01:latest
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:44.909Z	INFO	Need to update DB
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:44.909Z	INFO	DB Repository: ghcr.io/aquasecurity/trivy-db:2
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:44.909Z	INFO	Downloading DB...
+</span></span><span style="display:flex;"><span>1.21 MiB / 44.46 MiB <span style="color:#f92672">[</span>-&gt;_____________________________________________________________<span style="color:#f92672">]</span> 2.71% ? p/s ?2.38 MiB / 44.46 MiB <span style="color:#f92672">[</span>---&gt;___________________________________________________________<span style="color:#f92672">]</span> 5.36% ? p/s ?3.81 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----&gt;_________________________________________________________<span style="color:#f92672">]</span> 8.58% ? p/s ?4.92 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----&gt;____________________________________________<span style="color:#f92672">]</span> 11.06% 6.17 MiB p/s ETA 6s6.23 MiB / 44.46 MiB <span style="color:#f92672">[</span>-------&gt;__________________________________________<span style="color:#f92672">]</span> 14.00% 6.17 MiB p/s ETA 6s7.35 MiB / 44.46 MiB <span style="color:#f92672">[</span>--------&gt;_________________________________________<span style="color:#f92672">]</span> 16.54% 6.17 MiB p/s ETA 6s9.36 MiB / 44.46 MiB <span style="color:#f92672">[</span>----------&gt;_______________________________________<span style="color:#f92672">]</span> 21.05% 6.25 MiB p/s ETA 5s11.68 MiB / 44.46 MiB <span style="color:#f92672">[</span>------------&gt;____________________________________<span style="color:#f92672">]</span> 26.28% 6.25 MiB p/s ETA 5s14.02 MiB / 44.46 MiB <span style="color:#f92672">[</span>---------------&gt;_________________________________<span style="color:#f92672">]</span> 31.52% 6.25 MiB p/s ETA 4s16.96 MiB / 44.46 MiB <span style="color:#f92672">[</span>------------------&gt;______________________________<span style="color:#f92672">]</span> 38.14% 6.67 MiB p/s ETA 4s20.00 MiB / 44.46 MiB <span style="color:#f92672">[</span>----------------------&gt;__________________________<span style="color:#f92672">]</span> 44.98% 6.67 MiB p/s ETA 3s22.54 MiB / 44.46 MiB <span style="color:#f92672">[</span>------------------------&gt;________________________<span style="color:#f92672">]</span> 50.69% 6.67 MiB p/s ETA 3s25.50 MiB / 44.46 MiB <span style="color:#f92672">[</span>----------------------------&gt;____________________<span style="color:#f92672">]</span> 57.36% 7.16 MiB p/s ETA 2s28.53 MiB / 44.46 MiB <span style="color:#f92672">[</span>-------------------------------&gt;_________________<span style="color:#f92672">]</span> 64.18% 7.16 MiB p/s ETA 2s30.86 MiB / 44.46 MiB <span style="color:#f92672">[</span>----------------------------------&gt;______________<span style="color:#f92672">]</span> 69.41% 7.16 MiB p/s ETA 1s33.75 MiB / 44.46 MiB <span style="color:#f92672">[</span>-------------------------------------&gt;___________<span style="color:#f92672">]</span> 75.91% 7.58 MiB p/s ETA 1s36.58 MiB / 44.46 MiB <span style="color:#f92672">[</span>----------------------------------------&gt;________<span style="color:#f92672">]</span> 82.27% 7.58 MiB p/s ETA 1s39.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>-------------------------------------------&gt;_____<span style="color:#f92672">]</span> 88.77% 7.58 MiB p/s ETA 0s42.50 MiB / 44.46 MiB <span style="color:#f92672">[</span>----------------------------------------------&gt;__<span style="color:#f92672">]</span> 95.60% 8.03 MiB p/s ETA 0s44.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----------------------------------------------&gt;<span style="color:#f92672">]</span> 100.00% 8.03 MiB p/s ETA 0s44.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----------------------------------------------&gt;<span style="color:#f92672">]</span> 100.00% 8.03 MiB p/s ETA 0s44.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----------------------------------------------&gt;<span style="color:#f92672">]</span> 100.00% 7.72 MiB p/s ETA 0s44.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----------------------------------------------&gt;<span style="color:#f92672">]</span> 100.00% 7.72 MiB p/s ETA 0s44.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----------------------------------------------&gt;<span style="color:#f92672">]</span> 100.00% 7.72 MiB p/s ETA 0s44.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>-----------------------------------------------&gt;<span style="color:#f92672">]</span> 100.00% 7.22 MiB p/s ETA 0s44.46 MiB / 44.46 MiB <span style="color:#f92672">[</span>--------------------------------------------------<span style="color:#f92672">]</span> 100.00% 9.01 MiB p/s 5.1s2024-03-20T13:39:51.416Z	INFO	Vulnerability scanning is enabled
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:51.416Z	INFO	Secret scanning is enabled
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:51.416Z	INFO	If your scanning is slow, please try <span style="color:#e6db74">&#39;--scanners vuln&#39;</span> to disable secret scanning
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:51.416Z	INFO	Please see also https://aquasecurity.github.io/trivy/v0.50/docs/scanner/secret/#recommendation <span style="color:#66d9ef">for</span> faster secret detection
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:51.923Z	INFO	Detected OS: alpine
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:51.924Z	INFO	Detecting Alpine vulnerabilities...
+</span></span><span style="display:flex;"><span>2024-03-20T13:39:51.925Z	INFO	Number of language-specific files: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test-nginx-01:latest <span style="color:#f92672">(</span>alpine 3.18.6<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">====================================</span>
+</span></span><span style="display:flex;"><span>Total: <span style="color:#ae81ff">0</span> <span style="color:#f92672">(</span>UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0<span style="color:#f92672">)</span>
+</span></span></code></pre></div><h3 id="まとめ">まとめ</h3>
+<ul>
+<li>イメージのスキャンと Dockerfile の診断を行いました。</li>
+<li>簡単にセキュリティ診断を行うことができるので、積極的に利用していきたいです。</li>
+</ul>
+<h3 id="おまけ">おまけ</h3>
+<ul>
+<li>docker-compose で実行する場合は以下のようになります。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ubuntu@test-vm-01:~$ cat docker-compose.yml
+</span></span><span style="display:flex;"><span>version: <span style="color:#e6db74">&#34;3&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  trivy-scan:
+</span></span><span style="display:flex;"><span>    image: bitnami/trivy:latest
+</span></span><span style="display:flex;"><span>    platform: linux/arm64
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - ./test:/workdir
+</span></span><span style="display:flex;"><span>    working_dir: <span style="color:#e6db74">&#34;/workdir&#34;</span>
+</span></span><span style="display:flex;"><span>    entrypoint: sh -c <span style="color:#e6db74">&#39;trivy config --ignorefile .trivy/.trivyignore --severity HIGH,CRITICAL .&#39;</span>
+</span></span></code></pre></div>
+	    
+	</div>
+    <div>
+    	
+    </div>
+    <ul class="tags">
+    
+</ul>
+
+  </div>
+</section>
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>

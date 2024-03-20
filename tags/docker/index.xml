@@ -28,6 +28,16 @@ install $ brew install multipass ==&amp;gt; Installing Cask multipass ==&amp;gt;
     </item>
     
     <item>
+      <title>Trivy を用いたコンテナImage,DockerFileへの脆弱性診断</title>
+      <link>https://h-neco.github.io/blog/docker-trivy/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/docker-trivy/</guid>
+      <description>Intro trivy は、コンテナイメージの脆弱性診断を行うツールです。trivy を使用することで、コンテナイメージに含まれる脆弱性を検出し、セキュリティを向上させることができます。
+docker の環境構築についてはこちら 環境構築 作業の大枠 Dockerfile に対して trivy で診断を行います。 問題なければ、イメージをビルドし、trivy で再度スキャンを行います。 事前準備 適当なディレクトリを作成し、Dockerfile を作成します。 $ mkdir test $ vim test/Dockerfile FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim EXPOSE 80/tcp 診断 DockerFile を trivy で診断します。config コマンドを実行します。 $ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/test:/workdir aquasec/trivy config --ignorefile .trivy/.trivyignore --severity HIGH,CRITICAL . 2024-03-20T13:16:35.209Z	INFO	Misconfiguration scanning is enabled 2024-03-20T13:16:35.210Z	INFO	Need to update the built-in policies 2024-03-20T13:16:35.211Z	INFO	Downloading the built-in policies... 46.13 KiB / 46.</description>
+    </item>
+    
+    <item>
       <title>dockerでterraformを実行する</title>
       <link>https://h-neco.github.io/blog/docker-terraform/</link>
       <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
