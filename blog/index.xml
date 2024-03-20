@@ -19,6 +19,16 @@ install $ brew install multipass ==&amp;gt; Installing Cask multipass ==&amp;gt;
     </item>
     
     <item>
+      <title>Trivy を用いたコンテナImage,DockerFileへの脆弱性診断</title>
+      <link>https://h-neco.github.io/blog/docker-trivy/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/docker-trivy/</guid>
+      <description>Intro trivy は、コンテナイメージの脆弱性診断を行うツールです。trivy を使用することで、コンテナイメージに含まれる脆弱性を検出し、セキュリティを向上させることができます。
+docker の環境構築についてはこちら 環境構築 作業の大枠 Dockerfile に対して trivy で診断を行います。 問題なければ、イメージをビルドし、trivy で再度スキャンを行います。 事前準備 適当なディレクトリを作成し、Dockerfile を作成します。 $ mkdir test $ vim test/Dockerfile FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim EXPOSE 80/tcp 診断 DockerFile を trivy で診断します。config コマンドを実行します。 $ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/test:/workdir aquasec/trivy config --ignorefile .trivy/.trivyignore --severity HIGH,CRITICAL . 2024-03-20T13:16:35.209Z	INFO	Misconfiguration scanning is enabled 2024-03-20T13:16:35.210Z	INFO	Need to update the built-in policies 2024-03-20T13:16:35.211Z	INFO	Downloading the built-in policies... 46.13 KiB / 46.</description>
+    </item>
+    
+    <item>
       <title>ChatGPT&#43;Mermaidでシーケンス図を作成する</title>
       <link>https://h-neco.github.io/blog/chatgpt-mermaid/</link>
       <pubDate>Wed, 21 Feb 2024 00:00:00 +0000</pubDate>
@@ -159,7 +169,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>devops multipass で ローカル docker 環境の構築 2024-03-20 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunction と LambdaEdge の違い 2023-07-21 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 security Trivy を用いたコンテナへの脆弱性診断 2024-03-20 その他 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 </description>
+      <description>devops multipass で ローカル docker 環境の構築 2024-03-20 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunction と LambdaEdge の違い 2023-07-21 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 security Trivy を用いたコンテナ Image,DockerFile への脆弱性診断 2024-03-21 その他 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 </description>
     </item>
     
   </channel>
