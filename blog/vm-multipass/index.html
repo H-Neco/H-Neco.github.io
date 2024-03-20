@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | multipassでの仮想マシンの作成/Docker環境構築</title>
+  <meta name="description" content="">
+
+  
+  
+    <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
+    <meta property="og:title" content="profile | multipassでの仮想マシンの作成/Docker環境構築" />   
+  
+  <meta property="og:description" content="" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://h-neco.github.io/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/">Home</a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/blog/">Blog</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://h-neco.github.io/blog/vm-multipass/">multipassでの仮想マシンの作成/Docker環境構築</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+  	<div class="mb-3 d-flex flex-row justify-content-between">
+    	<h2 class="mb-0"><span class="text-primary">multipassでの仮想マシンの作成/Docker環境構築</span></h2>
+    	<span class="">March 20, 2024</span>
+    </div>
+    <div>
+    	<h2 id="intro">Intro</h2>
+<p>以前は、vagrant+virtualbox で仮想マシンを作成してましたが、m2 mac に端末を変えたため、multipass に切り替えました。</p>
+<p>multipass は、Ubuntu の仮想マシンを簡単に作成できるツールです。multipass を使用することで、仮想マシンの作成、起動、停止、削除などの操作を簡単に行うことができます。</p>
+<h2 id="install">install</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ brew install multipass
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Installing Cask multipass
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Running installer <span style="color:#66d9ef">for</span> multipass with sudo; the password may be necessary.
+</span></span><span style="display:flex;"><span>Password:
+</span></span><span style="display:flex;"><span>installer: Package name is multipass
+</span></span><span style="display:flex;"><span>installer: Installing at base path /
+</span></span><span style="display:flex;"><span>installer: The install was successful.
+</span></span><span style="display:flex;"><span>🍺  multipass was successfully installed!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ multipass version
+</span></span><span style="display:flex;"><span>multipass   1.13.1+mac
+</span></span><span style="display:flex;"><span>multipassd  1.13.1+mac
+</span></span></code></pre></div><h2 id="基本コマンド">基本コマンド</h2>
+<ul>
+<li>詳しくは以下参照
+<ul>
+<li><a href="https://multipass.run/docs/multipass-cli-client">https://multipass.run/docs/multipass-cli-client</a></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 新規作成</span>
+</span></span><span style="display:flex;"><span>$ multipass launch -n test-vm-01
+</span></span><span style="display:flex;"><span>Launched: test-vm-01
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 確認</span>
+</span></span><span style="display:flex;"><span>$ multipass list
+</span></span><span style="display:flex;"><span>Name                    State             IPv4             Image
+</span></span><span style="display:flex;"><span>test-vm-01              Running           192.168.64.2     Ubuntu 22.04 LTS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ multipass info test-vm-01
+</span></span><span style="display:flex;"><span>Name:           test-vm-01
+</span></span><span style="display:flex;"><span>State:          Running
+</span></span><span style="display:flex;"><span>Snapshots:      <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>IPv4:           192.168.64.2
+</span></span><span style="display:flex;"><span>Release:        Ubuntu 22.04.4 LTS
+</span></span><span style="display:flex;"><span>Image hash:     40ea1181447b <span style="color:#f92672">(</span>Ubuntu 22.04 LTS<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>CPU<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>:         <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>Load:           0.07 0.04 0.01
+</span></span><span style="display:flex;"><span>Disk usage:     1.6GiB out of 4.8GiB
+</span></span><span style="display:flex;"><span>Memory usage:   150.2MiB out of 962.3MiB
+</span></span><span style="display:flex;"><span>Mounts:         --
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 停止</span>
+</span></span><span style="display:flex;"><span>$ multipass stop test-vm-01
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 起動</span>
+</span></span><span style="display:flex;"><span>$ multipass start test-vm-01
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 削除 (-p で永続化)</span>
+</span></span><span style="display:flex;"><span>$ multipass delete test-vm-01 -p
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># シェルに入る</span>
+</span></span><span style="display:flex;"><span>$ multipass shell test-vm-01
+</span></span></code></pre></div><h2 id="docker-環境構築">docker 環境構築</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># 鍵作成</span>
+</span></span><span style="display:flex;"><span>$ ssh-keygen -t rsa -b <span style="color:#ae81ff">4096</span> -C <span style="color:#e6db74">&#34;&#34;</span> -f multipass
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cloud-init 作成</span>
+</span></span><span style="display:flex;"><span>$ vim multipass.yml
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh</span>
+</span></span><span style="display:flex;"><span>AUTHORIZED_KEYS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat multipass.pub <span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>cat &gt; ./multipass_docker.yaml <span style="color:#e6db74">&lt;&lt; _EOF_
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">---
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">locale: en_US.UTF8
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">timezone: Asia/Tokyo
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">package_upgrade: true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">users:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - name: ubuntu
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    sudo: ALL=(ALL) NOPASSWD:ALL
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ssh-authorized-keys:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - ${AUTHORIZED_KEYS}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">packages:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - docker
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - docker-compose
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - avahi-daemon
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - apt-transport-https
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - ca-certificates
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - curl
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - gnupg
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - lsb-release
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">runcmd:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - sudo curl -fsSL https://get.docker.com | sudo bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - sudo systemctl enable docker
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - sudo systemctl enable -s HUP ssh
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - sudo groupadd docker
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  - sudo usermod -aG docker ubuntu
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">_EOF_</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 起動</span>
+</span></span><span style="display:flex;"><span>$ multipass launch -n test-vm-01 --cloud-init multipass.yml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 確認</span>
+</span></span><span style="display:flex;"><span>$ multipass exec test-vm-01 docker version
+</span></span><span style="display:flex;"><span>Client: Docker Engine - Community
+</span></span><span style="display:flex;"><span> Version:           25.0.5
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div>
+	    
+	</div>
+    <div>
+    	
+    </div>
+    <ul class="tags">
+    
+</ul>
+
+  </div>
+</section>
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>

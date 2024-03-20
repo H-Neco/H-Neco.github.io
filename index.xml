@@ -45,6 +45,17 @@ Don’t mandate DevOps. Give employees the chance to master their discipline wit
     </item>
     
     <item>
+      <title>multipassでの仮想マシンの作成/Docker環境構築</title>
+      <link>https://h-neco.github.io/blog/vm-multipass/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/vm-multipass/</guid>
+      <description>Intro 以前は、vagrant+virtualbox で仮想マシンを作成してましたが、m2 mac に端末を変えたため、multipass に切り替えました。
+multipass は、Ubuntu の仮想マシンを簡単に作成できるツールです。multipass を使用することで、仮想マシンの作成、起動、停止、削除などの操作を簡単に行うことができます。
+install $ brew install multipass ==&amp;gt; Installing Cask multipass ==&amp;gt; Running installer for multipass with sudo; the password may be necessary. Password: installer: Package name is multipass installer: Installing at base path / installer: The install was successful. 🍺 multipass was successfully installed! $ multipass version multipass 1.13.1+mac multipassd 1.13.1+mac 基本コマンド 詳しくは以下参照 https://multipass.run/docs/multipass-cli-client # 新規作成 $ multipass launch -n test-vm-01 Launched: test-vm-01 # 確認 $ multipass list Name State IPv4 Image test-vm-01 Running 192.</description>
+    </item>
+    
+    <item>
       <title>ChatGPT&#43;Mermaidでシーケンス図を作成する</title>
       <link>https://h-neco.github.io/blog/chatgpt-mermaid/</link>
       <pubDate>Wed, 21 Feb 2024 00:00:00 +0000</pubDate>
@@ -212,7 +223,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>devops Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunction と LambdaEdge の違い 2023-07-21 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 その他 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 </description>
+      <description>devops multipass で ローカル docker 環境の構築 2024-03-20 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunction と LambdaEdge の違い 2023-07-21 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 security Trivy を用いたコンテナへの脆弱性診断 2024-03-20 その他 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 </description>
     </item>
     
     <item>
