@@ -116,16 +116,16 @@
     <div>
     	<h2 id="intro">Intro</h2>
 <ul>
-<li>TerraformのWrapperツール、Terragrunt導入の検証を行いました。</li>
+<li>Terraform の Wrapper ツール、Terragrunt 導入の検証を行いました。</li>
 </ul>
 <h3 id="導入の検証">導入の検証</h3>
 <ul>
-<li>通常、私はTerraformを使用していますが、次のような不便さがありました：
+<li>通常、私は Terraform を使用していますが、次のような不便さがありました：
 <ul>
-<li>各デプロイの影響範囲を最小限に抑えるために、Gitリポジトリをより小さなものに分割する必要がありました。Terraformのバージョンアップが面倒でした。</li>
+<li>各デプロイの影響範囲を最小限に抑えるために、Git リポジトリをより小さなものに分割する必要がありました。Terraform のバージョンアップが面倒でした。</li>
 <li>コードからリソースの依存関係を理解するのが難しかったです。
 <ul>
-<li>depends_onが明示的に使用できない場所でデプロイ順序に注意する必要がありました。</li>
+<li>depends_on が明示的に使用できない場所でデプロイ順序に注意する必要がありました。</li>
 </ul>
 </li>
 </ul>
@@ -133,10 +133,10 @@
 </ul>
 <h3 id="導入後の課題">導入後の課題</h3>
 <ul>
-<li>導入に関して、以下の2点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。
+<li>導入に関して、以下の 2 点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。
 <ul>
-<li>Terraformの管理だけでなく、Terragruntのバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか</li>
-<li>もしTerragruntの開発が停止した場合、スムーズにTerraformのコードに戻せるか</li>
+<li>Terraform の管理だけでなく、Terragrunt のバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか</li>
+<li>もし Terragrunt の開発が停止した場合、スムーズに Terraform のコードに戻せるか</li>
 </ul>
 </li>
 </ul>
@@ -146,8 +146,8 @@
 <li>terragrunt</li>
 <li>aws</li>
 </ul>
-<h3 id="terragruntとは">Terragruntとは</h3>
-<p>Terragruntは、Terraformを使用してインフラストラクチャを管理するための作業を簡素化するためのTerraform Wrapperとして知られるオープンソースのツールです。TerragruntはTerraformが提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraformを使用して複数の環境やアカウントを管理する際にTerragruntは非常に便利です。</p>
+<h3 id="terragrunt-とは">Terragrunt とは</h3>
+<p>Terragrunt は、Terraform を使用してインフラストラクチャを管理するための作業を簡素化するための Terraform Wrapper として知られるオープンソースのツールです。Terragrunt は Terraform が提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraform を使用して複数の環境やアカウントを管理する際に Terragrunt は非常に便利です。</p>
 <h3 id="インストール">インストール</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ brew install tfenv # Installs Terraform (version specified in .terraform-version)
 </span></span><span style="display:flex;"><span>$ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version)
@@ -172,8 +172,8 @@
 </span></span><span style="display:flex;"><span>    └── ResourceGroupB
 </span></span><span style="display:flex;"><span>        └── xx.tf
 </span></span></code></pre></div><h3 id="共通ファイルenvsterragrunthcl">共通ファイル（envs/terragrunt.hcl）</h3>
-<p>このファイルには、バックエンドとしてAWS S3バケットに*.tfstateファイルを保存するための設定が含まれており、各環境に独自の*.tfstateファイルをS3バケット内に保存することができます。また、AWSリソースを作成するためにTerraformが使用するプロバイダの定義も含まれています。設定では、各AWSリージョンごとに異なるプロバイダ設定が指定されています。</p>
-<p>*.tfstateファイルを使用してリソースの状態を管理することで、複数の人がプロジェクトに取り組んでいても競合を回避することができます。</p>
+<p>このファイルには、バックエンドとして AWS S3 バケットに*.tfstate ファイルを保存するための設定が含まれており、各環境に独自の*.tfstate ファイルを S3 バケット内に保存することができます。また、AWS リソースを作成するために Terraform が使用するプロバイダの定義も含まれています。設定では、各 AWS リージョンごとに異なるプロバイダ設定が指定されています。</p>
+<p>*.tfstate ファイルを使用してリソースの状態を管理することで、複数の人がプロジェクトに取り組んでいても競合を回避することができます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># Configuration for storing *.tfstate files for each environment
 </span></span><span style="display:flex;"><span>remote_state {
 </span></span><span style="display:flex;"><span>  backend = &#34;s3&#34;
@@ -218,21 +218,21 @@
 </span></span><span style="display:flex;"><span>EOF
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="環境固有のファイルenvsprodenvhcl">環境固有のファイル（envs/prod/env.hcl）</h3>
-<p>このファイルは、Terragruntの環境固有のファイルであり、prod環境の設定が含まれています。これらの変数は、他のTerragruntファイルで使用され、環境固有の設定を定義するために使用されます。具体的には、envs/prod/ResourceGroupAのhclファイルで呼び出され、Terraformコードのmodule/ResourceGroupAにパラメータとして渡されます。</p>
+<p>このファイルは、Terragrunt の環境固有のファイルであり、prod 環境の設定が含まれています。これらの変数は、他の Terragrunt ファイルで使用され、環境固有の設定を定義するために使用されます。具体的には、envs/prod/ResourceGroupA の hcl ファイルで呼び出され、Terraform コードの module/ResourceGroupA にパラメータとして渡されます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>locals {
 </span></span><span style="display:flex;"><span>  ENV    = &#34;prod&#34;
 </span></span><span style="display:flex;"><span>  PROJECT_NAME = &#34;test&#34;
 </span></span><span style="display:flex;"><span>  ACCOUNT_ID   = &#34;123456789&#34;
 </span></span><span style="display:flex;"><span>  VPC_CIDE     = &#34;10.0.0.0/24&#34;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="各リソースグループのためのhclファイル">各リソースグループのためのHCLファイル</h3>
-<p>「ResourceGroupA」と「ResourceGroupB」のHCLファイルの例を示しましょう。</p>
-<p>最初は依存関係がないと仮定し、Aというクリーンなスレートのシナリオを考えます。BはAに依存するリソースグループとします。</p>
+</span></span></code></pre></div><h3 id="各リソースグループのための-hcl-ファイル">各リソースグループのための HCL ファイル</h3>
+<p>「ResourceGroupA」と「ResourceGroupB」の HCL ファイルの例を示しましょう。</p>
+<p>最初は依存関係がないと仮定し、A というクリーンなスレートのシナリオを考えます。B は A に依存するリソースグループとします。</p>
 <ul>
-<li>「ResourceGroupA」のHCLファイルの作成
+<li>「ResourceGroupA」の HCL ファイルの作成
 <ul>
 <li><code>vim envs/prod/ResourceGroupA/terragrunt.hcl</code></li>
-<li>env.hclから変数を受け取り、それらをモジュールに値として渡します。</li>
+<li>env.hcl から変数を受け取り、それらをモジュールに値として渡します。</li>
 </ul>
 </li>
 </ul>
@@ -260,8 +260,8 @@
 <li>「ResourceGroupB」のファイルの作成：
 <ul>
 <li><code>vim envs/prod/ResourceGroupB/terragrunt.hcl</code></li>
-<li>env.hclから変数を取得し、それらをモジュールに渡します。</li>
-<li>この例では、ResourceGroupAで作成したVPCのIDをResourceGroupBに渡すことを想定しています。</li>
+<li>env.hcl から変数を取得し、それらをモジュールに渡します。</li>
+<li>この例では、ResourceGroupA で作成した VPC の ID を ResourceGroupB に渡すことを想定しています。</li>
 </ul>
 </li>
 </ul>
@@ -286,10 +286,10 @@
 </span></span><span style="display:flex;"><span>  ACCOUNT_ID   <span style="color:#f92672">=</span> local.ENV.locals.ACCOUNT_ID
 </span></span><span style="display:flex;"><span>  VPC_ID       <span style="color:#f92672">=</span> local.ENV.locals.VPC_ID
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="モジュールのtfファイル">モジュールのtfファイル</h3>
+</span></span></code></pre></div><h3 id="モジュールの-tf-ファイル">モジュールの tf ファイル</h3>
 <ul>
-<li>一般的には、通常どおりTerraformのコードを記述できます。</li>
-<li>他のモジュールからパラメータを受け取りたい場合（依存関係がある場合やenv.hclからパラメータを渡す場合）、変数ブロックで空の変数を定義する必要があります。上記で言及したResourceGroupBの例では、次のようになります。</li>
+<li>一般的には、通常どおり Terraform のコードを記述できます。</li>
+<li>他のモジュールからパラメータを受け取りたい場合（依存関係がある場合や env.hcl からパラメータを渡す場合）、変数ブロックで空の変数を定義する必要があります。上記で言及した ResourceGroupB の例では、次のようになります。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>variable &#34;ENV&#34; {
 </span></span><span style="display:flex;"><span>  description = &#34;Environment&#34;
@@ -304,7 +304,7 @@
 </span></span><span style="display:flex;"><span>  type = string
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
-<li>1つのリソースグループから別のリソースグループにパラメータを渡す場合は、それらを出力として定義する必要があります。例えば、Resource Group Aの場合、以下のように定義する必要があります：</li>
+<li>1 つのリソースグループから別のリソースグループにパラメータを渡す場合は、それらを出力として定義する必要があります。例えば、Resource Group A の場合、以下のように定義する必要があります：</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>output &#34;vpc_id&#34; {
 </span></span><span style="display:flex;"><span>  value = aws_vpc.main.id
@@ -449,7 +449,7 @@
 </span></span><span style="display:flex;"><span>          - export PATH=${BITBUCKET_CLONE_DIR}/tool/tgenv/bin:$PATH
 </span></span><span style="display:flex;"><span>          - cd ${BITBUCKET_CLONE_DIR}/envs/${TARGET_ENV}
 </span></span><span style="display:flex;"><span>          - tfenv install &amp;&amp; tgenv install
-</span></span><span style="display:flex;"><span>          - terragrunt run-all plan 
+</span></span><span style="display:flex;"><span>          - terragrunt run-all plan
 </span></span><span style="display:flex;"><span>    - step: &amp;terragrunt-apply
 </span></span><span style="display:flex;"><span>        name: terragrunt Apply
 </span></span><span style="display:flex;"><span>        trigger: manual

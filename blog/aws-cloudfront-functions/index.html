@@ -114,11 +114,11 @@
     	<span class="">July 21, 2023</span>
     </div>
     <div>
-    	<h3 id="cloudfrontfunction--lambdaedgeについて">CloudFrontFunction / LambdaEdgeについて</h3>
-<p>CloudFront Functionsは、Amazon CloudFrontのサービスであり、Lambda@Edgeより手前で動作し、シンプルな処理を高速かつ安価に実行できるように設計された機能です。従来のLambda@Edgeは、CloudFrontのエッジロケーションで動作するカスタムのAWS Lambda関数を作成して、リクエストまたはレスポンスを処理することができます。一方、CloudFront Functionsはよりシンプルで軽量であり、Lambda@Edgeよりも低いレイテンシと高いパフォーマンスを持っています。</p>
-<p>CloudFront Functionsを使用すると、よりユーザーに近いエッジロケーションでリクエストを処理できるため、レスポンス時間が短縮され、ユーザーエクスペリエンスが向上します。また、コスト面でもLambda@Edgeよりも経済的であるため、シンプルな処理にはCloudFront Functionsが適しています。</p>
-<p>さらに、CloudFront FunctionsとLambda@Edgeを組み合わせて使用することも可能です。例えば、シンプルな処理やヘッダーの操作、URLの書き換えなどのタスクをCloudFront Functionsで処理し、より高度な処理を必要とする場合にはLambda@Edgeで追加の処理を行うことができます。
-これにより、より効率的で高速なコンテンツデリバリーサービスを提供することができるため、AWSのクラウドインフラストラクチャを活用したウェブアプリケーションやコンテンツの配信を行う際に便利です。</p>
+    	<h3 id="cloudfrontfunction--lambdaedge-について">CloudFrontFunction / LambdaEdge について</h3>
+<p>CloudFront Functions は、Amazon CloudFront のサービスであり、Lambda@Edge より手前で動作し、シンプルな処理を高速かつ安価に実行できるように設計された機能です。従来の Lambda@Edge は、CloudFront のエッジロケーションで動作するカスタムの AWS Lambda 関数を作成して、リクエストまたはレスポンスを処理することができます。一方、CloudFront Functions はよりシンプルで軽量であり、Lambda@Edge よりも低いレイテンシと高いパフォーマンスを持っています。</p>
+<p>CloudFront Functions を使用すると、よりユーザーに近いエッジロケーションでリクエストを処理できるため、レスポンス時間が短縮され、ユーザーエクスペリエンスが向上します。また、コスト面でも Lambda@Edge よりも経済的であるため、シンプルな処理には CloudFront Functions が適しています。</p>
+<p>さらに、CloudFront Functions と Lambda@Edge を組み合わせて使用することも可能です。例えば、シンプルな処理やヘッダーの操作、URL の書き換えなどのタスクを CloudFront Functions で処理し、より高度な処理を必要とする場合には Lambda@Edge で追加の処理を行うことができます。
+これにより、より効率的で高速なコンテンツデリバリーサービスを提供することができるため、AWS のクラウドインフラストラクチャを活用したウェブアプリケーションやコンテンツの配信を行う際に便利です。</p>
 <h3 id="比較表">比較表</h3>
 <table>
 <thead>
@@ -131,7 +131,7 @@
 <tbody>
 <tr>
 <td>ランタイムサポート</td>
-<td>JavaScript (ECMAScript 5.1準拠)</td>
+<td>JavaScript (ECMAScript 5.1 準拠)</td>
 <td>Node.js、Python</td>
 </tr>
 <tr>
@@ -183,15 +183,15 @@
 </table>
 <h3 id="まとめ考察">まとめ・考察</h3>
 <p>どちらにするかは処理時間か鍵になりそうです。</p>
-<p>CloudFrontFunctionsは同時実行数のクォータとかが公開されておらず、おそらく無いのではないかと思ってます。</p>
-<h3 id="cloudfrontfunctionsサンプルコード">CloudFrontFunctionsサンプルコード</h3>
-<p>実際に使ってみたのでCloudFrontFunctionsサンプルコードを載っけてみます。</p>
-<p>LambdaEdgeはロール作ったりデプロイするのが面倒なのですが、CloudFrontFunctionsはコードだけ書けばいいので楽ですね。</p>
-<h4 id="ip制限をかける">IP制限をかける</h4>
+<p>CloudFrontFunctions は同時実行数のクォータとかが公開されておらず、おそらく無いのではないかと思ってます。</p>
+<h3 id="cloudfrontfunctions-サンプルコード">CloudFrontFunctions サンプルコード</h3>
+<p>実際に使ってみたので CloudFrontFunctions サンプルコードを載っけてみます。</p>
+<p>LambdaEdge はロール作ったりデプロイするのが面倒なのですが、CloudFrontFunctions はコードだけ書けばいいので楽ですね。</p>
+<h4 id="ip-制限をかける">IP 制限をかける</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handler</span>(<span style="color:#a6e22e">event</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">viewer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">viewer</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">allowIP</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;1.1.1.1&#39;</span>, <span style="color:#e6db74">&#39;0.0.0.0&#39;</span>]; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">allowIP</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;1.1.1.1&#34;</span>, <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>];
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">allowIP</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">viewer</span>.<span style="color:#a6e22e">ip</span>) <span style="color:#f92672">!==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">request</span>;
@@ -200,52 +200,55 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">statusCode</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">403</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">statusDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Forbidden&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Access to this resource is forbidden.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Access to this resource is forbidden.&#34;</span>,
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="wwwなしからwwwありにリダイレクトさせる">wwwなしからwwwありにリダイレクトさせる</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">querystring</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;querystring&#39;</span>);
+</span></span></code></pre></div><h4 id="www-なしから-www-ありにリダイレクトさせる">www なしから www ありにリダイレクトさせる</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">querystring</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;querystring&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// クエリストリングを文字列化するヘルパー関数
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">stringifyQueryString</span>(<span style="color:#a6e22e">eventQueryString</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">query</span> <span style="color:#f92672">=</span> {};
-</span></span><span style="display:flex;"><span>    Object.<span style="color:#a6e22e">entries</span>(<span style="color:#a6e22e">eventQueryString</span>).<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">q</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">query</span>[<span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> <span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">multiValue</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">multiValue</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">m</span>) {<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">value</span>}) <span style="color:#f92672">:</span> <span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>    Object.<span style="color:#a6e22e">entries</span>(<span style="color:#a6e22e">eventQueryString</span>).<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">q</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">query</span>[<span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> <span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">multiValue</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">?</span> <span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">multiValue</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">m</span>) {
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>              })
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">:</span> <span style="color:#a6e22e">q</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">value</span>;
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">querystring</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">query</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handler</span>(<span style="color:#a6e22e">event</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newurl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://www.domain.jp&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">uri</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newurl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://www.domain.jp&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">uri</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// クエリストリングが存在する場合は、文字列化して newurl に追加
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">querystring</span>).<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#a6e22e">newurl</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;?&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">stringifyQueryString</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">querystring</span>);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">querystring</span>).<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#a6e22e">newurl</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;?&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">stringifyQueryString</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">querystring</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">statusCode</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">301</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">statusDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Found&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>            { <span style="color:#e6db74">&#34;location&#34;</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;value&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">newurl</span> } }
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">statusDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Found&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">location</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">newurl</span> } },
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="basic認証をかけるpathによって認証を変える">Basic認証をかける（pathによって認証を変える）</h4>
+</span></span></code></pre></div><h4 id="basic-認証をかけるpath-によって認証を変える">Basic 認証をかける（path によって認証を変える）</h4>
 <ul>
-<li>処理時間を気にして、予めID,PWをbase64でエンコードしてます。</li>
+<li>処理時間を気にして、予め ID,PW を base64 でエンコードしてます。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handler</span>(<span style="color:#a6e22e">event</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headers</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">headers</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">viewer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">viewer</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">idpw</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dGVzdF8xOnRlc3RfMg==&#34;</span>;  <span style="color:#75715e">// common IDPW
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">idpw</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dGVzdF8xOnRlc3RfMg==&#34;</span>; <span style="color:#75715e">// common IDPW
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">allowPathFlag</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">optionPathSettingFlag</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pathRules</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;^/test/*&#34;</span> <span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;idpw&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;dGVzdF8xOnRlc3RfMw==&#34;</span> },
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;^/aiu/*&#34;</span> <span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;idpw&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;dGVzdF8xOnRlc3RfMw==&#34;</span> },
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;^/hoge/aiu/*&#34;</span> <span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;idpw&#34;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span> }
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;^/test/*&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">idpw</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;dGVzdF8xOnRlc3RfMw==&#34;</span> },
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;^/aiu/*&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">idpw</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;dGVzdF8xOnRlc3RfMw==&#34;</span> },
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;^/hoge/aiu/*&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">idpw</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span> },
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">path</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">pathRules</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pathRules</span>.<span style="color:#a6e22e">hasOwnProperty</span>(<span style="color:#a6e22e">path</span>) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#66d9ef">new</span> RegExp(<span style="color:#a6e22e">path</span>)).<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">uri</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pathRules</span>.<span style="color:#a6e22e">hasOwnProperty</span>(<span style="color:#a6e22e">path</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">new</span> RegExp(<span style="color:#a6e22e">path</span>).<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">uri</span>)) {
 </span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">allowPathFlag</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pathRules</span>[<span style="color:#a6e22e">path</span>].<span style="color:#a6e22e">idpw</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>) {
 </span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">optionPathSettingFlag</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
@@ -255,28 +258,25 @@
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">allowPathFlag</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">optionPathSettingFlag</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">allowPathFlag</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">optionPathSettingFlag</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">request</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">request</span> };
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// IDPW
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">authString</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Basic &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">idpw</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;undefined&#34;</span> <span style="color:#f92672">||</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">authString</span>
-</span></span><span style="display:flex;"><span>    ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;undefined&#34;</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">headers</span>.<span style="color:#a6e22e">authorization</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">authString</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
 </span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">statusCode</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">401</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">statusDescription</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Unauthorized&#34;</span>,
 </span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#34;www-authenticate&#34;</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Basic&#34;</span> } },
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">request</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">request</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">request</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">request</span>,
 </span></span><span style="display:flex;"><span>        };
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">request</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">request</span> };
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="terraformでデプロイするとき">terraformでデプロイするとき</h3>
+</span></span></code></pre></div><h3 id="terraform-でデプロイするとき">terraform でデプロイするとき</h3>
 <p>超カンタン。こんな感じでデプロイできます。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_cloudfront_function&#34; &#34;hoge&#34;</span> {
 </span></span><span style="display:flex;"><span>  name    <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hoge-${terraform.workspace}&#34;</span>

@@ -115,14 +115,14 @@
     </div>
     <div>
     	<h2 id="intro">Intro</h2>
-<p>AmazonLinux2を使用してNATインスタンスを設定しました。構成プロセスにPackerとAnsibleを使用しました。</p>
+<p>AmazonLinux2 を使用して NAT インスタンスを設定しました。構成プロセスに Packer と Ansible を使用しました。</p>
 <ul>
-<li>AmazonLinux2を使用してNATインスタンスを設定します。</li>
-<li>Amazonlinux2が選択する理由
+<li>AmazonLinux2 を使用して NAT インスタンスを設定します。</li>
+<li>Amazonlinux2 が選択する理由
 <ul>
-<li>Lambdaは外部から開始される着信接続をサポートしていないため、アクティブモードでFTPをサポートしません。</li>
-<li>ECSは、プライベートIPアドレスの静的割り当てを許可していません。</li>
-<li>Gatewayタイプであるため、NATプライベートゲートウェイと組み合わせることで静的割り当てを実現することは可能ですが、外部ソースからの着信接続を受け入れることはできません。</li>
+<li>Lambda は外部から開始される着信接続をサポートしていないため、アクティブモードで FTP をサポートしません。</li>
+<li>ECS は、プライベート IP アドレスの静的割り当てを許可していません。</li>
+<li>Gateway タイプであるため、NAT プライベートゲートウェイと組み合わせることで静的割り当てを実現することは可能ですが、外部ソースからの着信接続を受け入れることはできません。</li>
 </ul>
 </li>
 </ul>
@@ -133,7 +133,7 @@
 <ul>
 <li>iptables
 <ul>
-<li>CENTOS7（AmazonLinux2）では、デフォルトのファイアウォール管理システムはファイアウォールです。ただし、IPTablesを紹介して、NATインスタンスをセットアップします。</li>
+<li>CENTOS7（AmazonLinux2）では、デフォルトのファイアウォール管理システムはファイアウォールです。ただし、IPTables を紹介して、NAT インスタンスをセットアップします。</li>
 </ul>
 </li>
 </ul>
@@ -159,7 +159,7 @@
 </span></span><span style="display:flex;"><span>                ├── iptables-config.j2
 </span></span><span style="display:flex;"><span>                ├── nat_cidr.j2
 </span></span><span style="display:flex;"><span>                └── sysctl.conf
-</span></span></code></pre></div><h2 id="packerとテンプレートファイルの実行">Packerとテンプレートファイルの実行</h2>
+</span></span></code></pre></div><h2 id="packer-とテンプレートファイルの実行">Packer とテンプレートファイルの実行</h2>
 <ul>
 <li>Execution Command
 <ul>
@@ -213,7 +213,7 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;extra_arguments&#34;</span>: [<span style="color:#e6db74">&#34;-vv&#34;</span>]
 </span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">}</span>]
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">}</span>
-</span></span></code></pre></div><h2 id="ansibleの準備">Ansibleの準備</h2>
+</span></span></code></pre></div><h2 id="ansible-の準備">Ansible の準備</h2>
 <ul>
 <li>ファイル構成</li>
 </ul>
@@ -224,7 +224,7 @@
 </span></span><span style="display:flex;"><span>└── inventory
 </span></span><span style="display:flex;"><span>   └── hosts
 </span></span></code></pre></div><h2 id="install-ansible">Install ansible</h2>
-<p>Ansibleインストールは、 <code>。/bin/init.sh</code>を実行することで実行できます</p>
+<p>Ansible インストールは、 <code>。/bin/init.sh</code>を実行することで実行できます</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>sudo yum -y update
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># ansible install</span>
@@ -233,12 +233,12 @@
 </span></span><span style="display:flex;"><span>amazon-linux-extras install ansible2
 </span></span></code></pre></div><h2 id="インベントリファイルの構成">インベントリファイルの構成</h2>
 <p><code>inventory/hosts</code> ファイルを配置します。</p>
-<p>設定したサーバーからローカルでAnsibleを実行するため、ターゲットとして「ローカル」を指定します。</p>
+<p>設定したサーバーからローカルで Ansible を実行するため、ターゲットとして「ローカル」を指定します。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[default]
 </span></span><span style="display:flex;"><span>127.0.0.1
 </span></span></code></pre></div><h2 id="構成ファイルを配置します">構成ファイルを配置します</h2>
 <p><code>ansible.cfg</code>ファイルを配置します</p>
-<p>このファイルは、Ansibleの実行に使用されます。以下はサンプル構成です。</p>
+<p>このファイルは、Ansible の実行に使用されます。以下はサンプル構成です。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[defaults]
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span># Specify the Python interpreter
@@ -254,7 +254,7 @@
 </span></span><span style="display:flex;"><span># Color settings
 </span></span><span style="display:flex;"><span>nocolor=0
 </span></span><span style="display:flex;"><span>scp_if_ssh=True
-</span></span></code></pre></div><h2 id="ansible-playbookを作成します">Ansible Playbookを作成します</h2>
+</span></span></code></pre></div><h2 id="ansible-playbook-を作成します">Ansible Playbook を作成します</h2>
 <ul>
 <li>file Structure</li>
 </ul>
@@ -269,8 +269,8 @@
 </span></span><span style="display:flex;"><span>                ├── iptables-config.j2
 </span></span><span style="display:flex;"><span>                ├── nat_cidr.j2
 </span></span><span style="display:flex;"><span>                └── sysctl.conf
-</span></span></code></pre></div><p>Packerによって呼び出されるPlaybook/setup.ymlファイルを作成します。
-iptablesのロールを呼び出し、ルーティング後に出口時にソースアドレス/ポート変換を実行するチェーンを渡します。</p>
+</span></span></code></pre></div><p>Packer によって呼び出される Playbook/setup.yml ファイルを作成します。
+iptables のロールを呼び出し、ルーティング後に出口時にソースアドレス/ポート変換を実行するチェーンを渡します。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span>- hosts: all
 </span></span><span style="display:flex;"><span>  become: yes
@@ -280,7 +280,7 @@ iptablesのロールを呼び出し、ルーティング後に出口時にソー
 </span></span><span style="display:flex;"><span>    - role: iptable
 </span></span><span style="display:flex;"><span>      vars:
 </span></span><span style="display:flex;"><span>        nat_cidr: 10.0.0.1/24
-</span></span></code></pre></div><p>また、playbookから呼び出されるiptablesロールのmain.ymlファイルも書きます。主な構成は、iptablesのインストールと必要な設定ファイルの構成です。</p>
+</span></span></code></pre></div><p>また、playbook から呼び出される iptables ロールの main.yml ファイルも書きます。主な構成は、iptables のインストールと必要な設定ファイルの構成です。</p>
 <ul>
 <li>roles/iptable/tasks/main.yml</li>
 </ul>
@@ -328,7 +328,7 @@ iptablesのロールを呼び出し、ルーティング後に出口時にソー
 </span></span><span style="display:flex;"><span>IPTABLES_STATUS_VERBOSE=&#34;no&#34;
 </span></span><span style="display:flex;"><span>IPTABLES_STATUS_LINENUMBERS=&#34;yes&#34;
 </span></span></code></pre></div><p><code>roles/iptable/tasks/templates/sysctl.conf</code></p>
-<p>IPv4フォワーディングと呼ばれる機能を有効にするには、「/proc/sys/net/ipv4/ip_forward」ファイルの内容を「1」に設定する。</p>
+<p>IPv4 フォワーディングと呼ばれる機能を有効にするには、「/proc/sys/net/ipv4/ip_forward」ファイルの内容を「1」に設定する。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>net.ipv4.ip_forward=1
 </span></span></code></pre></div><p><code>roles/iptable/tasks/templates/nat_cidr.j2</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>*filter
@@ -344,13 +344,13 @@ iptablesのロールを呼び出し、ルーティング後に出口時にソー
 </span></span><span style="display:flex;"><span>:PREROUTING ACCEPT [0:0]
 </span></span><span style="display:flex;"><span>-A PREROUTING -p tcp --dport 21 -j CT --helper ftp
 </span></span><span style="display:flex;"><span>COMMIT
-</span></span></code></pre></div><h2 id="ec2のネットワーク設定を構成するには">EC2のネットワーク設定を構成するには</h2>
-<p>インスタンス構成で、NATインスタンスのElastic Network Interface (ENI)の宛先チェックを無効にします。</p>
+</span></span></code></pre></div><h2 id="ec2-のネットワーク設定を構成するには">EC2 のネットワーク設定を構成するには</h2>
+<p>インスタンス構成で、NAT インスタンスの Elastic Network Interface (ENI)の宛先チェックを無効にします。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>aws ec2 modify-instance-attribute \
 </span></span><span style="display:flex;"><span>  --no-source-dest-check \
 </span></span><span style="display:flex;"><span>  --instance-id ${INSTANCE_ID}
-</span></span></code></pre></div><h2 id="サーバーに接続してiptablesを起動するには">サーバーに接続してiptablesを起動するには</h2>
-<p>Ansibleを使って設定ファイルをデプロイし、iptablesを再起動するには</p>
+</span></span></code></pre></div><h2 id="サーバーに接続して-iptables-を起動するには">サーバーに接続して iptables を起動するには</h2>
+<p>Ansible を使って設定ファイルをデプロイし、iptables を再起動するには</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 設定ファイルをAnsibleで配布されているファイルで上書きする
 </span></span><span style="display:flex;"><span>sudo cp /etc/sysconfig/iptables-config-nat /etc/sysconfig/iptables
 </span></span><span style="display:flex;"><span># 設定の永続化

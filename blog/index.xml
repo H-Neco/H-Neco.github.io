@@ -47,10 +47,10 @@ mermaid sequenceDiagram participant a participant b a-&amp;gt;&amp;gt;b: xを非
       <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-cloudfront-functions/</guid>
-      <description>CloudFrontFunction / LambdaEdgeについて CloudFront Functionsは、Amazon CloudFrontのサービスであり、Lambda@Edgeより手前で動作し、シンプルな処理を高速かつ安価に実行できるように設計された機能です。従来のLambda@Edgeは、CloudFrontのエッジロケーションで動作するカスタムのAWS Lambda関数を作成して、リクエストまたはレスポンスを処理することができます。一方、CloudFront Functionsはよりシンプルで軽量であり、Lambda@Edgeよりも低いレイテンシと高いパフォーマンスを持っています。
-CloudFront Functionsを使用すると、よりユーザーに近いエッジロケーションでリクエストを処理できるため、レスポンス時間が短縮され、ユーザーエクスペリエンスが向上します。また、コスト面でもLambda@Edgeよりも経済的であるため、シンプルな処理にはCloudFront Functionsが適しています。
-さらに、CloudFront FunctionsとLambda@Edgeを組み合わせて使用することも可能です。例えば、シンプルな処理やヘッダーの操作、URLの書き換えなどのタスクをCloudFront Functionsで処理し、より高度な処理を必要とする場合にはLambda@Edgeで追加の処理を行うことができます。 これにより、より効率的で高速なコンテンツデリバリーサービスを提供することができるため、AWSのクラウドインフラストラクチャを活用したウェブアプリケーションやコンテンツの配信を行う際に便利です。
-比較表 特徴 CloudFrontFunction Lambda@Edge ランタイムサポート JavaScript (ECMAScript 5.1準拠) Node.js、Python 実行場所 218 以上の CloudFront エッジロケーション 13 の CloudFront リージョンのエッジキャッシュ サポートされる CloudFront トリガー ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス 最大実行時間 1 ミリ秒未満 5 秒 (ビューアトリガー)、30 秒 (オリジントリガー) 最大メモリ 2 MB 128 MB (ビューアトリガー)、10 GB (オリジントリガー) 合計パッケージサイズ 10 KB 1 MB (ビューアトリガー)、50 MB (オリジントリガー) ネットワークアクセス なし あり ファイルシステムアクセス なし あり リクエスト本文へのアクセス なし あり 料金 無料利用枠あり。リクエストごとに課金。 無料利用枠なし。リクエストと関数の実行時間ごとに課金。 まとめ・考察 どちらにするかは処理時間か鍵になりそうです。</description>
+      <description>CloudFrontFunction / LambdaEdge について CloudFront Functions は、Amazon CloudFront のサービスであり、Lambda@Edge より手前で動作し、シンプルな処理を高速かつ安価に実行できるように設計された機能です。従来の Lambda@Edge は、CloudFront のエッジロケーションで動作するカスタムの AWS Lambda 関数を作成して、リクエストまたはレスポンスを処理することができます。一方、CloudFront Functions はよりシンプルで軽量であり、Lambda@Edge よりも低いレイテンシと高いパフォーマンスを持っています。
+CloudFront Functions を使用すると、よりユーザーに近いエッジロケーションでリクエストを処理できるため、レスポンス時間が短縮され、ユーザーエクスペリエンスが向上します。また、コスト面でも Lambda@Edge よりも経済的であるため、シンプルな処理には CloudFront Functions が適しています。
+さらに、CloudFront Functions と Lambda@Edge を組み合わせて使用することも可能です。例えば、シンプルな処理やヘッダーの操作、URL の書き換えなどのタスクを CloudFront Functions で処理し、より高度な処理を必要とする場合には Lambda@Edge で追加の処理を行うことができます。 これにより、より効率的で高速なコンテンツデリバリーサービスを提供することができるため、AWS のクラウドインフラストラクチャを活用したウェブアプリケーションやコンテンツの配信を行う際に便利です。
+比較表 特徴 CloudFrontFunction Lambda@Edge ランタイムサポート JavaScript (ECMAScript 5.1 準拠) Node.js、Python 実行場所 218 以上の CloudFront エッジロケーション 13 の CloudFront リージョンのエッジキャッシュ サポートされる CloudFront トリガー ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス ビューアリクエスト、ビューアレスポンス、オリジンリクエスト、オリジンレスポンス 最大実行時間 1 ミリ秒未満 5 秒 (ビューアトリガー)、30 秒 (オリジントリガー) 最大メモリ 2 MB 128 MB (ビューアトリガー)、10 GB (オリジントリガー) 合計パッケージサイズ 10 KB 1 MB (ビューアトリガー)、50 MB (オリジントリガー) ネットワークアクセス なし あり ファイルシステムアクセス なし あり リクエスト本文へのアクセス なし あり 料金 無料利用枠あり。リクエストごとに課金。 無料利用枠なし。リクエストと関数の実行時間ごとに課金。 まとめ・考察 どちらにするかは処理時間か鍵になりそうです。</description>
     </item>
     
     <item>
@@ -59,8 +59,8 @@ CloudFront Functionsを使用すると、よりユーザーに近いエッジロ
       <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/docker-terraform/</guid>
-      <description>はじめに dockerでterraformを実行するためのdocker-compose.ymlを作成しました。
-メリット 環境の統一 Dockerは環境の統一を容易にします。異なるプラットフォームやOSで作業している場合でも、Dockerコンテナ内でTerraformを実行することで、実行環境を一貫させることができます。 バージョン管理 Terraformのバージョン管理は重要です。異なるプロジェクトや環境で複数のTerraformバージョンを使用する場合、Dockerコンテナ内でTerraformを実行することで、各プロジェクトや環境ごとに適切なTerraformバージョンを管理することができます。 windowsユーザーはtfenvが使えないので、dockerで管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.ymlファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraformの実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
+      <description>はじめに docker で terraform を実行するための docker-compose.yml を作成しました。
+メリット 環境の統一 Docker は環境の統一を容易にします。異なるプラットフォームや OS で作業している場合でも、Docker コンテナ内で Terraform を実行することで、実行環境を一貫させることができます。 バージョン管理 Terraform のバージョン管理は重要です。異なるプロジェクトや環境で複数の Terraform バージョンを使用する場合、Docker コンテナ内で Terraform を実行することで、各プロジェクトや環境ごとに適切な Terraform バージョンを管理することができます。 windows ユーザーは tfenv が使えないので、docker で管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.yml ファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraform の実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
     </item>
     
     <item>
@@ -69,9 +69,9 @@ CloudFront Functionsを使用すると、よりユーザーに近いエッジロ
       <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-codebuild/</guid>
-      <description>はじめに BitBucketPipelinesでimageのpushを行っていましたが、cpuがマルチプラットフォームに対応しておらず、x86_64のみしか対応していないため、イメージのpushをCodeBuildで行うことにしました。 arm64でECSタスクを実行するとコストが20％落ち、使い方によってはパフォーマンスが向上するらしい。
-今まで [BitBucketPipelines]　→　[awsECR] 変更後 [BitBucketPipelines]　→　[awsCodeBuild]　→　[awsECR] 結果 コストが20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
-やること CodeBuildの設定 構成 /image/以下のDockerfileをbuildしてECRにpushする /image/以下にbuildspec.ymlを配置 BitbucketからCodeBuildを実行するためのscript用意 bitbuket-pipelines.ymlの修正 CodeBuildの設定 data &amp;#34;aws_region&amp;#34; &amp;#34;this&amp;#34; {} resource &amp;#34;aws_codebuild_project&amp;#34; &amp;#34;ecr&amp;#34; { badge_enabled = false build_timeout = 20 // 20分 concurrent_build_limit = 1 // 並列実行数 encryption_key = &amp;#34;arn:aws:kms:${data.aws_region.this.name}:${data.aws_caller_identity.self.account_id}:alias/aws/s3&amp;#34; name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; project_visibility = &amp;#34;PRIVATE&amp;#34; queued_timeout = 480 service_role = aws_iam_role.codebuild_role.arn tags = { Environment = &amp;#34;${terraform.workspace}&amp;#34; Name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; } environment { compute_type = &amp;#34;BUILD_GENERAL1_SMALL&amp;#34; // 1vCPU, 3.</description>
+      <description>はじめに BitBucketPipelines で image の push を行っていましたが、cpu がマルチプラットフォームに対応しておらず、x86_64 のみしか対応していないため、イメージの push を CodeBuild で行うことにしました。 arm64 で ECS タスクを実行するとコストが 20％落ち、使い方によってはパフォーマンスが向上するらしい。
+今まで [BitBucketPipelines]　→ [awsECR] 変更後 [BitBucketPipelines]　→ [awsCodeBuild]　→ [awsECR] 結果 コストが 20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
+やること CodeBuild の設定 構成 /image/以下の Dockerfile を build して ECR に push する /image/以下に buildspec.yml を配置 Bitbucket から CodeBuild を実行するための script 用意 bitbuket-pipelines.yml の修正 CodeBuild の設定 data &amp;#34;aws_region&amp;#34; &amp;#34;this&amp;#34; {} resource &amp;#34;aws_codebuild_project&amp;#34; &amp;#34;ecr&amp;#34; { badge_enabled = false build_timeout = 20 // 20分 concurrent_build_limit = 1 // 並列実行数 encryption_key = &amp;#34;arn:aws:kms:${data.</description>
     </item>
     
     <item>
@@ -80,17 +80,17 @@ CloudFront Functionsを使用すると、よりユーザーに近いエッジロ
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-efs/</guid>
-      <description>Intro EFSバーストモードのクレジット枯渇対策メモ EFSをバーストモードで使用していて、クレジットが不足してきたため、私が取った対策をメモとして提供します。 技術要素 EFS aws EFSの2つのモード EFSには2つのモードがあります: バーストモード（汎用）とプロビジョンドモード。
-バーストモードは、使用されているストレージの量に基づいてトラフィックを自動的に調整し、一時的なトラフィックの増加に対応できます。バースト可能な帯域幅はトラフィックの使用状況によって異なり、最低105 Mbpsのバーストが可能です。ただし、1秒あたりの読み取り/書き込みリクエストの数には制限があり、制限を超えるとスループットが低下する可能性があります。
-プロビジョンドモードでは、ボリュームのスループット、最小/最大/バースト、および書き込みスループットを設定できます。読み取りスループットは書き込みスループットの3倍です。プロビジョンドモードはトラフィックに基づいた自動スケーリングはありませんが、スループットの設定に基づいて必要なトラフィックに対応できます。
+      <description>Intro EFS バーストモードのクレジット枯渇対策メモ EFS をバーストモードで使用していて、クレジットが不足してきたため、私が取った対策をメモとして提供します。 技術要素 EFS aws EFS の 2 つのモード EFS には 2 つのモードがあります: バーストモード（汎用）とプロビジョンドモード。
+バーストモードは、使用されているストレージの量に基づいてトラフィックを自動的に調整し、一時的なトラフィックの増加に対応できます。バースト可能な帯域幅はトラフィックの使用状況によって異なり、最低 105 Mbps のバーストが可能です。ただし、1 秒あたりの読み取り/書き込みリクエストの数には制限があり、制限を超えるとスループットが低下する可能性があります。
+プロビジョンドモードでは、ボリュームのスループット、最小/最大/バースト、および書き込みスループットを設定できます。読み取りスループットは書き込みスループットの 3 倍です。プロビジョンドモードはトラフィックに基づいた自動スケーリングはありませんが、スループットの設定に基づいて必要なトラフィックに対応できます。
 バーストモード（汎用）の注意事項と対策 バーストモード（汎用）の注意事項と対策
-注意事項1: バーストクレジット
-バーストモードは、ファイルの読み取り/書き込み操作から蓄積されたクレジットを消費し、NAS上のデータ使用状況に基づいてクレジットを補充します。バーストモードの最低速度は105 Mbpsです。ただし、バーストクレジットが枯渇すると、スループットの性能が著しく低下し、マウントシステムからのファイル参照がタイムアウトする場合があります。
+注意事項 1: バーストクレジット
+バーストモードは、ファイルの読み取り/書き込み操作から蓄積されたクレジットを消費し、NAS 上のデータ使用状況に基づいてクレジットを補充します。バーストモードの最低速度は 105 Mbps です。ただし、バーストクレジットが枯渇すると、スループットの性能が著しく低下し、マウントシステムからのファイル参照がタイムアウトする場合があります。
 確認方法:
-メトリック名: BurstCreditBalance 最初に2.3Tのクレジットが提供されます。 バーストクレジットの枯渇を避けるためには、以下の対策を取ることができます:
-クレジットの回復を加速するために大量のデータを配置する。 プロビジョンドモードに切り替えて一定のスループットを確保する。 注意事項2: リクエスト制限
-バーストモードにはリクエストの制限があります。 リード用の最大IOPSは35,000、ライト用の最大IOPSは7,000です。 バーストモードの最大IOPSを超えると、スループットのパフォーマンスが低下します。したがって、高いIOPSが必要な場合は、プロビジョンドモードの使用を検討してください。 確認方法: メトリック名: PercentIOLimit 検討に基づく対策の取得 バーストモードに大量のデータを配置してクレジットの回復速度を加速するという戦略を採用しました。
-10GBのファイルを配置する試み。 コスト: $3/月 コマンド: $ dd if=/dev/zero of=10GB_file_1 bs=10240k count=1000 確認方法: メトリック名: BurstCreditBalance 高いコストのため、プロビジョンドモードは使用していません。 スループット 33(Mib/s) / 最大読み取りスループット 99(Mib/s) コスト: $238/月 スループット 15(Mib/s) / 最大読み取りスループット 45(Mib/s) コスト: $108/月 スループット 5(Mib/s) / 最大読み取りスループット 15(Mib/s) コスト: $36/月 </description>
+メトリック名: BurstCreditBalance 最初に 2.3T のクレジットが提供されます。 バーストクレジットの枯渇を避けるためには、以下の対策を取ることができます:
+クレジットの回復を加速するために大量のデータを配置する。 プロビジョンドモードに切り替えて一定のスループットを確保する。 注意事項 2: リクエスト制限
+バーストモードにはリクエストの制限があります。 リード用の最大 IOPS は 35,000、ライト用の最大 IOPS は 7,000 です。 バーストモードの最大 IOPS を超えると、スループットのパフォーマンスが低下します。したがって、高い IOPS が必要な場合は、プロビジョンドモードの使用を検討してください。 確認方法: メトリック名: PercentIOLimit 検討に基づく対策の取得 バーストモードに大量のデータを配置してクレジットの回復速度を加速するという戦略を採用しました。
+10GB のファイルを配置する試み。 コスト: $3/月 コマンド: $ dd if=/dev/zero of=10GB_file_1 bs=10240k count=1000 確認方法: メトリック名: BurstCreditBalance 高いコストのため、プロビジョンドモードは使用していません。 スループット 33(Mib/s) / 最大読み取りスループット 99(Mib/s) コスト: $238/月 スループット 15(Mib/s) / 最大読み取りスループット 45(Mib/s) コスト: $108/月 スループット 5(Mib/s) / 最大読み取りスループット 15(Mib/s) コスト: $36/月 </description>
     </item>
     
     <item>
@@ -99,7 +99,7 @@ CloudFront Functionsを使用すると、よりユーザーに近いエッジロ
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-ec2-ebs-delete-on-termination/</guid>
-      <description>Intro デフォルトでは、EC2インスタンスが終了すると、アタッチされたEBSボリュームも削除されます。しかし、AWS CLIを使用してこれらを永続化する方法を探ってみましょう。 技術要素 EC2/EBS コマンド タグによってフィルタリングされた対象インスタンスのボリューム情報を取得します。 DeleteOnTerminationがtrueである場合、ボリュームは永続化されていないことを意味します。 $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .Reservations[0].Instances[0].BlockDeviceMappings [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;AttachTime&amp;#34;: &amp;#34;2023-04-18T04:59:14+00:00&amp;#34;, &amp;#34;DeleteOnTermination&amp;#34;: true, &amp;#34;Status&amp;#34;: &amp;#34;attached&amp;#34;, &amp;#34;VolumeId&amp;#34;: &amp;#34;vol-xxxxxxxxxxxx&amp;#34; } } ] 設定ファイルを準備します。 DeleteOnTerminationをfalseに設定します。 $ vim mapping.json [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;DeleteOnTermination&amp;#34;: false } } ] インスタンスの設定変更 $ aws ec2 modify-instance-attribute --instance-id &amp;#34;i-xxxxxxxxxxxxxx&amp;#34; --block-device-mappings file://mapping.json タグでフィルタリングされた対象インスタンスのボリューム情報を取得します。 DeleteOnTerminationがfalseであることを確認します。 $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .</description>
+      <description>Intro デフォルトでは、EC2 インスタンスが終了すると、アタッチされた EBS ボリュームも削除されます。しかし、AWS CLI を使用してこれらを永続化する方法を探ってみましょう。 技術要素 EC2/EBS コマンド タグによってフィルタリングされた対象インスタンスのボリューム情報を取得します。 DeleteOnTermination が true である場合、ボリュームは永続化されていないことを意味します。 $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .Reservations[0].Instances[0].BlockDeviceMappings [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;AttachTime&amp;#34;: &amp;#34;2023-04-18T04:59:14+00:00&amp;#34;, &amp;#34;DeleteOnTermination&amp;#34;: true, &amp;#34;Status&amp;#34;: &amp;#34;attached&amp;#34;, &amp;#34;VolumeId&amp;#34;: &amp;#34;vol-xxxxxxxxxxxx&amp;#34; } } ] 設定ファイルを準備します。 DeleteOnTermination を false に設定します。 $ vim mapping.json [ { &amp;#34;DeviceName&amp;#34;: &amp;#34;/dev/sda1&amp;#34;, &amp;#34;Ebs&amp;#34;: { &amp;#34;DeleteOnTermination&amp;#34;: false } } ] インスタンスの設定変更 $ aws ec2 modify-instance-attribute --instance-id &amp;#34;i-xxxxxxxxxxxxxx&amp;#34; --block-device-mappings file://mapping.json タグでフィルタリングされた対象インスタンスのボリューム情報を取得します。 DeleteOnTermination が false であることを確認します。 $ aws ec2 describe-instances --filters &amp;#34;Name=tag:Name,Values=xxxxx-prod-web01&amp;#34; | jq -r .</description>
     </item>
     
     <item>
@@ -108,13 +108,13 @@ CloudFront Functionsを使用すると、よりユーザーに近いエッジロ
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-oidc/</guid>
-      <description>Intro 以前は、GitHubやBitbucketから個人のAWSへのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDCに切り替えました。
-OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDCを使用することで、AWSへのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDCを使用する場合、AWSへのアクセスにはアクセストークンが使用されます。
-OIDCを導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。
-やること TerraformでOIDCを設定する方法 GitHub Bitbucket OIDCを使用してデプロイする方法 シンプルなGitHub ActionsとBitbucket Pipelinesの作成 技術要素 OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC（OpenID Connect）は、OAuth 2.0プロトコルを拡張し、Webアプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。
-Benefits of OIDC GitからのデプロイにOIDCを使用することで、いくつかの利点があります。それには、Gitを介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFAが有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFAが有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDCを使用することで、ユーザーはIDプロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。
-構築背景 以前は、AWSへのデプロイは手間がかかるものでした。CLIの代わりに管理コンソールからデプロイすることを考えるほどです。
-以前のフローでは、キーの取得に不便さが伴いました： アプリからMFAトークンを確認してコマンドを実行する： $ aws sts get-session-token &amp;ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &amp;ndash;token-code xxxxxx 取得したキーをエクスポートするか、Gitに登録する セッションの有効期限が切れるたびに定期的にコマンドを実行する&amp;hellip; TerraformでOIDCを構築する Terraformでの構築 GitHub Actionsを使用するシナリオとBitbucket Pipelinesを使用するシナリオの2つを説明します。 GitHub Sample variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.actions.githubusercontent.com&amp;#34; } data &amp;#34;tls_certificate&amp;#34; &amp;#34;github_oidc_token&amp;#34; { url = var.</description>
+      <description>Intro 以前は、GitHub や Bitbucket から個人の AWS へのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDC に切り替えました。
+OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDC を使用することで、AWS へのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDC を使用する場合、AWS へのアクセスにはアクセストークンが使用されます。
+OIDC を導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。
+やること Terraform で OIDC を設定する方法 GitHub Bitbucket OIDC を使用してデプロイする方法 シンプルな GitHub Actions と Bitbucket Pipelines の作成 技術要素 OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC（OpenID Connect）は、OAuth 2.0 プロトコルを拡張し、Web アプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。
+Benefits of OIDC Git からのデプロイに OIDC を使用することで、いくつかの利点があります。それには、Git を介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFA が有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFA が有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDC を使用することで、ユーザーは ID プロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。
+構築背景 以前は、AWS へのデプロイは手間がかかるものでした。CLI の代わりに管理コンソールからデプロイすることを考えるほどです。
+以前のフローでは、キーの取得に不便さが伴いました： アプリから MFA トークンを確認してコマンドを実行する： $ aws sts get-session-token &amp;ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &amp;ndash;token-code xxxxxx 取得したキーをエクスポートするか、Git に登録する セッションの有効期限が切れるたびに定期的にコマンドを実行する&amp;hellip; Terraform で OIDC を構築する Terraform での構築 GitHub Actions を使用するシナリオと Bitbucket Pipelines を使用するシナリオの 2 つを説明します。 GitHub Sample variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.</description>
     </item>
     
     <item>
@@ -135,10 +135,8 @@ $ volta install node success: installed and set node@18.15.0 (with npm@9.5.0) as
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
-      <description>Intro TerraformのWrapperツール、Terragrunt導入の検証を行いました。 導入の検証 通常、私はTerraformを使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Gitリポジトリをより小さなものに分割する必要がありました。Terraformのバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_onが明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の2点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraformの管理だけでなく、Terragruntのバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もしTerragruntの開発が停止した場合、スムーズにTerraformのコードに戻せるか 技術要素 terraform terragrunt aws Terragruntとは Terragruntは、Terraformを使用してインフラストラクチャを管理するための作業を簡素化するためのTerraform Wrapperとして知られるオープンソースのツールです。TerragruntはTerraformが提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraformを使用して複数の環境やアカウントを管理する際にTerragruntは非常に便利です。
-インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成
-このフォルダ構成は、他の記事を参考に作成されました。この構造の利点は、各環境ごとに異なる変数を指定できるため、コードの再利用性が向上することです。
-$ tree . . ├── README.md ├── docs │ └── graph-dependencies.png ├── envs │ ├── prod │ │ ├── ResourceGroupA │ │ │ └── terragrunt.hcl │ │ ├── ResourceGroupB │ │ │ └── terragrunt.</description>
+      <description>Intro Terraform の Wrapper ツール、Terragrunt 導入の検証を行いました。 導入の検証 通常、私は Terraform を使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Git リポジトリをより小さなものに分割する必要がありました。Terraform のバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_on が明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の 2 点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraform の管理だけでなく、Terragrunt のバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もし Terragrunt の開発が停止した場合、スムーズに Terraform のコードに戻せるか 技術要素 terraform terragrunt aws Terragrunt とは Terragrunt は、Terraform を使用してインフラストラクチャを管理するための作業を簡素化するための Terraform Wrapper として知られるオープンソースのツールです。Terragrunt は Terraform が提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraform を使用して複数の環境やアカウントを管理する際に Terragrunt は非常に便利です。
+インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成</description>
     </item>
     
     <item>
@@ -147,8 +145,8 @@ $ tree . . ├── README.md ├── docs │ └── graph-dependencies.p
       <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-ec2-nat-instance/</guid>
-      <description>Intro AmazonLinux2を使用してNATインスタンスを設定しました。構成プロセスにPackerとAnsibleを使用しました。
-AmazonLinux2を使用してNATインスタンスを設定します。 Amazonlinux2が選択する理由 Lambdaは外部から開始される着信接続をサポートしていないため、アクティブモードでFTPをサポートしません。 ECSは、プライベートIPアドレスの静的割り当てを許可していません。 Gatewayタイプであるため、NATプライベートゲートウェイと組み合わせることで静的割り当てを実現することは可能ですが、外部ソースからの着信接続を受け入れることはできません。 技術要素 Packer Ansible iptables CENTOS7（AmazonLinux2）では、デフォルトのファイアウォール管理システムはファイアウォールです。ただし、IPTablesを紹介して、NATインスタンスをセットアップします。 ファイル構造 $ tree . . ├── ansible.cfg ├── bin │ └── init.sh ├── inventory │ └── hosts ├── packer-template │ └── nat_instance.json ├── playbook │ └── setup.yml └── roles └── iptable └── tasks ├── main.yml └── templates ├── iptables-config.j2 ├── nat_cidr.j2 └── sysctl.conf Packerとテンプレートファイルの実行 Execution Command packer build packer-template/nat_instance.json . └── packer-template └── nat_instance.json { &amp;#34;variables&amp;#34;: { &amp;#34;aws_access_key&amp;#34;: &amp;#34;{{env `AWS_ACCESS_KEY`}}&amp;#34;, &amp;#34;aws_secret_key&amp;#34;: &amp;#34;{{env `AWS_SECRET_KEY`}}&amp;#34; }, &amp;#34;builders&amp;#34;: [ { &amp;#34;type&amp;#34;: &amp;#34;amazon-ebs&amp;#34;, &amp;#34;access_key&amp;#34;: &amp;#34;{{user `aws_access_key`}}&amp;#34;, &amp;#34;secret_key&amp;#34;: &amp;#34;{{user `aws_secret_key`}}&amp;#34;, &amp;#34;region&amp;#34;: &amp;#34;ap-northeast-1&amp;#34;, &amp;#34;ami_regions&amp;#34;: [ &amp;#34;ap-northeast-1&amp;#34; ], &amp;#34;associate_public_ip_address&amp;#34;: true, &amp;#34;source_ami&amp;#34;: &amp;#34;ami-0a3d21ec6281df8cb&amp;#34;, &amp;#34;instance_type&amp;#34;: &amp;#34;t3.</description>
+      <description>Intro AmazonLinux2 を使用して NAT インスタンスを設定しました。構成プロセスに Packer と Ansible を使用しました。
+AmazonLinux2 を使用して NAT インスタンスを設定します。 Amazonlinux2 が選択する理由 Lambda は外部から開始される着信接続をサポートしていないため、アクティブモードで FTP をサポートしません。 ECS は、プライベート IP アドレスの静的割り当てを許可していません。 Gateway タイプであるため、NAT プライベートゲートウェイと組み合わせることで静的割り当てを実現することは可能ですが、外部ソースからの着信接続を受け入れることはできません。 技術要素 Packer Ansible iptables CENTOS7（AmazonLinux2）では、デフォルトのファイアウォール管理システムはファイアウォールです。ただし、IPTables を紹介して、NAT インスタンスをセットアップします。 ファイル構造 $ tree . . ├── ansible.cfg ├── bin │ └── init.sh ├── inventory │ └── hosts ├── packer-template │ └── nat_instance.json ├── playbook │ └── setup.yml └── roles └── iptable └── tasks ├── main.yml └── templates ├── iptables-config.</description>
     </item>
     
     <item>
@@ -157,10 +155,10 @@ AmazonLinux2を使用してNATインスタンスを設定します。 Amazonlinu
       <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/browser-selenium/</guid>
-      <description>背景 NFSからs3へデータを移行してWEBホスティングするように基盤移行を行った際、404のオブジェクトが多数発生していた。 また、s3のオブジェクト名・プレフィックス名には禁則文字というものが存在するうらしい。 何が対象なのか判断するために、ブラウザのコンソールログを取得する必要があった。
+      <description>背景 NFS から s3 へデータを移行して WEB ホスティングするように基盤移行を行った際、404 のオブジェクトが多数発生していた。 また、s3 のオブジェクト名・プレフィックス名には禁則文字というものが存在するうらしい。 何が対象なのか判断するために、ブラウザのコンソールログを取得する必要があった。
 動作環境 環境・ツール
-$ sw_vers ProductName: Mac OS X ProductVersion: 10.15.2 BuildVersion: 19C57 $ python3 -V Python 3.7.3z $ pip3 list | grep -e chrome -e selenium chromedriver-binary 83.0.4103.39.0 selenium 3.141.0 install手順
-$ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.39.0 技術要素 selenium web driver python ec2 ファイル構成 ./log/ (ログ出力先ディレクトリ) ./config.ini (設定ファイル) ./grep.py (実行ファイル) ./url.txt (検索対象のURLリスト) 実行準備 クローリング対象のURLを記載する $ vi url.txt http://user:password@google.com/ http://www.google.com/ ... configファイルの配置 $ vi config.</description>
+$ sw_vers ProductName: Mac OS X ProductVersion: 10.15.2 BuildVersion: 19C57 $ python3 -V Python 3.7.3z $ pip3 list | grep -e chrome -e selenium chromedriver-binary 83.0.4103.39.0 selenium 3.141.0 install 手順
+$ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.39.0 技術要素 selenium web driver python ec2 ファイル構成 ./log/ (ログ出力先ディレクトリ) ./config.ini (設定ファイル) ./grep.py (実行ファイル) ./url.txt (検索対象のURLリスト) 実行準備 クローリング対象の URL を記載する $ vi url.</description>
     </item>
     
     <item>
@@ -169,7 +167,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>devops multipass で ローカル docker 環境の構築 2024-03-20 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 OIDC (Git to AWS)のデプロイメモ 2023-04-26 aws CloudFrontFunction と LambdaEdge の違い 2023-07-21 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 security Trivy を用いたコンテナ Image,DockerFile への脆弱性診断 2024-03-21 その他 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 </description>
+      <description>tags tags Recent Posts Trivy を用いたコンテナ Image,DockerFile への脆弱性診断 2024-03-21 multipass で ローカル docker 環境の構築 2024-03-20 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 CloudFrontFunction と LambdaEdge の違い 2023-07-21 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 OIDC (Git to AWS)のデプロイメモ 2023-04-26 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
     </item>
     
   </channel>
