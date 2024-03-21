@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>terraform on profile</title>
+    <title>Terraform on profile</title>
     <link>https://h-neco.github.io/tags/terraform/</link>
-    <description>Recent content in terraform on profile</description>
+    <description>Recent content in Terraform on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 10 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
@@ -13,8 +13,8 @@
       <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/docker-terraform/</guid>
-      <description>はじめに dockerでterraformを実行するためのdocker-compose.ymlを作成しました。
-メリット 環境の統一 Dockerは環境の統一を容易にします。異なるプラットフォームやOSで作業している場合でも、Dockerコンテナ内でTerraformを実行することで、実行環境を一貫させることができます。 バージョン管理 Terraformのバージョン管理は重要です。異なるプロジェクトや環境で複数のTerraformバージョンを使用する場合、Dockerコンテナ内でTerraformを実行することで、各プロジェクトや環境ごとに適切なTerraformバージョンを管理することができます。 windowsユーザーはtfenvが使えないので、dockerで管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.ymlファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraformの実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
+      <description>はじめに docker で terraform を実行するための docker-compose.yml を作成しました。
+メリット 環境の統一 Docker は環境の統一を容易にします。異なるプラットフォームや OS で作業している場合でも、Docker コンテナ内で Terraform を実行することで、実行環境を一貫させることができます。 バージョン管理 Terraform のバージョン管理は重要です。異なるプロジェクトや環境で複数の Terraform バージョンを使用する場合、Docker コンテナ内で Terraform を実行することで、各プロジェクトや環境ごとに適切な Terraform バージョンを管理することができます。 windows ユーザーは tfenv が使えないので、docker で管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.yml ファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraform の実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
     </item>
     
     <item>
@@ -23,9 +23,9 @@
       <pubDate>Tue, 27 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/aws-codebuild/</guid>
-      <description>はじめに BitBucketPipelinesでimageのpushを行っていましたが、cpuがマルチプラットフォームに対応しておらず、x86_64のみしか対応していないため、イメージのpushをCodeBuildで行うことにしました。 arm64でECSタスクを実行するとコストが20％落ち、使い方によってはパフォーマンスが向上するらしい。
-今まで [BitBucketPipelines]　→　[awsECR] 変更後 [BitBucketPipelines]　→　[awsCodeBuild]　→　[awsECR] 結果 コストが20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
-やること CodeBuildの設定 構成 /image/以下のDockerfileをbuildしてECRにpushする /image/以下にbuildspec.ymlを配置 BitbucketからCodeBuildを実行するためのscript用意 bitbuket-pipelines.ymlの修正 CodeBuildの設定 data &amp;#34;aws_region&amp;#34; &amp;#34;this&amp;#34; {} resource &amp;#34;aws_codebuild_project&amp;#34; &amp;#34;ecr&amp;#34; { badge_enabled = false build_timeout = 20 // 20分 concurrent_build_limit = 1 // 並列実行数 encryption_key = &amp;#34;arn:aws:kms:${data.aws_region.this.name}:${data.aws_caller_identity.self.account_id}:alias/aws/s3&amp;#34; name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; project_visibility = &amp;#34;PRIVATE&amp;#34; queued_timeout = 480 service_role = aws_iam_role.codebuild_role.arn tags = { Environment = &amp;#34;${terraform.workspace}&amp;#34; Name = &amp;#34;ecr-build-${terraform.workspace}&amp;#34; } environment { compute_type = &amp;#34;BUILD_GENERAL1_SMALL&amp;#34; // 1vCPU, 3.</description>
+      <description>はじめに BitBucketPipelines で image の push を行っていましたが、cpu がマルチプラットフォームに対応しておらず、x86_64 のみしか対応していないため、イメージの push を CodeBuild で行うことにしました。 arm64 で ECS タスクを実行するとコストが 20％落ち、使い方によってはパフォーマンスが向上するらしい。
+今まで [BitBucketPipelines]　→ [awsECR] 変更後 [BitBucketPipelines]　→ [awsCodeBuild]　→ [awsECR] 結果 コストが 20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない
+やること CodeBuild の設定 構成 /image/以下の Dockerfile を build して ECR に push する /image/以下に buildspec.yml を配置 Bitbucket から CodeBuild を実行するための script 用意 bitbuket-pipelines.yml の修正 CodeBuild の設定 data &amp;#34;aws_region&amp;#34; &amp;#34;this&amp;#34; {} resource &amp;#34;aws_codebuild_project&amp;#34; &amp;#34;ecr&amp;#34; { badge_enabled = false build_timeout = 20 // 20分 concurrent_build_limit = 1 // 並列実行数 encryption_key = &amp;#34;arn:aws:kms:${data.</description>
     </item>
     
     <item>
@@ -34,13 +34,13 @@
       <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-oidc/</guid>
-      <description>Intro 以前は、GitHubやBitbucketから個人のAWSへのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDCに切り替えました。
-OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDCを使用することで、AWSへのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDCを使用する場合、AWSへのアクセスにはアクセストークンが使用されます。
-OIDCを導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。
-やること TerraformでOIDCを設定する方法 GitHub Bitbucket OIDCを使用してデプロイする方法 シンプルなGitHub ActionsとBitbucket Pipelinesの作成 技術要素 OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC（OpenID Connect）は、OAuth 2.0プロトコルを拡張し、Webアプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。
-Benefits of OIDC GitからのデプロイにOIDCを使用することで、いくつかの利点があります。それには、Gitを介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFAが有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFAが有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDCを使用することで、ユーザーはIDプロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。
-構築背景 以前は、AWSへのデプロイは手間がかかるものでした。CLIの代わりに管理コンソールからデプロイすることを考えるほどです。
-以前のフローでは、キーの取得に不便さが伴いました： アプリからMFAトークンを確認してコマンドを実行する： $ aws sts get-session-token &amp;ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &amp;ndash;token-code xxxxxx 取得したキーをエクスポートするか、Gitに登録する セッションの有効期限が切れるたびに定期的にコマンドを実行する&amp;hellip; TerraformでOIDCを構築する Terraformでの構築 GitHub Actionsを使用するシナリオとBitbucket Pipelinesを使用するシナリオの2つを説明します。 GitHub Sample variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.actions.githubusercontent.com&amp;#34; } data &amp;#34;tls_certificate&amp;#34; &amp;#34;github_oidc_token&amp;#34; { url = var.</description>
+      <description>Intro 以前は、GitHub や Bitbucket から個人の AWS へのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDC に切り替えました。
+OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDC を使用することで、AWS へのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDC を使用する場合、AWS へのアクセスにはアクセストークンが使用されます。
+OIDC を導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。
+やること Terraform で OIDC を設定する方法 GitHub Bitbucket OIDC を使用してデプロイする方法 シンプルな GitHub Actions と Bitbucket Pipelines の作成 技術要素 OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC（OpenID Connect）は、OAuth 2.0 プロトコルを拡張し、Web アプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。
+Benefits of OIDC Git からのデプロイに OIDC を使用することで、いくつかの利点があります。それには、Git を介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFA が有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFA が有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDC を使用することで、ユーザーは ID プロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。
+構築背景 以前は、AWS へのデプロイは手間がかかるものでした。CLI の代わりに管理コンソールからデプロイすることを考えるほどです。
+以前のフローでは、キーの取得に不便さが伴いました： アプリから MFA トークンを確認してコマンドを実行する： $ aws sts get-session-token &amp;ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &amp;ndash;token-code xxxxxx 取得したキーをエクスポートするか、Git に登録する セッションの有効期限が切れるたびに定期的にコマンドを実行する&amp;hellip; Terraform で OIDC を構築する Terraform での構築 GitHub Actions を使用するシナリオと Bitbucket Pipelines を使用するシナリオの 2 つを説明します。 GitHub Sample variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.</description>
     </item>
     
     <item>
@@ -49,10 +49,8 @@ Benefits of OIDC GitからのデプロイにOIDCを使用することで、い�
       <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
-      <description>Intro TerraformのWrapperツール、Terragrunt導入の検証を行いました。 導入の検証 通常、私はTerraformを使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Gitリポジトリをより小さなものに分割する必要がありました。Terraformのバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_onが明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の2点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraformの管理だけでなく、Terragruntのバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もしTerragruntの開発が停止した場合、スムーズにTerraformのコードに戻せるか 技術要素 terraform terragrunt aws Terragruntとは Terragruntは、Terraformを使用してインフラストラクチャを管理するための作業を簡素化するためのTerraform Wrapperとして知られるオープンソースのツールです。TerragruntはTerraformが提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraformを使用して複数の環境やアカウントを管理する際にTerragruntは非常に便利です。
-インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成
-このフォルダ構成は、他の記事を参考に作成されました。この構造の利点は、各環境ごとに異なる変数を指定できるため、コードの再利用性が向上することです。
-$ tree . . ├── README.md ├── docs │ └── graph-dependencies.png ├── envs │ ├── prod │ │ ├── ResourceGroupA │ │ │ └── terragrunt.hcl │ │ ├── ResourceGroupB │ │ │ └── terragrunt.</description>
+      <description>Intro Terraform の Wrapper ツール、Terragrunt 導入の検証を行いました。 導入の検証 通常、私は Terraform を使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Git リポジトリをより小さなものに分割する必要がありました。Terraform のバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_on が明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の 2 点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraform の管理だけでなく、Terragrunt のバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もし Terragrunt の開発が停止した場合、スムーズに Terraform のコードに戻せるか 技術要素 terraform terragrunt aws Terragrunt とは Terragrunt は、Terraform を使用してインフラストラクチャを管理するための作業を簡素化するための Terraform Wrapper として知られるオープンソースのツールです。Terragrunt は Terraform が提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraform を使用して複数の環境やアカウントを管理する際に Terragrunt は非常に便利です。
+インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成</description>
     </item>
     
   </channel>

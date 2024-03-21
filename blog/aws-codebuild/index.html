@@ -115,38 +115,38 @@
     </div>
     <div>
     	<h3 id="はじめに">はじめに</h3>
-<p>BitBucketPipelinesでimageのpushを行っていましたが、cpuがマルチプラットフォームに対応しておらず、x86_64のみしか対応していないため、イメージのpushをCodeBuildで行うことにしました。
-arm64でECSタスクを実行するとコストが20％落ち、使い方によってはパフォーマンスが向上するらしい。</p>
+<p>BitBucketPipelines で image の push を行っていましたが、cpu がマルチプラットフォームに対応しておらず、x86_64 のみしか対応していないため、イメージの push を CodeBuild で行うことにしました。
+arm64 で ECS タスクを実行するとコストが 20％落ち、使い方によってはパフォーマンスが向上するらしい。</p>
 <ul>
 <li>今まで
 <ul>
-<li>[BitBucketPipelines]　→　[awsECR]</li>
+<li>[BitBucketPipelines]　 → 　[awsECR]</li>
 </ul>
 </li>
 <li>変更後
 <ul>
-<li>[BitBucketPipelines]　→　[awsCodeBuild]　→　[awsECR]</li>
+<li>[BitBucketPipelines]　 → 　[awsCodeBuild]　 → 　[awsECR]</li>
 </ul>
 </li>
 </ul>
 <h3 id="結果">結果</h3>
-<p>コストが20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない</p>
+<p>コストが 20%ぐらい落ちた。パフォーマンスはまだサービスインしてないため分からない</p>
 <h3 id="やること">やること</h3>
 <ul>
-<li>CodeBuildの設定
+<li>CodeBuild の設定
 <ul>
 <li>構成
 <ul>
-<li>/image/以下のDockerfileをbuildしてECRにpushする</li>
-<li>/image/以下にbuildspec.ymlを配置</li>
+<li>/image/以下の Dockerfile を build して ECR に push する</li>
+<li>/image/以下に buildspec.yml を配置</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>BitbucketからCodeBuildを実行するためのscript用意</li>
-<li>bitbuket-pipelines.ymlの修正</li>
+<li>Bitbucket から CodeBuild を実行するための script 用意</li>
+<li>bitbuket-pipelines.yml の修正</li>
 </ul>
-<h3 id="codebuildの設定">CodeBuildの設定</h3>
+<h3 id="codebuild-の設定">CodeBuild の設定</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-hcl" data-lang="hcl"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#e6db74">&#34;aws_region&#34; &#34;this&#34;</span> {}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_codebuild_project&#34; &#34;ecr&#34;</span> {
@@ -280,7 +280,7 @@ arm64でECSタスクを実行するとコストが20％落ち、使い方によ�
 </span></span><span style="display:flex;"><span>  role       <span style="color:#f92672">=</span> <span style="color:#66d9ef">aws_iam_role</span>.<span style="color:#66d9ef">codebuild_role</span>.<span style="color:#66d9ef">name</span>
 </span></span><span style="display:flex;"><span>  policy_arn <span style="color:#f92672">=</span> <span style="color:#66d9ef">aws_iam_policy</span>.<span style="color:#66d9ef">codebuild_ecr_push_policy</span>.<span style="color:#66d9ef">arn</span>
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="buildspec-yalの配置">buildspec yalの配置</h3>
+</span></span></code></pre></div><h3 id="buildspec-yal-の配置">buildspec yal の配置</h3>
 <ul>
 <li>この辺を参考にして作成して配置
 <ul>
@@ -288,7 +288,7 @@ arm64でECSタスクを実行するとコストが20％落ち、使い方によ�
 </ul>
 </li>
 </ul>
-<h3 id="bitbucketからcodebuildを実行する用のスクリプト">BitBucketからcodebuildを実行する用のスクリプト</h3>
+<h3 id="bitbucket-から-codebuild-を実行する用のスクリプト">BitBucket から codebuild を実行する用のスクリプト</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>env<span style="color:#f92672">=</span>$1
 </span></span><span style="display:flex;"><span>
@@ -317,28 +317,28 @@ arm64でECSタスクを実行するとコストが20％落ち、使い方によ�
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>exit <span style="color:#ae81ff">0</span>
-</span></span></code></pre></div><h3 id="bitbucketpipelineの設定">BitbucketPipelineの設定</h3>
+</span></span></code></pre></div><h3 id="bitbucketpipeline-の設定">BitbucketPipeline の設定</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">definitions</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">steps</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">step</span>: <span style="color:#75715e">&amp;ECR-push</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ECR push</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">atlassian/pipelines-awscli:latest</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">trigger</span>: <span style="color:#ae81ff">manual</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">oidc</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">script</span>:
-</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token</span>
-</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">echo $BITBUCKET_STEP_OIDC_TOKEN &gt; $(pwd)/web-identity-token</span>
-</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">aws s3 sync ${BITBUCKET_CLONE_DIR}/image/ s3://bucketname/buildspec/ --delete</span>
-</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">/bin/bash ./scripts/codebuild.sh ${ENV}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">step</span>: <span style="color:#75715e">&amp;ECR-push</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ECR push</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">image</span>: <span style="color:#ae81ff">atlassian/pipelines-awscli:latest</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">trigger</span>: <span style="color:#ae81ff">manual</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">oidc</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>                  - <span style="color:#ae81ff">export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token</span>
+</span></span><span style="display:flex;"><span>                  - <span style="color:#ae81ff">echo $BITBUCKET_STEP_OIDC_TOKEN &gt; $(pwd)/web-identity-token</span>
+</span></span><span style="display:flex;"><span>                  - <span style="color:#ae81ff">aws s3 sync ${BITBUCKET_CLONE_DIR}/image/ s3://bucketname/buildspec/ --delete</span>
+</span></span><span style="display:flex;"><span>                  - <span style="color:#ae81ff">/bin/bash ./scripts/codebuild.sh ${ENV}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">pipelines</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">custom</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image-update</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">step</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;&lt;</span>: <span style="color:#75715e">*ECR-push</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">deployment</span>: <span style="color:#ae81ff">Staging</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">step</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;&lt;</span>: <span style="color:#75715e">*ECR-push</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">deployment</span>: <span style="color:#ae81ff">Production</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">custom</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image-update</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">step</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">&lt;&lt;</span>: <span style="color:#75715e">*ECR-push</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">deployment</span>: <span style="color:#ae81ff">Staging</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">step</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">&lt;&lt;</span>: <span style="color:#75715e">*ECR-push</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">deployment</span>: <span style="color:#ae81ff">Production</span>
 </span></span></code></pre></div>
 	    
 	</div>

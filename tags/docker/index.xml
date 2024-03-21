@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>docker on profile</title>
+    <title>Docker on profile</title>
     <link>https://h-neco.github.io/tags/docker/</link>
-    <description>Recent content in docker on profile</description>
+    <description>Recent content in Docker on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Added Docker Build Status Badge to shields.io</title>
-      <link>https://h-neco.github.io/projects/contributions/shields-docker/</link>
-      <pubDate>Tue, 07 Jan 2020 17:09:26 +0000</pubDate>
-      
-      <guid>https://h-neco.github.io/projects/contributions/shields-docker/</guid>
-      <description>Shields.io is a massive library of badges that can be inserted into project README&amp;rsquo;s or websites displaying various statuses (code coverage, health, version, etc). Support for docker was missing the current build health, and was a pretty trivial addition.</description>
-    </item>
-    
     <item>
       <title>multipassでの仮想マシンの作成/Docker環境構築</title>
       <link>https://h-neco.github.io/blog/vm-multipass/</link>
@@ -28,32 +19,13 @@ install $ brew install multipass ==&amp;gt; Installing Cask multipass ==&amp;gt;
     </item>
     
     <item>
-      <title>Trivy を用いたコンテナImage,DockerFileへの脆弱性診断</title>
-      <link>https://h-neco.github.io/blog/docker-trivy/</link>
-      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://h-neco.github.io/blog/docker-trivy/</guid>
-      <description>Intro trivy は、コンテナイメージの脆弱性診断を行うツールです。trivy を使用することで、コンテナイメージに含まれる脆弱性を検出し、セキュリティを向上させることができます。
-docker の環境構築についてはこちら 環境構築 作業の大枠 Dockerfile に対して trivy で診断を行います。 問題なければ、イメージをビルドし、trivy で再度スキャンを行います。 事前準備 適当なディレクトリを作成し、Dockerfile を作成します。 $ mkdir test $ vim test/Dockerfile FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim EXPOSE 80/tcp 診断 DockerFile を trivy で診断します。config コマンドを実行します。 $ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/test:/workdir aquasec/trivy config --ignorefile .trivy/.trivyignore --severity HIGH,CRITICAL . 2024-03-20T13:16:35.209Z	INFO	Misconfiguration scanning is enabled 2024-03-20T13:16:35.210Z	INFO	Need to update the built-in policies 2024-03-20T13:16:35.211Z	INFO	Downloading the built-in policies... 46.13 KiB / 46.</description>
-    </item>
-    
-    <item>
       <title>dockerでterraformを実行する</title>
       <link>https://h-neco.github.io/blog/docker-terraform/</link>
       <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/docker-terraform/</guid>
-      <description>はじめに dockerでterraformを実行するためのdocker-compose.ymlを作成しました。
-メリット 環境の統一 Dockerは環境の統一を容易にします。異なるプラットフォームやOSで作業している場合でも、Dockerコンテナ内でTerraformを実行することで、実行環境を一貫させることができます。 バージョン管理 Terraformのバージョン管理は重要です。異なるプロジェクトや環境で複数のTerraformバージョンを使用する場合、Dockerコンテナ内でTerraformを実行することで、各プロジェクトや環境ごとに適切なTerraformバージョンを管理することができます。 windowsユーザーはtfenvが使えないので、dockerで管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.ymlファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraformの実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
-    </item>
-    
-    <item>
-      <title>Docker image for Bitbucket CI/CD Pipelines  &#34;shipit&#34;</title>
-      <link>https://h-neco.github.io/projects/creations/docker-marketplace/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://h-neco.github.io/projects/creations/docker-marketplace/</guid>
-      <description>Provides required dependencies and additional utilities to simplify and codify the process of building, testing and delivering Atlassian plugins all the way to the live marketplace. Executes integration/AUT level tests against all stated compatible versions for the productUploads generated artifact to Atlassian marketplaceProvides corresponding metadata indicating version, release notes, and compatibility</description>
+      <description>はじめに docker で terraform を実行するための docker-compose.yml を作成しました。
+メリット 環境の統一 Docker は環境の統一を容易にします。異なるプラットフォームや OS で作業している場合でも、Docker コンテナ内で Terraform を実行することで、実行環境を一貫させることができます。 バージョン管理 Terraform のバージョン管理は重要です。異なるプロジェクトや環境で複数の Terraform バージョンを使用する場合、Docker コンテナ内で Terraform を実行することで、各プロジェクトや環境ごとに適切な Terraform バージョンを管理することができます。 windows ユーザーは tfenv が使えないので、docker で管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.yml ファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraform の実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
     </item>
     
   </channel>

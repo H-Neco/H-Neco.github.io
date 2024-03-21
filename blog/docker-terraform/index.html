@@ -115,18 +115,18 @@
     </div>
     <div>
     	<h3 id="はじめに">はじめに</h3>
-<p>dockerでterraformを実行するためのdocker-compose.ymlを作成しました。</p>
+<p>docker で terraform を実行するための docker-compose.yml を作成しました。</p>
 <h3 id="メリット">メリット</h3>
 <ul>
 <li>環境の統一
 <ul>
-<li>Dockerは環境の統一を容易にします。異なるプラットフォームやOSで作業している場合でも、Dockerコンテナ内でTerraformを実行することで、実行環境を一貫させることができます。</li>
+<li>Docker は環境の統一を容易にします。異なるプラットフォームや OS で作業している場合でも、Docker コンテナ内で Terraform を実行することで、実行環境を一貫させることができます。</li>
 </ul>
 </li>
 <li>バージョン管理
 <ul>
-<li>Terraformのバージョン管理は重要です。異なるプロジェクトや環境で複数のTerraformバージョンを使用する場合、Dockerコンテナ内でTerraformを実行することで、各プロジェクトや環境ごとに適切なTerraformバージョンを管理することができます。</li>
-<li>windowsユーザーはtfenvが使えないので、dockerで管理するのが良いかと思います。</li>
+<li>Terraform のバージョン管理は重要です。異なるプロジェクトや環境で複数の Terraform バージョンを使用する場合、Docker コンテナ内で Terraform を実行することで、各プロジェクトや環境ごとに適切な Terraform バージョンを管理することができます。</li>
+<li>windows ユーザーは tfenv が使えないので、docker で管理するのが良いかと思います。</li>
 </ul>
 </li>
 </ul>
@@ -137,25 +137,25 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>export AWS_DEFAULT_REGION<span style="color:#f92672">=</span>ap-northeast-1
 </span></span><span style="display:flex;"><span>export AWS_ACCESS_KEY_ID<span style="color:#f92672">=</span>xxxxxx
 </span></span><span style="display:flex;"><span>export AWS_SECRET_ACCESS_KEY<span style="color:#f92672">=</span>xxxxxx
-</span></span></code></pre></div><h3 id="docker-composeymlファイルの作成">docker-compose.ymlファイルの作成</h3>
+</span></span></code></pre></div><h3 id="docker-composeyml-ファイルの作成">docker-compose.yml ファイルの作成</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">terraform</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">hashicorp/terraform:1.5.2</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">platform</span>: <span style="color:#ae81ff">linux/x86_64</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">~/.aws:/root/.aws</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./:/workdir</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">working_dir</span>: <span style="color:#e6db74">&#34;/workdir&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">AWS_ACCESS_KEY_ID</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">AWS_SECRET_ACCESS_KEY</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">AWS_DEFAULT_REGION</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">entrypoint</span>: <span style="color:#ae81ff">sh -c &#39;terraform init &amp;&amp;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">terraform workspace select &#34;${WORKSPACE}&#34; 2&gt;/dev/null ||</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">terraform workspace new &#34;${WORKSPACE}&#34; &amp;&amp;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">terraform &#34;${COMMAND}&#34;&#39;</span>
-</span></span></code></pre></div><h3 id="terraformの実行">terraformの実行</h3>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">terraform</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">hashicorp/terraform:1.5.2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">platform</span>: <span style="color:#ae81ff">linux/x86_64</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">~/.aws:/root/.aws</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">./:/workdir</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">working_dir</span>: <span style="color:#e6db74">&#34;/workdir&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">AWS_ACCESS_KEY_ID</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">AWS_SECRET_ACCESS_KEY</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">AWS_DEFAULT_REGION</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">entrypoint</span>: <span style="color:#ae81ff">sh -c &#39;terraform init &amp;&amp;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">terraform workspace select &#34;${WORKSPACE}&#34; 2&gt;/dev/null ||</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">terraform workspace new &#34;${WORKSPACE}&#34; &amp;&amp;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">terraform &#34;${COMMAND}&#34;&#39;</span>
+</span></span></code></pre></div><h3 id="terraform-の実行">terraform の実行</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># コードフォーマッターの実行</span>
 </span></span><span style="display:flex;"><span>export WORKSPACE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;prod&#34;</span> COMMAND<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fmt&#34;</span> <span style="color:#f92672">&amp;&amp;</span> docker-compose -p プロジェクト名 run --rm terraform
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># コード構文チェックの実行</span>

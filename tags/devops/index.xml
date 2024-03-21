@@ -6,33 +6,40 @@
     <description>Recent content in DevOps on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Feb 2018 12:41:05 -0500</lastBuildDate><atom:link href="https://h-neco.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Organically DevOps: Building Quality and Security into the Software Supply Chain at Liberty Mutual</title>
-      <link>https://h-neco.github.io/publications/alldaydevops/</link>
-      <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
+      <title>dockerでterraformを実行する</title>
+      <link>https://h-neco.github.io/blog/docker-terraform/</link>
+      <pubDate>Mon, 10 Jul 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://h-neco.github.io/publications/alldaydevops/</guid>
-      <description>This talk looked at Liberty Mutual’s transformation to Continuous Integration, Continuous Delivery, and DevOps. For a large, heavily regulated industry, this task can not only be daunting, but viewed by many as impossible. Often, organizations try to reduce the friction through micro-fixes, but Eddie’s team asked how to change the culture to reduce the friction and concluded with the following final points:
-Don’t mandate DevOps. Give employees the chance to master their discipline with examples to set and follow.</description>
+      <guid>https://h-neco.github.io/blog/docker-terraform/</guid>
+      <description>はじめに docker で terraform を実行するための docker-compose.yml を作成しました。
+メリット 環境の統一 Docker は環境の統一を容易にします。異なるプラットフォームや OS で作業している場合でも、Docker コンテナ内で Terraform を実行することで、実行環境を一貫させることができます。 バージョン管理 Terraform のバージョン管理は重要です。異なるプロジェクトや環境で複数の Terraform バージョンを使用する場合、Docker コンテナ内で Terraform を実行することで、各プロジェクトや環境ごとに適切な Terraform バージョンを管理することができます。 windows ユーザーは tfenv が使えないので、docker で管理するのが良いかと思います。 やること 環境変数のセット export AWS_DEFAULT_REGION=ap-northeast-1 export AWS_ACCESS_KEY_ID=xxxxxx export AWS_SECRET_ACCESS_KEY=xxxxxx docker-compose.yml ファイルの作成 version: &amp;#34;3&amp;#34; services: terraform: image: hashicorp/terraform:1.5.2 platform: linux/x86_64 volumes: - ~/.aws:/root/.aws - ./:/workdir working_dir: &amp;#34;/workdir&amp;#34; environment: - AWS_ACCESS_KEY_ID - AWS_SECRET_ACCESS_KEY - AWS_DEFAULT_REGION entrypoint: sh -c &amp;#39;terraform init &amp;amp;&amp;amp; terraform workspace select &amp;#34;${WORKSPACE}&amp;#34; 2&amp;gt;/dev/null || terraform workspace new &amp;#34;${WORKSPACE}&amp;#34; &amp;amp;&amp;amp; terraform &amp;#34;${COMMAND}&amp;#34;&amp;#39; terraform の実行 # コードフォーマッターの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;fmt&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # コード構文チェックの実行 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;validate&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform # 実行計画の確認 export WORKSPACE=&amp;#34;prod&amp;#34; COMMAND=&amp;#34;plan&amp;#34; &amp;amp;&amp;amp; docker-compose -p プロジェクト名 run --rm terraform </description>
     </item>
     
     <item>
-      <title>BOSH release for Bamboo &amp; Remote Agents</title>
-      <link>https://h-neco.github.io/projects/creations/bosh-agents/</link>
-      <pubDate>Sun, 11 Feb 2018 12:41:05 -0500</pubDate>
+      <title>OIDCでのデプロイメモ (Git to AWS)</title>
+      <link>https://h-neco.github.io/blog/cicd-oidc/</link>
+      <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://h-neco.github.io/projects/creations/bosh-agents/</guid>
-      <description>BOSH (Bosh Outer SHell) &amp;ldquo;&amp;hellip; is an open source tool for release engineering, deployment, lifecycle management, and monitoring of distributed systems.&amp;rdquo; And it&amp;rsquo;s amazingly powerful. This examples uses BOSH to provision an Alassian vendor app running on JDK along with the support Postgres database and agents to support it. The releases manages the health of services and will automatically provision, start/stop processes across the various services.</description>
+      <guid>https://h-neco.github.io/blog/cicd-oidc/</guid>
+      <description>Intro 以前は、GitHub や Bitbucket から個人の AWS へのデプロイ時にアクセスキーとシークレットキーを使用していました。しかし、これを管理するのが煩雑になったため、OIDC に切り替えました。
+OIDC (OpenID Connect) は、認証と認可のためのオープンスタンダードです。OIDC を使用することで、AWS へのアクセスを安全に管理し、認証プロバイダを介してシームレスなアクセス体験を提供できます。OIDC を使用する場合、AWS へのアクセスにはアクセストークンが使用されます。
+OIDC を導入することで、アクセスキーやシークレットキーを個別に管理する必要がなくなり、セキュリティと利便性が向上します。
+やること Terraform で OIDC を設定する方法 GitHub Bitbucket OIDC を使用してデプロイする方法 シンプルな GitHub Actions と Bitbucket Pipelines の作成 技術要素 OIDC AWS Bitbucket GitHub Terraform What is OIDC? OIDC（OpenID Connect）は、OAuth 2.0 プロトコルを拡張し、Web アプリケーションやモバイルアプリケーションにおけるユーザー認証の仕組みを提供する認証プロトコルです。
+Benefits of OIDC Git からのデプロイに OIDC を使用することで、いくつかの利点があります。それには、Git を介したデプロイのセキュリティの向上、トークンの有効期限の管理の容易化、MFA が有効化されていないアクセスキーの使用に関連するセキュリティリスクの回避などがあります。ただし、MFA が有効化されたアクセスキーを使用する場合は、デバイス管理などの要素を考慮する必要があるため、複雑な場合があります。OIDC を使用することで、ユーザーは ID プロバイダーの認証資格情報を使用できるため、認証情報の管理が簡素化され、セキュリティが向上します。
+構築背景 以前は、AWS へのデプロイは手間がかかるものでした。CLI の代わりに管理コンソールからデプロイすることを考えるほどです。
+以前のフローでは、キーの取得に不便さが伴いました： アプリから MFA トークンを確認してコマンドを実行する： $ aws sts get-session-token &amp;ndash;serial-number arn:aws:iam::xxxxxx:mfa/xxxxxx &amp;ndash;token-code xxxxxx 取得したキーをエクスポートするか、Git に登録する セッションの有効期限が切れるたびに定期的にコマンドを実行する&amp;hellip; Terraform で OIDC を構築する Terraform での構築 GitHub Actions を使用するシナリオと Bitbucket Pipelines を使用するシナリオの 2 つを説明します。 GitHub Sample variable &amp;#34;aws_account_id&amp;#34; {} variable &amp;#34;github_repo_name&amp;#34; {} variable &amp;#34;oidc_token_url&amp;#34; { default = &amp;#34;https://token.</description>
     </item>
     
     <item>
-      <title>Atlassian Marketplace Plugins</title>
-      <link>https://h-neco.github.io/projects/creations/marketplace/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>TerraformのWrapperツール、Terragrunt導入の検証を行いました。</title>
+      <link>https://h-neco.github.io/blog/cicd-terragrunt-1/</link>
+      <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://h-neco.github.io/projects/creations/marketplace/</guid>
-      <description>Multiple plugins used by thousands of teams that provide enhanced functionality of Atlassian’s core products (primarily JIRA and Bamboo) to enrich CI/CD capabilities, DevOps automation, or productivity. Functionality spans user interface, web services and persistence.</description>
+      <guid>https://h-neco.github.io/blog/cicd-terragrunt-1/</guid>
+      <description>Intro Terraform の Wrapper ツール、Terragrunt 導入の検証を行いました。 導入の検証 通常、私は Terraform を使用していますが、次のような不便さがありました： 各デプロイの影響範囲を最小限に抑えるために、Git リポジトリをより小さなものに分割する必要がありました。Terraform のバージョンアップが面倒でした。 コードからリソースの依存関係を理解するのが難しかったです。 depends_on が明示的に使用できない場所でデプロイ順序に注意する必要がありました。 導入後の課題 導入に関して、以下の 2 点について検証が保留されています。もし詳しい方がいたら相談に乗っていただけると幸いです。 Terraform の管理だけでなく、Terragrunt のバージョン管理も行う必要があります。バージョンアップのプロセスはどのように変わるのか もし Terragrunt の開発が停止した場合、スムーズに Terraform のコードに戻せるか 技術要素 terraform terragrunt aws Terragrunt とは Terragrunt は、Terraform を使用してインフラストラクチャを管理するための作業を簡素化するための Terraform Wrapper として知られるオープンソースのツールです。Terragrunt は Terraform が提供する機能を拡張し、モジュールのコード再利用、柔軟な構成、再利用性の向上を可能にします。特に、Terraform を使用して複数の環境やアカウントを管理する際に Terragrunt は非常に便利です。
+インストール $ brew install tfenv # Installs Terraform (version specified in .terraform-version) $ brew install tgenv # Installs Terragrunt (version specified in .terragrunt-version) ###　フォルダ構成</description>
     </item>
     
   </channel>

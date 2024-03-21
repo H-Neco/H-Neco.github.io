@@ -116,7 +116,7 @@
     <div>
     	<h2 id="intro">Intro</h2>
 <ul>
-<li>デフォルトでは、EC2インスタンスが終了すると、アタッチされたEBSボリュームも削除されます。しかし、AWS CLIを使用してこれらを永続化する方法を探ってみましょう。</li>
+<li>デフォルトでは、EC2 インスタンスが終了すると、アタッチされた EBS ボリュームも削除されます。しかし、AWS CLI を使用してこれらを永続化する方法を探ってみましょう。</li>
 </ul>
 <h2 id="技術要素">技術要素</h2>
 <ul>
@@ -126,7 +126,7 @@
 <ul>
 <li>タグによってフィルタリングされた対象インスタンスのボリューム情報を取得します。
 <ul>
-<li>DeleteOnTerminationがtrueである場合、ボリュームは永続化されていないことを意味します。</li>
+<li>DeleteOnTermination が true である場合、ボリュームは永続化されていないことを意味します。</li>
 </ul>
 </li>
 </ul>
@@ -145,11 +145,11 @@
 </span></span></code></pre></div><ul>
 <li>設定ファイルを準備します。
 <ul>
-<li>DeleteOnTerminationをfalseに設定します。</li>
+<li>DeleteOnTermination を false に設定します。</li>
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ vim mapping.json 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ vim mapping.json
 </span></span><span style="display:flex;"><span>[
 </span></span><span style="display:flex;"><span>  {
 </span></span><span style="display:flex;"><span>    &#34;DeviceName&#34;: &#34;/dev/sda1&#34;,
@@ -165,7 +165,7 @@
 </span></span></code></pre></div><ul>
 <li>タグでフィルタリングされた対象インスタンスのボリューム情報を取得します。
 <ul>
-<li>DeleteOnTerminationがfalseであることを確認します。</li>
+<li>DeleteOnTermination が false であることを確認します。</li>
 </ul>
 </li>
 </ul>
