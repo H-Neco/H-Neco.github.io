@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Dockerのイメージをビルドするとき注意すること</title>
+      <link>https://h-neco.github.io/blog/docker-security-image-build/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/docker-security-image-build/</guid>
+      <description>Intro クレデンシャルをビルド中に削除しても、レイヤに残ってしまう件について実際に手を動かして確認してみます。
+docker の環境構築についてはこちら 環境構築 事前準備 適当なディレクトリを作成し、Dockerfile を作成します。 シークレットにすべき内容を含むファイルを作成し、削除します。 ubuntu@test-vm-01:~/test$ cat Dockerfile FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim RUN echo &amp;#34;this is secret&amp;#34; &amp;gt; /secret.txt RUN rm /secret.txt build ubuntu@test-vm-01:~/test$ docker build -f Dockerfile -t test:latast . イメージを保存し、レイヤを確認します。 ubuntu@test-vm-01:~/test$ docker save test:latast | tar -xC dump/ ubuntu@test-vm-01:~/test$ grep &amp;#34;this is secret&amp;#34; dump/blobs/sha256/26e6cd8b82ed33846375b5484f907ec7547b1b58919e607d7954f6ed9f36f5ab ... {&amp;#34;created&amp;#34;:&amp;#34;2024-03-21T16:21:04.288826451+09:00&amp;#34;,&amp;#34;created_by&amp;#34;:&amp;#34;RUN /bin/sh -c echo \&amp;#34;this is secret\&amp;#34; \u003e /secret.txt # buildkit&amp;#34;,&amp;#34;comment&amp;#34;:&amp;#34;buildkit.dockerfile.v0&amp;#34;},{&amp;#34;created&amp;#34;:&amp;#34;2024-03-21T16:21:04.637976236+09:00&amp;#34;,&amp;#34;created_by&amp;#34;:&amp;#34;RUN /bin/sh -c rm /secret.txt # buildkit&amp;#34;,&amp;#34;comment&amp;#34;:&amp;#34;buildkit.dockerfile.v0&amp;#34;}],&amp;#34;os&amp;#34;:&amp;#34;linux&amp;#34;,&amp;#34;rootfs&amp;#34;:{&amp;#34;type&amp;#34;:&amp;#34;layers&amp;#34;,&amp;#34;diff_ids&amp;#34;: ... まとめ クレデンシャルをビルド中に削除しても、レイヤに残ってしまうので、公開するイメージには含めないようにすることが重要です。 </description>
+    </item>
+    
+    <item>
       <title>Trivy を用いたコンテナImage,DockerFileへの脆弱性診断</title>
       <link>https://h-neco.github.io/blog/docker-trivy/</link>
       <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
