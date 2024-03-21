@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 17 May 2023 07:27:58 +0900</lastBuildDate><atom:link href="https://h-neco.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Dockerのイメージをビルドするとき注意すること</title>
+      <link>https://h-neco.github.io/blog/docker-security-image-build/</link>
+      <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/docker-security-image-build/</guid>
+      <description>Intro クレデンシャルをビルド中に削除しても、レイヤに残ってしまう件について実際に手を動かして確認してみます。
+docker の環境構築についてはこちら 環境構築 事前準備 適当なディレクトリを作成し、Dockerfile を作成します。 シークレットにすべき内容を含むファイルを作成し、削除します。 ubuntu@test-vm-01:~/test$ cat Dockerfile FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim RUN echo &amp;#34;this is secret&amp;#34; &amp;gt; /secret.txt RUN rm /secret.txt build ubuntu@test-vm-01:~/test$ docker build -f Dockerfile -t test:latast . イメージを保存し、レイヤを確認します。 ubuntu@test-vm-01:~/test$ docker save test:latast | tar -xC dump/ ubuntu@test-vm-01:~/test$ grep &amp;#34;this is secret&amp;#34; dump/blobs/sha256/26e6cd8b82ed33846375b5484f907ec7547b1b58919e607d7954f6ed9f36f5ab ... {&amp;#34;created&amp;#34;:&amp;#34;2024-03-21T16:21:04.288826451+09:00&amp;#34;,&amp;#34;created_by&amp;#34;:&amp;#34;RUN /bin/sh -c echo \&amp;#34;this is secret\&amp;#34; \u003e /secret.txt # buildkit&amp;#34;,&amp;#34;comment&amp;#34;:&amp;#34;buildkit.dockerfile.v0&amp;#34;},{&amp;#34;created&amp;#34;:&amp;#34;2024-03-21T16:21:04.637976236+09:00&amp;#34;,&amp;#34;created_by&amp;#34;:&amp;#34;RUN /bin/sh -c rm /secret.txt # buildkit&amp;#34;,&amp;#34;comment&amp;#34;:&amp;#34;buildkit.dockerfile.v0&amp;#34;}],&amp;#34;os&amp;#34;:&amp;#34;linux&amp;#34;,&amp;#34;rootfs&amp;#34;:{&amp;#34;type&amp;#34;:&amp;#34;layers&amp;#34;,&amp;#34;diff_ids&amp;#34;: ... まとめ クレデンシャルをビルド中に削除しても、レイヤに残ってしまうので、公開するイメージには含めないようにすることが重要です。 </description>
+    </item>
+    
+    <item>
       <title>multipassでの仮想マシンの作成/Docker環境構築</title>
       <link>https://h-neco.github.io/blog/vm-multipass/</link>
       <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
@@ -167,7 +177,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>tags tags Recent Posts Trivy を用いたコンテナ Image,DockerFile への脆弱性診断 2024-03-21 multipass で ローカル docker 環境の構築 2024-03-20 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 CloudFrontFunction と LambdaEdge の違い 2023-07-21 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 OIDC (Git to AWS)のデプロイメモ 2023-04-26 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
+      <description>tags tags Recent Posts Docker のイメージをビルドするとき注意すること 2024-03-21 Trivy を用いたコンテナ Image,DockerFile への脆弱性診断 2024-03-21 multipass で ローカル docker 環境の構築 2024-03-20 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 CloudFrontFunction と LambdaEdge の違い 2023-07-21 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 OIDC (Git to AWS)のデプロイメモ 2023-04-26 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
     </item>
     
   </channel>

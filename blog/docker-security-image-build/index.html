@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>profile | List</title>
+  <title>profile | Dockerのイメージをビルドするとき注意すること</title>
   <meta name="description" content="">
 
   
   
     <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
-    <meta property="og:title" content="profile | List" />   
+    <meta property="og:title" content="profile | Dockerのイメージをビルドするとき注意すること" />   
   
   <meta property="og:description" content="" />
   <meta name="author" content="h neco">
@@ -98,7 +98,7 @@
 
 
 <li class="breadcrumb-item active">
-  <a href="https://h-neco.github.io/blog/list/">List</a>
+  <a href="https://h-neco.github.io/blog/docker-security-image-build/">Dockerのイメージをビルドするとき注意すること</a>
 </li>
 
   </ol>
@@ -110,30 +110,40 @@
 <section class="resume-section p-3 p-lg-5 d-flex flex-column">
   <div class="my-auto">
   	<div class="mb-3 d-flex flex-row justify-content-between">
-    	<h2 class="mb-0"><span class="text-primary">List</span></h2>
-    	<span class="">January 1, 0001</span>
+    	<h2 class="mb-0"><span class="text-primary">Dockerのイメージをビルドするとき注意すること</span></h2>
+    	<span class="">March 20, 2024</span>
     </div>
     <div>
-    	<h3 id="tags">tags</h3>
+    	<h3 id="intro">Intro</h3>
+<p>クレデンシャルをビルド中に削除しても、レイヤに残ってしまう件について実際に手を動かして確認してみます。</p>
 <ul>
-<li><a href="../../tags">tags</a></li>
+<li>docker の環境構築についてはこちら
+<a href="../vm-multipass">環境構築</a></li>
 </ul>
-<h3 id="recent-posts">Recent Posts</h3>
+<h3 id="事前準備">事前準備</h3>
 <ul>
-<li><a href="../docker-security-image-build">Docker のイメージをビルドするとき注意すること</a> 2024-03-21</li>
-<li><a href="../docker-trivy">Trivy を用いたコンテナ Image,DockerFile への脆弱性診断</a> 2024-03-21</li>
-<li><a href="../vm-multipass">multipass で ローカル docker 環境の構築</a> 2024-03-20</li>
-<li><a href="../chatgpt-mermaid">chatgpt+mermaid でシーケンス図を作成する</a> 2024-02-21</li>
-<li><a href="../aws-cloudfront-functions">CloudFrontFunction と LambdaEdge の違い</a> 2023-07-21</li>
-<li><a href="../docker-terraform">Docker から Terraform を実行する</a> 2023-07-10</li>
-<li><a href="../aws-codebuild">Codebuild 構築と Deploy フローの整備</a> 2023-06-27</li>
-<li><a href="../aws-efs">EFS バーストモードクレジット枯渇対策メモ</a> 2023-05-03</li>
-<li><a href="../aws-ec2-ebs-delete-on-termination">AWS CLI を使った EC2 への EBS ボリュームの永続化</a> 2023-05-01</li>
-<li><a href="../cicd-terragrunt-1">Terraform のラッパーツール、Terragrunt の導入検証を行ってみた</a> 2023-04-27</li>
-<li><a href="../aws-lambda-local-execution">Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</a> 2023-04-24</li>
-<li><a href="../cicd-oidc">OIDC (Git to AWS)のデプロイメモ</a> 2023-04-26</li>
-<li><a href="../aws-ec2-nat-instance">Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する</a> 2023-04-11</li>
-<li><a href="../browser-selenium">ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する</a> 2020-08-26</li>
+<li>適当なディレクトリを作成し、Dockerfile を作成します。</li>
+<li>シークレットにすべき内容を含むファイルを作成し、削除します。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ubuntu@test-vm-01:~/test$ cat Dockerfile
+</span></span><span style="display:flex;"><span>FROM public.ecr.aws/nginx/nginx:1.25-alpine-slim
+</span></span><span style="display:flex;"><span>RUN echo <span style="color:#e6db74">&#34;this is secret&#34;</span> &gt; /secret.txt
+</span></span><span style="display:flex;"><span>RUN rm /secret.txt
+</span></span></code></pre></div><ul>
+<li>build</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ubuntu@test-vm-01:~/test$ docker build -f Dockerfile -t test:latast .
+</span></span></code></pre></div><ul>
+<li>イメージを保存し、レイヤを確認します。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ubuntu@test-vm-01:~/test$ docker save test:latast | tar -xC dump/
+</span></span><span style="display:flex;"><span>ubuntu@test-vm-01:~/test$ grep <span style="color:#e6db74">&#34;this is secret&#34;</span> dump/blobs/sha256/26e6cd8b82ed33846375b5484f907ec7547b1b58919e607d7954f6ed9f36f5ab
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span><span style="color:#e6db74">&#34;created&#34;</span>:<span style="color:#e6db74">&#34;2024-03-21T16:21:04.288826451+09:00&#34;</span>,<span style="color:#e6db74">&#34;created_by&#34;</span>:<span style="color:#e6db74">&#34;RUN /bin/sh -c echo \&#34;this is secret\&#34; \u003e /secret.txt # buildkit&#34;</span>,<span style="color:#e6db74">&#34;comment&#34;</span>:<span style="color:#e6db74">&#34;buildkit.dockerfile.v0&#34;</span><span style="color:#f92672">}</span>,<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;created&#34;</span>:<span style="color:#e6db74">&#34;2024-03-21T16:21:04.637976236+09:00&#34;</span>,<span style="color:#e6db74">&#34;created_by&#34;</span>:<span style="color:#e6db74">&#34;RUN /bin/sh -c rm /secret.txt # buildkit&#34;</span>,<span style="color:#e6db74">&#34;comment&#34;</span>:<span style="color:#e6db74">&#34;buildkit.dockerfile.v0&#34;</span><span style="color:#f92672">}]</span>,<span style="color:#e6db74">&#34;os&#34;</span>:<span style="color:#e6db74">&#34;linux&#34;</span>,<span style="color:#e6db74">&#34;rootfs&#34;</span>:<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;type&#34;</span>:<span style="color:#e6db74">&#34;layers&#34;</span>,<span style="color:#e6db74">&#34;diff_ids&#34;</span>:
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><h3 id="まとめ">まとめ</h3>
+<ul>
+<li>クレデンシャルをビルド中に削除しても、レイヤに残ってしまうので、公開するイメージには含めないようにすることが重要です。</li>
 </ul>
 
 	    
