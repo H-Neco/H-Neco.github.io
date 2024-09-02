@@ -6,7 +6,31 @@
     <description>Recent content in AWS on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EC2 に stable-diffusion-auto1111 を立ち上げる</title>
+      <link>https://h-neco.github.io/blog/aws-ec2-stable-diffusion/</link>
+      <pubDate>Mon, 02 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-ec2-stable-diffusion/</guid>
+      <description>Intro EC2 で Stable diffusion を実現するためのメモです。 EC2 自体の構築やセキュリティグループ、VPC などの設定は割愛しています。
+GPU インスタンスを使用 stable-diffusion-webui を使用 python 3.10.6 を使用 nginx でリバースプロキシ 環境 イメージ：amazon linux 2023
+インスタンスタイプ：g4dn.xlarge
+GPU 環境構築 NVIDIA ドライバーと CUDA をインストール 参考 https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/install-nvidia-driver.html https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#amazon-linux-2023 dnf install kernel-devel-$(uname -r) kernel-headers-$(uname -r) kernel-modules-extra-$(uname -r) dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/x86_64/cuda-amzn2023.repo dnf module install nvidia-driver:latest-dkms dnf install cuda-toolkit dnf install nvidia-gds stable-diffusion-webui の構築 インストール git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui cd stable-diffusion-webui ln -s . stable-diffusion-webui # 起動スクリプト修正(shareオプションは使わない) vim webui-user.sh export COMMANDLINE_ARGS=&amp;#34;--xformers --enable-insecure-extension-access&amp;#34; python 環境構築 python 3.</description>
+    </item>
+    
+    <item>
+      <title>ECSタスクにSessionManagerで接続する方法</title>
+      <link>https://h-neco.github.io/blog/aws-ecs-ssm/</link>
+      <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-ecs-ssm/</guid>
+      <description>はじめに ECS タスクに SessionManager で接続する方法を紹介します。
+設定の有効化・確認方法 # 確認する aws ecs describe-services --cluster クラスター名 --services サービス名 | jq &amp;#39;.services[].enableExecuteCommand&amp;#39; # 有効化する aws ecs update-service --region ap-northeast-1 --cluster クラスター名 --service サービス名 --enable-execute-command 接続方法 aws ecs execute-command --cluster クラスター名 \ --task タスクID \ --container コンテナ名 \ --interactive \ --command &amp;#34;/bin/sh&amp;#34; 接続出来ないときの対処法 SSMplugin がインストールされていない
+SSMpluginをインストールしてください。 ECS のタスクロールに SessionManager の権限が追加されてない
+マネージドポリシーAmazonSSMManagedInstanceCoreを利用するケースが多いと思いますが、以下の action 許可だけで接続自体は可能です。 data &amp;#34;aws_iam_policy_document&amp;#34; &amp;#34;session_manager_policy&amp;#34; { statement { sid = &amp;#34;1&amp;#34; effect = &amp;#34;Allow&amp;#34; actions = [ &amp;#34;ssmmessages:CreateControlChannel&amp;#34;, &amp;#34;ssmmessages:CreateDataChannel&amp;#34;, &amp;#34;ssmmessages:OpenControlChannel&amp;#34;, &amp;#34;ssmmessages:OpenDataChannel&amp;#34; ] resources = [&amp;#34;*&amp;#34;] } } それでも接続できない場合は、AWS 公式のツールを利用してデバッグしてみてください。</description>
+    </item>
+    
     <item>
       <title>CloudFrontFunctionとLambdaEdgeの違い</title>
       <link>https://h-neco.github.io/blog/aws-cloudfront-functions/</link>

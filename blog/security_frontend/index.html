@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | フロントエンドのセキュリティ対策</title>
+  <meta name="description" content="">
+
+  
+  
+    <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
+    <meta property="og:title" content="profile | フロントエンドのセキュリティ対策" />   
+  
+  <meta property="og:description" content="" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://h-neco.github.io/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/">Home</a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/blog/">Blog</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://h-neco.github.io/blog/security_frontend/">フロントエンドのセキュリティ対策</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+  	<div class="mb-3 d-flex flex-row justify-content-between">
+    	<h2 class="mb-0"><span class="text-primary">フロントエンドのセキュリティ対策</span></h2>
+    	<span class="">May 8, 2024</span>
+    </div>
+    <div>
+    	<h3 id="はじめに">はじめに</h3>
+<p>フロントエンドのセキュリティは、ウェブアプリケーションを安全に保つために非常に重要です。この記事では、フロントエンドで一般的に見られるセキュリティの脅威と、それに対する対策について詳しく説明します。</p>
+<h4 id="オリジンによるアクセス制御">オリジンによるアクセス制御</h4>
+<p>同一オリジンポリシー(SOP)は、あるオリジンから読み込まれた文書やスクリプトが、異なるオリジンのリソースとどのようにやり取りできるかを制限するセキュリティメカニズムです。このポリシーは、悪意あるウェブサイトがユーザーのデータにアクセスするのを防ぎます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// このスクリプトが実行されるオリジン: http://example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 異なるオリジン（http://another-origin.com）のリソースにアクセスしようとする
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;http://another-origin.com/data.json&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">response</span>) =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">data</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>))
+</span></span><span style="display:flex;"><span>        .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;アクセスできませんでした。&#34;</span>, <span style="color:#a6e22e">error</span>));
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;エラーが発生しました。&#34;</span>, <span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>このコードは、http://example.comからhttp://another-origin.comにあるdata.jsonを取得しようとします。しかし、同一オリジンポリシーのため、このリクエストはブラウザによってブロックされます。</p>
+<p>対策と回避策</p>
+<p>同一オリジンポリシーによる制限を回避する方法として、CORS（Cross-Origin Resource Sharing）があります。CORS は、異なるオリジン間でのリソース共有を可能にするためのメカニズムです。サーバー側で適切な CORS ヘッダーを設定することで、異なるオリジンからのリクエストを安全に許可することができます。</p>
+<p>サーバー側で以下のように CORS ヘッダーを設定します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Access-Control-Allow-Origin: http://example.com
+</span></span></code></pre></div><p>この設定により、http://example.comからのリクエストは、http://another-origin.comによって許可されます。</p>
+<p>同一オリジンポリシーは、Web セキュリティにおいて非常に重要な役割を果たします。しかし、現代の Web アプリケーションでは、異なるオリジン間でのリソース共有が必要な場面も多くあります。そのため、CORS のような技術を適切に利用することが重要。</p>
+<ul>
+<li>
+<p>XSS</p>
+<ul>
+<li>reflected</li>
+<li>stored</li>
+<li>DOM-based</li>
+<li>対策
+<ul>
+<li>CSP</li>
+<li>エスケープ</li>
+<li>サニタイズ</li>
+<li>URL スキームを http/https に限定</li>
+<li>適切な dom api を使った対策</li>
+<li>dom purify</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>XSS
+クロスサイトスクリプティング(XSS)は、攻撃者が悪意あるスクリプトをウェブページに注入し、他のユーザーのブラウザ上で実行させる脆弱性です。</p>
+<p>対策
+CSP: コンテンツセキュリティポリシー(CSP)は、どのようなリソースがウェブページに読み込まれるべきかをブラウザに指示する方法です。
+エスケープ: ユーザー入力をエスケープ処理することで、スクリプトとして解釈されるのを防ぎます。
+サニタイズ: ユーザー入力から危険な要素を取り除くことで、XSS 攻撃を防ぎます。
+URL スキームを http/https に限定: リンク生成時にスキームを制限することで、悪意あるリンクの利用を防ぎます。
+適切な DOM API を使った対策: innerText のような安全な DOM API を使って、XSS 攻撃を防ぎます。
+DOM Purify: DOM Purify を使用して、安全でない HTML をクリーンアップし、XSS 攻撃を防ぎます。
+CSRF
+クロスサイトリクエストフォージェリ(CSRF)は、ユーザーがログインしているウェブアプリケーションに対して、ユーザーの意図しない操作を強制する攻撃です。</p>
+<p>対策
+トークン: 各フォームリクエストに一意のトークンを含めることで、CSRF 攻撃を防ぎます。
+Clickjacking
+Clickjacking は、ユーザーが見えない iframe 上の要素をクリックさせることで、意図しない操作を実行させる攻撃です。</p>
+<p>対策
+X-Frame-Options ヘッダー: このヘッダーを使用して、ページが iframe 内で表示されるのを防ぎます。
+Open Redirect
+Open Redirect は、攻撃者がユーザーを悪意あるウェブサイトにリダイレクトさせる脆弱性です。</p>
+<p>対策
+リダイレクト先の検証: リダイレクト先の URL を検証し、信頼できるものだけを許可します。</p>
+<h4 id="接続方法">接続方法</h4>
+<h4 id="接続出来ないときの対処法">接続出来ないときの対処法</h4>
+
+	    
+	</div>
+    <div>
+    	
+    </div>
+    <ul class="tags">
+    
+</ul>
+
+  </div>
+</section>
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>

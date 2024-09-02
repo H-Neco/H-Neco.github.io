@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>profile | EC2 に stable-diffusion-auto1111 を立ち上げる</title>
+  <meta name="description" content="">
+
+  
+  
+    <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
+    <meta property="og:title" content="profile | EC2 に stable-diffusion-auto1111 を立ち上げる" />   
+  
+  <meta property="og:description" content="" />
+  <meta name="author" content="h neco">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"></noscript>
+  <link rel="preload" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/1.8.0/css/devicons.min.css" integrity="sha512-JW3fT0YTK7pT7w437SoX6GcW76jOZ6E0jGmrqBAcloC4GKT+njHOY4fX5KxJ9WfIXTkNrAF994525fAHp+KCxg==" crossorigin="anonymous"></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous"></noscript>
+  
+  <link rel="preload" href="https://h-neco.github.io/css/resume.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/tweaks.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/tweaks.css"></noscript>
+  <link rel="preload" href="https://h-neco.github.io/css/resume-override.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://h-neco.github.io/css/resume-override.css"></noscript>
+  <meta name="generator" content="Hugo 0.111.3">
+  
+   
+  
+</head>
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-profile fixed-top" id="sideNav">
+  <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <span class="d-block d-lg-none">h neco</span>
+    <span class="d-none d-lg-block">
+      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/img/profile.png" alt="">
+    </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="/#about">About</a>
+      </li>
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#skills">Skills</a>
+          </li>
+      
+      
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#experience">Experience</a>
+          </li>
+      
+      
+      
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/#blog">Blog</a>
+          </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid p-0">
+    
+<nav aria-label="breadcrumb">
+  <ol  class="breadcrumb">
+    
+
+
+
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/">Home</a>
+</li>
+
+
+<li class="breadcrumb-item">
+  <a href="https://h-neco.github.io/blog/">Blog</a>
+</li>
+
+
+<li class="breadcrumb-item active">
+  <a href="https://h-neco.github.io/blog/aws-ec2-stable-diffusion/">EC2 に stable-diffusion-auto1111 を立ち上げる</a>
+</li>
+
+  </ol>
+</nav>
+
+
+
+
+<section class="resume-section p-3 p-lg-5 d-flex flex-column">
+  <div class="my-auto">
+  	<div class="mb-3 d-flex flex-row justify-content-between">
+    	<h2 class="mb-0"><span class="text-primary">EC2 に stable-diffusion-auto1111 を立ち上げる</span></h2>
+    	<span class="">September 2, 2024</span>
+    </div>
+    <div>
+    	<h2 id="intro">Intro</h2>
+<p>EC2 で Stable diffusion を実現するためのメモです。
+EC2 自体の構築やセキュリティグループ、VPC などの設定は割愛しています。</p>
+<ul>
+<li>GPU インスタンスを使用</li>
+<li>stable-diffusion-webui を使用</li>
+<li>python 3.10.6 を使用</li>
+<li>nginx でリバースプロキシ</li>
+</ul>
+<h2 id="環境">環境</h2>
+<p>イメージ：amazon linux 2023</p>
+<p>インスタンスタイプ：g4dn.xlarge</p>
+<h2 id="gpu-環境構築">GPU 環境構築</h2>
+<ul>
+<li>NVIDIA ドライバーと CUDA をインストール
+<ul>
+<li>参考
+<ul>
+<li><a href="https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/install-nvidia-driver.html">https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/install-nvidia-driver.html</a></li>
+<li><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#amazon-linux-2023">https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#amazon-linux-2023</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>dnf install kernel-devel-<span style="color:#66d9ef">$(</span>uname -r<span style="color:#66d9ef">)</span> kernel-headers-<span style="color:#66d9ef">$(</span>uname -r<span style="color:#66d9ef">)</span> kernel-modules-extra-<span style="color:#66d9ef">$(</span>uname -r<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/x86_64/cuda-amzn2023.repo
+</span></span><span style="display:flex;"><span>dnf module install nvidia-driver:latest-dkms
+</span></span><span style="display:flex;"><span>dnf install cuda-toolkit
+</span></span><span style="display:flex;"><span>dnf install nvidia-gds
+</span></span></code></pre></div><h2 id="stable-diffusion-webui-の構築">stable-diffusion-webui の構築</h2>
+<h3 id="インストール">インストール</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
+</span></span><span style="display:flex;"><span>cd stable-diffusion-webui
+</span></span><span style="display:flex;"><span>ln -s . stable-diffusion-webui
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 起動スクリプト修正(shareオプションは使わない)</span>
+</span></span><span style="display:flex;"><span>vim webui-user.sh
+</span></span><span style="display:flex;"><span>export COMMANDLINE_ARGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;--xformers --enable-insecure-extension-access&#34;</span>
+</span></span></code></pre></div><h3 id="python-環境構築">python 環境構築</h3>
+<p>python 3.10.6 のインストール</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>dnf install wget git python3 gperftools-libs libglvnd-glx
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pyenvインストール</span>
+</span></span><span style="display:flex;"><span>curl https://pyenv.run | bash
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;export PYENV_ROOT=&#34;$HOME/.pyenv&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;command -v pyenv &gt;/dev/null || export PATH=&#34;$PYENV_ROOT/bin:$PATH&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;eval &#34;$(pyenv init -)&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>source ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pythonのビルドに必要なライブラリをインストールする</span>
+</span></span><span style="display:flex;"><span>yum groupinstall <span style="color:#e6db74">&#34;Development Tools&#34;</span> -y
+</span></span><span style="display:flex;"><span>yum install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel libffi-devel -y
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3.10.6のバージョンをインストールする</span>
+</span></span><span style="display:flex;"><span>pyenv install 3.10.6
+</span></span><span style="display:flex;"><span>pyenv local 3.10.6
+</span></span></code></pre></div><h3 id="リバプロ">リバプロ</h3>
+<ul>
+<li>nginx の設定</li>
+</ul>
+<p><code>sudo dnf install nginx</code></p>
+<p><code>sudo vi /etc/nginx/conf.d/stable-diffusion.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    listen 80;
+</span></span><span style="display:flex;"><span>    server_name your-domain.com;
+</span></span><span style="display:flex;"><span>    location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        proxy_pass http://localhost:7860;
+</span></span><span style="display:flex;"><span>        proxy_set_header Host $host;
+</span></span><span style="display:flex;"><span>        proxy_set_header X-Real-IP $remote_addr;
+</span></span><span style="display:flex;"><span>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        proxy_set_header X-Forwarded-Proto $scheme;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># WebSocket設定</span>
+</span></span><span style="display:flex;"><span>        proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>        proxy_set_header Upgrade $http_upgrade;
+</span></span><span style="display:flex;"><span>        proxy_set_header Connection <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        proxy_read_timeout 86400;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo nginx -t
+</span></span><span style="display:flex;"><span>sudo systemctl restart nginx
+</span></span></code></pre></div><h3 id="service-の起動">service の起動</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo vim /etc/systemd/system/stable-diffusion-webui.service
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Description<span style="color:#f92672">=</span>Stable Diffusion WebUI
+</span></span><span style="display:flex;"><span>After<span style="color:#f92672">=</span>network.target
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Type<span style="color:#f92672">=</span>simple
+</span></span><span style="display:flex;"><span>User<span style="color:#f92672">=</span>ec2-user
+</span></span><span style="display:flex;"><span>WorkingDirectory<span style="color:#f92672">=</span>/home/ec2-user/stable-diffusion-webui/v1.9.4
+</span></span><span style="display:flex;"><span>ExecStart<span style="color:#f92672">=</span>/bin/bash /home/ec2-user/stable-diffusion-webui/v1.9.4/webui.sh
+</span></span><span style="display:flex;"><span>Restart<span style="color:#f92672">=</span>always
+</span></span><span style="display:flex;"><span>RestartSec<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>WantedBy<span style="color:#f92672">=</span>multi-user.target
+</span></span></code></pre></div>
+	    
+	</div>
+    <div>
+    	
+    </div>
+    <ul class="tags">
+    
+</ul>
+
+  </div>
+</section>
+
+    <section><span style="color: #999999;">Nifty <a href="https://codepen.io/wbeeftink/pen/dIaDH">tech tag lists</a> from <a class="pen-owner-link" href="https://codepen.io/wbeeftink">Wouter Beeftink</a> </span>
+      
+    </section>
+  </div>
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+  
+  <script async src="/js/resume.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z6BYZ5M6VX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z6BYZ5M6VX');
+  </script>
+  
+
+  
+</body>
+</html>

@@ -8,6 +8,49 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 17 May 2023 07:27:58 +0900</lastBuildDate><atom:link href="https://h-neco.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>EC2 に stable-diffusion-auto1111 を立ち上げる</title>
+      <link>https://h-neco.github.io/blog/aws-ec2-stable-diffusion/</link>
+      <pubDate>Mon, 02 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-ec2-stable-diffusion/</guid>
+      <description>Intro EC2 で Stable diffusion を実現するためのメモです。 EC2 自体の構築やセキュリティグループ、VPC などの設定は割愛しています。
+GPU インスタンスを使用 stable-diffusion-webui を使用 python 3.10.6 を使用 nginx でリバースプロキシ 環境 イメージ：amazon linux 2023
+インスタンスタイプ：g4dn.xlarge
+GPU 環境構築 NVIDIA ドライバーと CUDA をインストール 参考 https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/install-nvidia-driver.html https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#amazon-linux-2023 dnf install kernel-devel-$(uname -r) kernel-headers-$(uname -r) kernel-modules-extra-$(uname -r) dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/amzn2023/x86_64/cuda-amzn2023.repo dnf module install nvidia-driver:latest-dkms dnf install cuda-toolkit dnf install nvidia-gds stable-diffusion-webui の構築 インストール git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui cd stable-diffusion-webui ln -s . stable-diffusion-webui # 起動スクリプト修正(shareオプションは使わない) vim webui-user.sh export COMMANDLINE_ARGS=&amp;#34;--xformers --enable-insecure-extension-access&amp;#34; python 環境構築 python 3.</description>
+    </item>
+    
+    <item>
+      <title>フロントエンドのセキュリティ対策</title>
+      <link>https://h-neco.github.io/blog/security_frontend/</link>
+      <pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/security_frontend/</guid>
+      <description>はじめに フロントエンドのセキュリティは、ウェブアプリケーションを安全に保つために非常に重要です。この記事では、フロントエンドで一般的に見られるセキュリティの脅威と、それに対する対策について詳しく説明します。
+オリジンによるアクセス制御 同一オリジンポリシー(SOP)は、あるオリジンから読み込まれた文書やスクリプトが、異なるオリジンのリソースとどのようにやり取りできるかを制限するセキュリティメカニズムです。このポリシーは、悪意あるウェブサイトがユーザーのデータにアクセスするのを防ぎます。
+// このスクリプトが実行されるオリジン: http://example.com try { // 異なるオリジン（http://another-origin.com）のリソースにアクセスしようとする fetch(&amp;#34;http://another-origin.com/data.json&amp;#34;) .then((response) =&amp;gt; response.json()) .then((data) =&amp;gt; console.log(data)) .catch((error) =&amp;gt; console.error(&amp;#34;アクセスできませんでした。&amp;#34;, error)); } catch (error) { console.error(&amp;#34;エラーが発生しました。&amp;#34;, error); } このコードは、http://example.comからhttp://another-origin.comにあるdata.jsonを取得しようとします。しかし、同一オリジンポリシーのため、このリクエストはブラウザによってブロックされます。
+対策と回避策
+同一オリジンポリシーによる制限を回避する方法として、CORS（Cross-Origin Resource Sharing）があります。CORS は、異なるオリジン間でのリソース共有を可能にするためのメカニズムです。サーバー側で適切な CORS ヘッダーを設定することで、異なるオリジンからのリクエストを安全に許可することができます。
+サーバー側で以下のように CORS ヘッダーを設定します。
+Access-Control-Allow-Origin: http://example.com この設定により、http://example.comからのリクエストは、http://another-origin.comによって許可されます。
+同一オリジンポリシーは、Web セキュリティにおいて非常に重要な役割を果たします。しかし、現代の Web アプリケーションでは、異なるオリジン間でのリソース共有が必要な場面も多くあります。そのため、CORS のような技術を適切に利用することが重要。
+XSS
+reflected stored DOM-based 対策 CSP エスケープ サニタイズ URL スキームを http/https に限定 適切な dom api を使った対策 dom purify XSS クロスサイトスクリプティング(XSS)は、攻撃者が悪意あるスクリプトをウェブページに注入し、他のユーザーのブラウザ上で実行させる脆弱性です。
+対策 CSP: コンテンツセキュリティポリシー(CSP)は、どのようなリソースがウェブページに読み込まれるべきかをブラウザに指示する方法です。 エスケープ: ユーザー入力をエスケープ処理することで、スクリプトとして解釈されるのを防ぎます。 サニタイズ: ユーザー入力から危険な要素を取り除くことで、XSS 攻撃を防ぎます。 URL スキームを http/https に限定: リンク生成時にスキームを制限することで、悪意あるリンクの利用を防ぎます。 適切な DOM API を使った対策: innerText のような安全な DOM API を使って、XSS 攻撃を防ぎます。 DOM Purify: DOM Purify を使用して、安全でない HTML をクリーンアップし、XSS 攻撃を防ぎます。 CSRF クロスサイトリクエストフォージェリ(CSRF)は、ユーザーがログインしているウェブアプリケーションに対して、ユーザーの意図しない操作を強制する攻撃です。</description>
+    </item>
+    
+    <item>
+      <title>ECSタスクにSessionManagerで接続する方法</title>
+      <link>https://h-neco.github.io/blog/aws-ecs-ssm/</link>
+      <pubDate>Wed, 27 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/aws-ecs-ssm/</guid>
+      <description>はじめに ECS タスクに SessionManager で接続する方法を紹介します。
+設定の有効化・確認方法 # 確認する aws ecs describe-services --cluster クラスター名 --services サービス名 | jq &amp;#39;.services[].enableExecuteCommand&amp;#39; # 有効化する aws ecs update-service --region ap-northeast-1 --cluster クラスター名 --service サービス名 --enable-execute-command 接続方法 aws ecs execute-command --cluster クラスター名 \ --task タスクID \ --container コンテナ名 \ --interactive \ --command &amp;#34;/bin/sh&amp;#34; 接続出来ないときの対処法 SSMplugin がインストールされていない
+SSMpluginをインストールしてください。 ECS のタスクロールに SessionManager の権限が追加されてない
+マネージドポリシーAmazonSSMManagedInstanceCoreを利用するケースが多いと思いますが、以下の action 許可だけで接続自体は可能です。 data &amp;#34;aws_iam_policy_document&amp;#34; &amp;#34;session_manager_policy&amp;#34; { statement { sid = &amp;#34;1&amp;#34; effect = &amp;#34;Allow&amp;#34; actions = [ &amp;#34;ssmmessages:CreateControlChannel&amp;#34;, &amp;#34;ssmmessages:CreateDataChannel&amp;#34;, &amp;#34;ssmmessages:OpenControlChannel&amp;#34;, &amp;#34;ssmmessages:OpenDataChannel&amp;#34; ] resources = [&amp;#34;*&amp;#34;] } } それでも接続できない場合は、AWS 公式のツールを利用してデバッグしてみてください。</description>
+    </item>
+    
+    <item>
       <title>Dockerのイメージをビルドするとき注意すること</title>
       <link>https://h-neco.github.io/blog/docker-security-image-build/</link>
       <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
@@ -177,7 +220,7 @@ $ sudo pip3 install selenium $ sudo pip3 install chromedriver-binary==83.0.4103.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://h-neco.github.io/blog/list/</guid>
-      <description>tags tags Recent Posts Docker のイメージをビルドするとき注意すること 2024-03-21 Trivy を用いたコンテナ Image,DockerFile への脆弱性診断 2024-03-21 multipass で ローカル docker 環境の構築 2024-03-20 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 CloudFrontFunction と LambdaEdge の違い 2023-07-21 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 OIDC (Git to AWS)のデプロイメモ 2023-04-26 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
+      <description>tags tags Recent Posts EC2(GPU インスタンス) に stable-diffusion-auto1111 を立ち上げる 2024-09-02 ECS タスクに SessionManager で接続する方法 2024-03-27 Docker のイメージをビルドするとき注意すること 2024-03-21 Trivy を用いたコンテナ Image,DockerFile への脆弱性診断 2024-03-21 multipass で ローカル docker 環境の構築 2024-03-20 chatgpt+mermaid でシーケンス図を作成する 2024-02-21 CloudFrontFunction と LambdaEdge の違い 2023-07-21 Docker から Terraform を実行する 2023-07-10 Codebuild 構築と Deploy フローの整備 2023-06-27 EFS バーストモードクレジット枯渇対策メモ 2023-05-03 AWS CLI を使った EC2 への EBS ボリュームの永続化 2023-05-01 Terraform のラッパーツール、Terragrunt の導入検証を行ってみた 2023-04-27 Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript) 2023-04-24 OIDC (Git to AWS)のデプロイメモ 2023-04-26 Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する 2023-04-11 ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する 2020-08-26 </description>
     </item>
     
   </channel>

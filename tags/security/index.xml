@@ -6,7 +6,26 @@
     <description>Recent content in Security on profile</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://h-neco.github.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>フロントエンドのセキュリティ対策</title>
+      <link>https://h-neco.github.io/blog/security_frontend/</link>
+      <pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://h-neco.github.io/blog/security_frontend/</guid>
+      <description>はじめに フロントエンドのセキュリティは、ウェブアプリケーションを安全に保つために非常に重要です。この記事では、フロントエンドで一般的に見られるセキュリティの脅威と、それに対する対策について詳しく説明します。
+オリジンによるアクセス制御 同一オリジンポリシー(SOP)は、あるオリジンから読み込まれた文書やスクリプトが、異なるオリジンのリソースとどのようにやり取りできるかを制限するセキュリティメカニズムです。このポリシーは、悪意あるウェブサイトがユーザーのデータにアクセスするのを防ぎます。
+// このスクリプトが実行されるオリジン: http://example.com try { // 異なるオリジン（http://another-origin.com）のリソースにアクセスしようとする fetch(&amp;#34;http://another-origin.com/data.json&amp;#34;) .then((response) =&amp;gt; response.json()) .then((data) =&amp;gt; console.log(data)) .catch((error) =&amp;gt; console.error(&amp;#34;アクセスできませんでした。&amp;#34;, error)); } catch (error) { console.error(&amp;#34;エラーが発生しました。&amp;#34;, error); } このコードは、http://example.comからhttp://another-origin.comにあるdata.jsonを取得しようとします。しかし、同一オリジンポリシーのため、このリクエストはブラウザによってブロックされます。
+対策と回避策
+同一オリジンポリシーによる制限を回避する方法として、CORS（Cross-Origin Resource Sharing）があります。CORS は、異なるオリジン間でのリソース共有を可能にするためのメカニズムです。サーバー側で適切な CORS ヘッダーを設定することで、異なるオリジンからのリクエストを安全に許可することができます。
+サーバー側で以下のように CORS ヘッダーを設定します。
+Access-Control-Allow-Origin: http://example.com この設定により、http://example.comからのリクエストは、http://another-origin.comによって許可されます。
+同一オリジンポリシーは、Web セキュリティにおいて非常に重要な役割を果たします。しかし、現代の Web アプリケーションでは、異なるオリジン間でのリソース共有が必要な場面も多くあります。そのため、CORS のような技術を適切に利用することが重要。
+XSS
+reflected stored DOM-based 対策 CSP エスケープ サニタイズ URL スキームを http/https に限定 適切な dom api を使った対策 dom purify XSS クロスサイトスクリプティング(XSS)は、攻撃者が悪意あるスクリプトをウェブページに注入し、他のユーザーのブラウザ上で実行させる脆弱性です。
+対策 CSP: コンテンツセキュリティポリシー(CSP)は、どのようなリソースがウェブページに読み込まれるべきかをブラウザに指示する方法です。 エスケープ: ユーザー入力をエスケープ処理することで、スクリプトとして解釈されるのを防ぎます。 サニタイズ: ユーザー入力から危険な要素を取り除くことで、XSS 攻撃を防ぎます。 URL スキームを http/https に限定: リンク生成時にスキームを制限することで、悪意あるリンクの利用を防ぎます。 適切な DOM API を使った対策: innerText のような安全な DOM API を使って、XSS 攻撃を防ぎます。 DOM Purify: DOM Purify を使用して、安全でない HTML をクリーンアップし、XSS 攻撃を防ぎます。 CSRF クロスサイトリクエストフォージェリ(CSRF)は、ユーザーがログインしているウェブアプリケーションに対して、ユーザーの意図しない操作を強制する攻撃です。</description>
+    </item>
+    
     <item>
       <title>Dockerのイメージをビルドするとき注意すること</title>
       <link>https://h-neco.github.io/blog/docker-security-image-build/</link>
