@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>profile | List</title>
+  <title>profile | ECSタスクにSessionManagerで接続する方法</title>
   <meta name="description" content="">
 
   
   
     <meta property="og:image" content="https://h-neco.github.io/img/profile.png" />
-    <meta property="og:title" content="profile | List" />   
+    <meta property="og:title" content="profile | ECSタスクにSessionManagerで接続する方法" />   
   
   <meta property="og:description" content="" />
   <meta name="author" content="h neco">
@@ -98,7 +98,7 @@
 
 
 <li class="breadcrumb-item active">
-  <a href="https://h-neco.github.io/blog/list/">List</a>
+  <a href="https://h-neco.github.io/blog/aws-ecs-ssm/">ECSタスクにSessionManagerで接続する方法</a>
 </li>
 
   </ol>
@@ -110,34 +110,56 @@
 <section class="resume-section p-3 p-lg-5 d-flex flex-column">
   <div class="my-auto">
   	<div class="mb-3 d-flex flex-row justify-content-between">
-    	<h2 class="mb-0"><span class="text-primary">List</span></h2>
-    	<span class="">January 1, 0001</span>
+    	<h2 class="mb-0"><span class="text-primary">ECSタスクにSessionManagerで接続する方法</span></h2>
+    	<span class="">March 27, 2024</span>
     </div>
     <div>
-    	<h3 id="tags">tags</h3>
+    	<h3 id="はじめに">はじめに</h3>
+<p>ECS タスクに SessionManager で接続する方法を紹介します。</p>
+<h4 id="設定の有効化確認方法">設定の有効化・確認方法</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 確認する</span>
+</span></span><span style="display:flex;"><span>aws ecs describe-services --cluster クラスター名 --services サービス名 | jq <span style="color:#e6db74">&#39;.services[].enableExecuteCommand&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 有効化する</span>
+</span></span><span style="display:flex;"><span>aws ecs update-service --region ap-northeast-1 --cluster クラスター名 --service サービス名 --enable-execute-command
+</span></span></code></pre></div><h4 id="接続方法">接続方法</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws ecs execute-command --cluster クラスター名 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --task タスクID <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --container コンテナ名 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --interactive <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --command <span style="color:#e6db74">&#34;/bin/sh&#34;</span>
+</span></span></code></pre></div><h4 id="接続出来ないときの対処法">接続出来ないときの対処法</h4>
 <ul>
-<li><a href="../../tags">tags</a></li>
-</ul>
-<h3 id="recent-posts">Recent Posts</h3>
+<li>
+<p>SSMplugin がインストールされていない</p>
 <ul>
-<li><a href="../aws-ec2-stable-diffusion">EC2(GPU インスタンス) に stable-diffusion-auto1111 を立ち上げる</a> 2024-09-02</li>
-<li><a href="../aws-ecs-ssm">ECS タスクに SessionManager で接続する方法</a> 2024-03-27</li>
-<li><a href="../docker-security-image-build">Docker のイメージをビルドするとき注意すること</a> 2024-03-21</li>
-<li><a href="../docker-trivy">Trivy を用いたコンテナ Image,DockerFile への脆弱性診断</a> 2024-03-21</li>
-<li><a href="../vm-multipass">multipass で ローカル docker 環境の構築</a> 2024-03-20</li>
-<li><a href="../chatgpt-mermaid">chatgpt+mermaid でシーケンス図を作成する</a> 2024-02-21</li>
-<li><a href="../aws-cloudfront-functions">CloudFrontFunction と LambdaEdge の違い</a> 2023-07-21</li>
-<li><a href="../docker-terraform">Docker から Terraform を実行する</a> 2023-07-10</li>
-<li><a href="../aws-codebuild">Codebuild 構築と Deploy フローの整備</a> 2023-06-27</li>
-<li><a href="../aws-efs">EFS バーストモードクレジット枯渇対策メモ</a> 2023-05-03</li>
-<li><a href="../aws-ec2-ebs-delete-on-termination">AWS CLI を使った EC2 への EBS ボリュームの永続化</a> 2023-05-01</li>
-<li><a href="../cicd-terragrunt-1">Terraform のラッパーツール、Terragrunt の導入検証を行ってみた</a> 2023-04-27</li>
-<li><a href="../aws-lambda-local-execution">Lambda ローカル開発環境構築メモ (SAM | LocalStack | TypeScript)</a> 2023-04-24</li>
-<li><a href="../cicd-oidc">OIDC (Git to AWS)のデプロイメモ</a> 2023-04-26</li>
-<li><a href="../aws-ec2-nat-instance">Packer と Ansible を使って Amazon Linux 2 に NAT インスタンスを作成する</a> 2023-04-11</li>
-<li><a href="../browser-selenium">ブラウザのコンソールログを Selenium(ヘッドレスブラウザ)で取得する</a> 2020-08-26</li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html">SSMplugin</a>をインストールしてください。</li>
 </ul>
-
+</li>
+<li>
+<p>ECS のタスクロールに SessionManager の権限が追加されてない</p>
+<ul>
+<li>マネージドポリシー<a href="https://docs.aws.amazon.com/ja_jp/aws-managed-policy/latest/reference/AmazonSSMManagedInstanceCore.html">AmazonSSMManagedInstanceCore</a>を利用するケースが多いと思いますが、以下の action 許可だけで接続自体は可能です。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-terraform" data-lang="terraform"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#e6db74">&#34;aws_iam_policy_document&#34;</span> <span style="color:#e6db74">&#34;session_manager_policy&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">statement</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sid</span> = <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">effect</span> = <span style="color:#e6db74">&#34;Allow&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">actions</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ssmmessages:CreateControlChannel&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ssmmessages:CreateDataChannel&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ssmmessages:OpenControlChannel&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ssmmessages:OpenDataChannel&#34;</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">resources</span> = [<span style="color:#e6db74">&#34;*&#34;</span>]
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>それでも接続できない場合は、AWS 公式のツールを利用してデバッグしてみてください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/aws-containers/amazon-ecs-exec-checker.git
+</span></span><span style="display:flex;"><span>brew install jq
+</span></span><span style="display:flex;"><span>./check-ecs-exec.sh <span style="color:#f92672">[</span>クラスター名<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>タスク ID<span style="color:#f92672">]</span>
+</span></span></code></pre></div>
 	    
 	</div>
     <div>
